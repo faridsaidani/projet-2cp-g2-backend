@@ -40,3 +40,28 @@ def register():
     db.session.commit()
     return jsonify({'message': 'success'})
 
+@patientRoute.route('/login', methods=['POST'])
+def login():
+    data = request.get_json()
+    email = data.get('email')
+    password = data.get('password')
+
+## if he didn't write either password or email
+    if not email or not password:
+        return jsonify({'error': 'Email and password are required'})
+
+    patient = Patient.query.filter_by(email=email).first()
+
+    if patient and bcrypt.check_password_hash(patient.password, password):
+        # If the email and password match, store the patient's name and email in the session
+        session['patient_name'] = patient.username
+        return jsonify({'message': 'Login successful'})
+    else:
+        # If the email or password is incorrect, return an error message
+        return jsonify({'error': 'Invalid email or password'})
+
+@patientRoute.route('/logout')
+def logout():
+    # Clear the patient_name session variable to indicate logout
+    session.pop('patient_name', None)
+    return jsonify({'message': 'Logout successful'})
