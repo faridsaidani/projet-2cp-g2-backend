@@ -60,7 +60,7 @@ def login():
 
     if patient and bcrypt.check_password_hash(patient.password, password):
         # If the email and password match, store the patient's username in the session
-        session['patient_name'] = patient.username
+        session['patient_username'] = patient.username
         return jsonify({'message': 'Login successful'})
     else:
         # If the email or password is incorrect, return an error message
