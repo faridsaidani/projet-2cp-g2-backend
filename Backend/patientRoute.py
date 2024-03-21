@@ -38,6 +38,15 @@ def register():
     db.session.commit()
     return jsonify({'message': 'success'})
 
+#########
+ # Authentication decorator
+def login_required(func):
+    def wrapper(*args, **kwargs):
+        # Check if the patient_username session variable is set after the user logged in
+        if 'patient_username' not in session:
+            return jsonify({'error': 'Unauthorized'}), 401  # Return 401 Unauthorized status code
+        return func(*args, **kwargs)
+    return wrapper
 @patientRoute.route('/login', methods=['POST'])
 def login():
     data = request.get_json()
