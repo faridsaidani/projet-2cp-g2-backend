@@ -1,4 +1,5 @@
-from app import db,ma
+from  __main__ import db
+from  __main__ import ma
 
 class Patient(db.Model):
     id = db.Column(db.Integer, primary_key=True, unique=True)
