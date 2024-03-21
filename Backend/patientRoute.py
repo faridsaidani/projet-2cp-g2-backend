@@ -1,5 +1,5 @@
-from __main__ import db,bcrypt
-from flask import Blueprint, request, jsonify
+from app import db,bcrypt
+from flask import Blueprint, request, session,jsonify
 from PatientModel import Patient,patientSchema
 
 
