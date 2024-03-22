@@ -35,15 +35,17 @@ def register():
         db.session.commit()
     return jsonify({'message': 'success'})
 
-#########
- # Authentication decorator
+
+ ############# Authentication decorator ###############################
 def login_required(func):
     def wrapper(*args, **kwargs):
-        # Check if the patient_username session variable is set after the user logged in
-        if 'patient_username' not in session:
+        # Check if the patient_id session variable is set after the user logged in
+        if 'patient_id' not in session:
             return jsonify({'error': 'Unauthorized'}), 401  # Return 401 Unauthorized status code
         return func(*args, **kwargs)
     return wrapper
+
+
 @patientRoute.route('/login', methods=['POST'])
 def login():
     data = request.get_json()
@@ -58,6 +60,7 @@ def login():
     if patient and bcrypt.check_password_hash(patient.password, password):
         # If the email and password match, store the patient's username in the session
         session['patient_username'] = patient.username
+        session['patient_id'] = patient.id
         return jsonify({'message': 'Login successful'})
     else:
         # If the email or password is incorrect, return an error message
@@ -66,4 +69,5 @@ def login():
 def logout():
     # Clear the patient_username li rah f session to indicate logout
     session.pop('patient_username', None)
+    session.pop('patient_id' , None)
     return jsonify({'message': 'Logout successful'})

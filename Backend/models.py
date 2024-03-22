@@ -12,12 +12,3 @@ class Patient(db.Model):
         self.email = email
         self.image_file = image_file
         self.password = password
-
-class Therapist(db.Model):
-    therapist_id = db.Column(db.Integer,primary_key=True,nullable=False)
-    username = db.Column(db.String(20),unique=True,nullable=False)
-    email = db.Column(db.String(20),unique=True,nullable=False)
-    image_file = db.Column(db.String(120),default= 'default.jpg',nullable=False)
-    password = db.Column(db.String(20))
-    # file_name = db.Column(db.String(50))
-    # data = db.Column(db.LargeBinary)
