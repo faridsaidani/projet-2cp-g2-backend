@@ -1,9 +1,9 @@
 from __main__ import db,bcrypt
 from flask import Blueprint, request, jsonify, session
-from PatientModel import Patient
+from models import Patient
 from validate_email import validate_email
 
-patientRoute = Blueprint('patientRoute', __name__)
+patientRoute = Blueprint('patientRoute', __name__,url_prefix='/patient')
 
 @patientRoute.route('/register', methods= ['POST'])
 
@@ -16,18 +16,22 @@ def register():
         password=hashed_password,
         image_file=data['image_file']
     )
-
-    if not validate_email(new_patient.email):
+    if not new_patient.email:
+        return jsonify({'error':'no email'})
+    elif not new_patient.username :
+        return jsonify({'error':'no username'})
+    elif not new_patient.password:
+        return jsonify({'error':'no password'})
+    elif not validate_email(new_patient.email):
         return jsonify({'error': 'Invalid email address'})
 
-    if Patient.query.filter(Patient.email == new_patient.email).first() is not None:
+    elif Patient.query.filter(Patient.email == new_patient.email).first() is not None:
         return jsonify({'error': 'Email already exists'})
 
-    if Patient.query.filter(Patient.username == new_patient.username).first() is not None:
+    elif Patient.query.filter(Patient.username == new_patient.username).first() is not None:
         return jsonify({'error': 'Username already exists'})
     else:
         db.session.add(new_patient)
-        print(new_patient.email)
         db.session.commit()
     return jsonify({'message': 'success'})
 
