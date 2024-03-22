@@ -3,6 +3,10 @@ from flask import Blueprint, request, jsonify, session
 from models import Patient
 from validate_email import validate_email
 
+
+# the functions for patient
+# register log_in log_out update delete get_one get_all
+
 patientRoute = Blueprint('patientRoute', __name__,url_prefix='/patient')
 
 @patientRoute.route('/register', methods= ['POST'])
