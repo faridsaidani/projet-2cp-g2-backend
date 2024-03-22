@@ -1,5 +1,4 @@
 from  __main__ import db
-from  __main__ import ma
 
 class Patient(db.Model):
     id = db.Column(db.Integer, primary_key=True, unique=True)
@@ -13,6 +12,3 @@ class Patient(db.Model):
         self.email = email
         self.image_file = image_file
         self.password = password
-class patientSchema(ma.Schema):
-    class Meta:
-        fields = ('id','username','email','image_file','password')
