@@ -70,8 +70,10 @@ def login():
         return jsonify({'error': 'Invalid email or password'})
 
 
+
+
+@patientRoute.route('/logout' ,methods=['POST'])
 @login_required
-@patientRoute.route('/logout')
 def logout():
     # Clear the patient_username li rah f session to indicate logout
     session.pop('patient_username', None)
