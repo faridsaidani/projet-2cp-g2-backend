@@ -2,6 +2,7 @@ from __main__ import db, bcrypt
 from flask import Blueprint, request, jsonify, session
 from models import Patient
 from validate_email import validate_email
+import base64
 
 
 # the functions for patient
@@ -12,12 +13,21 @@ patientRoute = Blueprint('patientRoute', __name__,url_prefix='/patient')
 @patientRoute.route('/register', methods= ['POST'])
 
 def register():
-    data = request.get_json()
+    data = request.form
+    hashed_password = bcrypt.generate_password_hash(data['password'])
+    image_file = request.files['image_file']
+    image_content = image_file.read()
+    encoded_file = base64.b64decode(image_content)
+
     new_patient = Patient(
         username=data['username'],
+        name=data['name'],
+        familly_name=data['familly_name'],
         email=data['email'],
-        password=data['password'],
-        image_file=data['image_file']
+        password=hashed_password,
+        gender=data['gender'],
+        birthday=data['birthday'],
+        image_file=encoded_file
     )
     if not new_patient.email:
         return jsonify({'error':'no email'})
@@ -66,11 +76,11 @@ def login():
 
     if patient is not None:
         # Verify the password
-
-        # If the password is correct, store the patient's username in the session
-        session['patient_username'] = patient.username
-        session['patient_id'] = patient.id
-        return jsonify({'message': 'Login successful'})
+        if bcrypt.check_password_hash(patient.password, password):
+            # If the password is correct, store the patient's username in the session
+            session['patient_username'] = patient.username
+            session['patient_id'] = patient.id
+            return jsonify({'message': 'Login successful'})
 
     # If the email or password is incorrect, return an error message
     return jsonify({'error': 'Invalid email or password'}), 401
