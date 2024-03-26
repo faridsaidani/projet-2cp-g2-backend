@@ -32,8 +32,10 @@ class Therapist(db.Model):
     birthday = db.Column(db.Date)
     image_file = db.Column(db.Text, nullable=True)
     cv = db.Column(db.LargeBinary, nullable=True)
-    def __init__(self, username, email, password,gender,birthday,image_file,cv):
+    def __init__(self, username,name,familly_name, email, password,gender,birthday,image_file,cv):
         self.username = username
+        self.name = name
+        self.familly_name = familly_name
         self.email = email
         self.image_file = image_file
         self.password = password
