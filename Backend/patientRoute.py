@@ -166,8 +166,7 @@ def update(id):
        mf_to_update =  MedicalFile.filter(MedicalFile.patient_id == id).first()
        mf_to_update.file_content = new_content
     if new_info.birthday:
-       print(patient_to_update.birthday)
-       print(new_info.birthday)
+       patient_to_update.birthday = new_info.birthday
      
     
     db.session.commit()
@@ -206,7 +205,7 @@ def delete_image_file(id):
             image_file = open('default.jpg', 'rb')
             encoded_image = base64.b64encode(image_file.read()).decode('utf-8')
             found_patient.image_file = encoded_image
-            db.session.delete(found_patient)
+            # db.session.delete(found_patient)
             db.session.commit()
             return jsonify({"message":"delete image success"})
 
