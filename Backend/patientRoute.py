@@ -96,11 +96,11 @@ def login():
 
     if patient is not None:
         # Verify the password
-
-        # If the password is correct, store the patient's username in the session
-        session['patient_username'] = patient.username
-        session['patient_id'] = patient.id
-        return jsonify({'message': 'Login successful'})
+        if bcrypt.check_password_hash(patient.password, password):
+            # If the password is correct, store the patient's username in the session
+            session['patient_username'] = patient.username
+            session['patient_id'] = patient.id
+            return jsonify({'message': 'Login successful'})
 
     # If the email or password is incorrect, return an error message
     return jsonify({'error': 'Invalid email or password'}), 401
@@ -163,7 +163,7 @@ def update(id):
         patient_to_update.image_file = encoded_image
     if medical_file :
        new_content = request.files['medical_file'].read()
-       mf_to_update =  MedicalFile.filter(MedicalFile.patient_id == id).first()
+       mf_to_update =  MedicalFile.query.filter(MedicalFile.patient_id == id).first()
        mf_to_update.file_content = new_content
     if new_info.birthday:
        patient_to_update.birthday = new_info.birthday
