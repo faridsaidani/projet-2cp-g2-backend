@@ -2,9 +2,8 @@ from __main__ import db,bcrypt
 from flask import Blueprint, request, jsonify, session
 from models import Patient, MedicalFile
 from validate_email import validate_email
-import base64, os
-# use this command to install PIL : pip install Pillow
-from PIL import Image
+import base64
+
 
 # the functions for patient
 # register log_in log_out update delete get_one get_all

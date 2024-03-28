@@ -1,4 +1,4 @@
-from __main__ import db, bcrypt
+from __main__ import db,bcrypt
 from flask import Blueprint, request, jsonify, session
 from models import Therapist
 from validate_email import validate_email
@@ -12,7 +12,7 @@ therapistRoute = Blueprint('therapistRoute', __name__, url_prefix='/therapist')
 @therapistRoute.route('/register', methods=['POST'])
 def register():
     data = request.form
-    hashed_password = bcrypt.generate_password_hash(data['password'])
+    hashed_password = bcrypt.generate_password_hash(data['password']).decode('utf-8')
     if 'image_file' not in request.files:
         print("the default one")
         image_file = open('default.jpg', 'rb')
@@ -80,14 +80,13 @@ def login():
     password = data['password']
 
     # Query the database for the Therapist with the given email
-    therapist = Therapist.query.filter_by(email=email, password=password).first()
-
-    if Therapist is not None:
+    therapist = Therapist.query.filter(Therapist.email == email).first()
+    if therapist is not None:
         # Verify the password
         if bcrypt.check_password_hash(therapist.password, password):
             # If the password is correct, store the Therapist's username in the session
-            session['Therapist_username'] = Therapist.username
-            session['Therapist_id'] = Therapist.id
+            session['therapist_username'] = therapist.username
+            session['therapist_id'] = therapist.id
             return jsonify({'message': 'Login successful'})
 
     # If the email or password is incorrect, return an error message
