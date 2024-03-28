@@ -3,6 +3,7 @@ from flask import Blueprint, request, jsonify, session
 from models import Patient, MedicalFile
 from validate_email import validate_email
 import base64, os
+
 # use this command to install PIL : pip install Pillow
 from PIL import Image
 
@@ -82,7 +83,7 @@ def login_required(func):
 
 @patientRoute.route('/login', methods=['POST'])
 def login():
-    data = request.get_json()
+    data = request.form
 
     # Check if 'email' and 'password' keys exist in the JSON payload
     if 'email' not in data or 'password' not in data:
@@ -92,18 +93,25 @@ def login():
     password = data['password']
 
     # Query the database for the patient with the given email
-    patient = Patient.query.filter_by(email=email, password=password).first()
-
+    patient = Patient.query.filter_by(email=email).first()
+    
     if patient is not None:
         # Verify the password
+        ###### have a problem with bcrypt library type oerror : runtime error   #######
         if bcrypt.check_password_hash(patient.password, password):
+        
             # If the password is correct, store the patient's username in the session
             session['patient_username'] = patient.username
             session['patient_id'] = patient.id
             return jsonify({'message': 'Login successful'})
+        return jsonify({'error': 'Invalid email or password'}), 401
+    
+    
+    
+    
 
     # If the email or password is incorrect, return an error message
-    return jsonify({'error': 'Invalid email or password'}), 401
+    
 
 
 @patientRoute.route('/logout', methods=['POST'])

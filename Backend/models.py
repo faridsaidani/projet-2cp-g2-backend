@@ -7,7 +7,7 @@ class Patient(db.Model):
     name = db.Column(db.String(20), nullable=False)
     familly_name = db.Column(db.String(20), nullable=False)
     email = db.Column(db.String(120), unique=True)
-    password = db.Column(db.String(20))
+    password = db.Column(db.Text ,nullable=False)  # Hashed Password
     gender = db.Column(db.String(10))
     birthday = db.Column(db.Date, nullable=False)
     image_file = db.Column(db.Text, nullable=False)
@@ -29,7 +29,7 @@ class Therapist(db.Model):
     name = db.Column(db.String(20), nullable=False)
     familly_name = db.Column(db.String(20), nullable=False)
     email = db.Column(db.String(120), unique=True)
-    password = db.Column(db.String(20))
+    password = db.Column(db.Text ,nullable=False)  # Hashed Password
     gender = db.Column(db.String(10))
     birthday = db.Column(db.Date)
     image_file = db.Column(db.Text, nullable=True)
