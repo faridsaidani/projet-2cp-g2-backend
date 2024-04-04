@@ -1,6 +1,6 @@
-from __main__ import db,bcrypt
+from  ..create_app import db, bcrypt
 from flask import Blueprint, request, jsonify, session
-from models import Therapist
+from ..models import Therapist
 from validate_email import validate_email
 import base64
 
@@ -15,7 +15,7 @@ def register():
     hashed_password = bcrypt.generate_password_hash(data['password']).decode('utf-8')
     if 'image_file' not in request.files:
         print("the default one")
-        image_file = open('default.jpg', 'rb')
+        image_file = open('../default.jpg', 'rb')
     else:
         image_file = request.files['image_file']
  
@@ -80,13 +80,15 @@ def login():
     password = data['password']
 
     # Query the database for the Therapist with the given email
-    therapist = Therapist.query.filter(Therapist.email == email).first()
+    therapist = Therapist.query.filter_by(email=email).first()
+
     if therapist is not None:
         # Verify the password
+         ###### have a problem with bcrypt library type oerror : runtime error   #######
         if bcrypt.check_password_hash(therapist.password, password):
             # If the password is correct, store the Therapist's username in the session
-            session['therapist_username'] = therapist.username
-            session['therapist_id'] = therapist.id
+            session['Therapist_username'] = therapist.username
+            session['Therapist_id'] = therapist.id
             return jsonify({'message': 'Login successful'})
 
     # If the email or password is incorrect, return an error message
@@ -174,7 +176,7 @@ def delete_image_file(id):
     # id patient_id
         found_therapist = Therapist.query.filter(Therapist.id == id).first()
         if found_therapist :
-            image_file = open('default.jpg', 'rb')
+            image_file = open('../default.jpg', 'rb')
             encoded_image = base64.b64encode(image_file.read()).decode('utf-8')
             found_therapist.image_file = encoded_image
             # db.session.delete(found_therapist)
