@@ -125,7 +125,8 @@ def update(id):
         birthday = info['birthday'],
         gender = info['gender'],
         image_file = encoded_image,
-        cv = cv
+        cv = cv,
+        selected = info['selected']
     )
     if new_info.username:
         if Therapist.query.filter(Therapist.username == new_info.username ).first() :
@@ -154,6 +155,8 @@ def update(id):
        therapist_to_update.cv = new_info.cv
     if new_info.birthday:
        therapist_to_update.birthday = new_info.birthday
+    if new_info.selected:
+       therapist_to_update.selected = new_info.selected
     
     
     db.session.commit()

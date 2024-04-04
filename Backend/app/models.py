@@ -11,7 +11,7 @@ class Patient(db.Model):
     gender = db.Column(db.String(10))
     birthday = db.Column(db.Date, nullable=False)
     image_file = db.Column(db.Text, nullable=False)
-    therapist_id = db.Column(db.Integer, db.ForeignKey('Therapist.id'), default = None)  # add_this
+    therapist_id = db.Column(db.Integer, db.ForeignKey('therapist.id'), default = None)  # add_this
     # relations appointment 
     appointments = db.relationship('Appointment', backref='patient')
     def __init__(self, username, name, familly_name, email, password, gender, birthday, image_file):
@@ -68,7 +68,7 @@ class Appointment(db.Model):
     id = db.Column(db.Integer, primary_key=True, unique=True)
     name = db.Column(db.String(100),nullable=False)
     date = db.Column(db.Date)
-    therapist_id = db.Column(db.Integer, db.ForeignKey('Therapist.id'), nullable=False)
+    therapist_id = db.Column(db.Integer, db.ForeignKey('therapist.id'), nullable=False)
     patient_id =  db.Column(db.Integer,db.ForeignKey('patient.id'),nullable=False)
     def __init__(self, name, date, therapist_id, patient_id):
        self.name = name
