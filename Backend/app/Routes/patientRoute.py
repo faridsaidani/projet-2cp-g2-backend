@@ -3,10 +3,7 @@ from ..create_app import db,bcrypt
 from flask import Blueprint, request, jsonify, session
 from ..models  import Patient, MedicalFile
 from validate_email import validate_email
-import base64, os
-
-# use this command to install PIL : pip install Pillow
-from PIL import Image
+import base64
 
 # the functions for patient
 # register log_in log_out update delete get_one get_all
@@ -18,7 +15,6 @@ def register():
     data = request.form
     hashed_password = bcrypt.generate_password_hash(data['password']).decode('utf-8')
     if 'image_file' not in request.files:
-        print("default one ####################")
         image_file = open('../default.jpg', 'rb')
     else:
         image_file = request.files['image_file']
@@ -35,7 +31,6 @@ def register():
             gender = data['gender'],
             password = hashed_password,
             image_file = encoded_image,
-            # medical_file = file_m,
             name = data['name'],
             familly_name = data['familly_name']
         )
@@ -60,7 +55,6 @@ def register():
         db.session.commit()
         ### the medical file
         p_id = new_patient.id
-        print(p_id)
         new_medical_file = MedicalFile(
             patient_id = p_id ,
             file_content = file_m
@@ -144,7 +138,8 @@ def update(id):
         familly_name = info['familly_name'],
         birthday = info['birthday'],
         gender = info['gender'],
-        image_file = encoded_image
+        image_file = encoded_image,
+        therapist_id = None
     )
     print(new_info)
     if new_info.username:

@@ -15,12 +15,14 @@ def create_app():
 
     from .Routes.patientRoute import patientRoute
     from .Routes.therapistRoute import therapistRoute
+    from .Routes.appointmentRoute import appointmentRoute
 
     with app.app_context():
         db.create_all()
 
     app.register_blueprint(patientRoute)
     app.register_blueprint(therapistRoute)
+    app.register_blueprint(appointmentRoute)
 
     @app.route('/', methods=['GET'])
     def home():
