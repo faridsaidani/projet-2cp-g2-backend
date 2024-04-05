@@ -32,7 +32,8 @@ def register():
             password = hashed_password,
             image_file = encoded_image,
             name = data['name'],
-            familly_name = data['familly_name']
+            familly_name = data['familly_name'],
+            therapist_id = None
         )
     
     if not new_patient.email:
@@ -139,7 +140,7 @@ def update(id):
         birthday = info['birthday'],
         gender = info['gender'],
         image_file = encoded_image,
-        therapist_id = None
+        therapist_id = info['therapist_id']
     )
     print(new_info)
     if new_info.username:
@@ -171,6 +172,8 @@ def update(id):
        mf_to_update.file_content = new_content
     if new_info.birthday:
        patient_to_update.birthday = new_info.birthday
+    if new_info.therapist_id:
+       patient_to_update.therapist_id = new_info.therapist_id
      
     
     db.session.commit()

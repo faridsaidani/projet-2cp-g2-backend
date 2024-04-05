@@ -121,15 +121,16 @@ def update(id):
     else:
         cv = True
     new_info = Therapist(
-        username=info['username'],
-        email=info['email'],
-        password=info['password'],
-        name=info['name'],
-        familly_name=info['familly_name'],
-        birthday=info['birthday'],
-        gender=info['gender'],
-        image_file=encoded_image,
-        cv=cv
+        username = info['username'],
+        email = info['email'],
+        password = info['password'],
+        name = info['name'],
+        familly_name = info['familly_name'],
+        birthday = info['birthday'],
+        gender = info['gender'],
+        image_file = encoded_image,
+        cv = cv,
+        approved = True
     )
     if new_info.username:
         if Therapist.query.filter(Therapist.username == new_info.username).first():
@@ -157,8 +158,9 @@ def update(id):
     if cv:
         therapist_to_update.cv = new_info.cv
     if new_info.birthday:
-        therapist_to_update.birthday = new_info.birthday
-
+       therapist_to_update.birthday = new_info.birthday
+    
+    
     db.session.commit()
     return jsonify({"message": "updated"})
 
