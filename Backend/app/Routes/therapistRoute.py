@@ -1,4 +1,4 @@
-from  ..create_app import db, bcrypt
+from ..create_app import db, bcrypt
 from flask import Blueprint, request, jsonify, session
 from ..models import Therapist
 from validate_email import validate_email
@@ -18,14 +18,14 @@ def register():
         image_file = open('../default.jpg', 'rb')
     else:
         image_file = request.files['image_file']
- 
+
     encoded_file = base64.b64encode(image_file.read()).decode('utf-8')
-    if 'cv' in request.files :
+    if 'cv' in request.files:
         cv_file = request.files['cv'].read()
         cv = True
     else:
         cv = False
-        return jsonify({"err":"cv required"})
+        return jsonify({"err": "cv required"})
     new_therapist = Therapist(
         username=data['username'],
         name=data['name'],
@@ -35,7 +35,8 @@ def register():
         gender=data['gender'],
         birthday=data['birthday'],
         image_file=encoded_file,
-        cv = cv_file
+        cv=cv_file,
+        approved=False  # Newly registered therapists are not approved by default
     )
     if not new_therapist.email:
         return jsonify({'error': 'no email'})
@@ -70,7 +71,7 @@ def login_required(func):
 
 @therapistRoute.route('/login', methods=['POST'])
 def login():
-    data = request.get_json()
+    data = request.form
 
     # Check if 'email' and 'password' keys exist in the JSON payload
     if 'email' not in data or 'password' not in data:
@@ -84,12 +85,14 @@ def login():
 
     if therapist is not None:
         # Verify the password
-         ###### have a problem with bcrypt library type oerror : runtime error   #######
         if bcrypt.check_password_hash(therapist.password, password):
-            # If the password is correct, store the Therapist's username in the session
-            session['Therapist_username'] = therapist.username
-            session['Therapist_id'] = therapist.id
-            return jsonify({'message': 'Login successful'})
+            # verify if the therapist is really approved by the admin
+            if therapist.approved:
+                # If approved, store the therapist's ID in the session
+                session['therapist_id'] = therapist.id
+                return jsonify({'message': 'Login successful'})
+            else:
+                return jsonify({'error': 'Therapist not approved by admin'}), 401
 
     # If the email or password is incorrect, return an error message
     return jsonify({'error': 'Invalid email or password'}), 401
@@ -103,40 +106,41 @@ def logout():
     session.pop('Therapist_id', None)
     return jsonify({'message': 'Logout successful'})
 
-@therapistRoute.route('/update/<int:id>',methods=['PUT'])
+
+@therapistRoute.route('/update/<int:id>', methods=['PUT'])
 def update(id):
     therapist_to_update = Therapist.query.get(id)
     info = request.form
     if 'image_file' in request.files:
         image_file = request.files['image_file']
         encoded_image = base64.b64encode(image_file.read()).decode('utf-8')
-    else :
+    else:
         encoded_image = False
     if 'cv' not in request.files:
         cv = False
     else:
         cv = True
     new_info = Therapist(
-        username = info['username'],
-        email = info['email'],
-        password = info['password'],
-        name = info['name'],
-        familly_name = info['familly_name'],
-        birthday = info['birthday'],
-        gender = info['gender'],
-        image_file = encoded_image,
-        cv = cv
+        username=info['username'],
+        email=info['email'],
+        password=info['password'],
+        name=info['name'],
+        familly_name=info['familly_name'],
+        birthday=info['birthday'],
+        gender=info['gender'],
+        image_file=encoded_image,
+        cv=cv
     )
     if new_info.username:
-        if Therapist.query.filter(Therapist.username == new_info.username ).first() :
-            return jsonify({'error':'usename already exist'})
+        if Therapist.query.filter(Therapist.username == new_info.username).first():
+            return jsonify({'error': 'usename already exist'})
         else:
             therapist_to_update.username = new_info.username
     if new_info.email:
         if Therapist.query.filter(Therapist.username == new_info.email).first():
-            return jsonify({'error':'email already exist'})
+            return jsonify({'error': 'email already exist'})
         elif not validate_email(new_info.email):
-            return jsonify({'error':'invalid email'})
+            return jsonify({'error': 'invalid email'})
         else:
             therapist_to_update.email = new_info.email
     if new_info.password:
@@ -150,36 +154,36 @@ def update(id):
         image_file = request.files['image_file']
         encoded_image = base64.b64encode(image_file.read()).decode('utf-8')
         therapist_to_update.image_file = encoded_image
-    if cv :
-       therapist_to_update.cv = new_info.cv
+    if cv:
+        therapist_to_update.cv = new_info.cv
     if new_info.birthday:
-       therapist_to_update.birthday = new_info.birthday
-    
-    
-    db.session.commit()
-    return jsonify({"message":"updated"})
+        therapist_to_update.birthday = new_info.birthday
 
-@therapistRoute.route('/delete/<int:id>',methods=['DELETE'])
+    db.session.commit()
+    return jsonify({"message": "updated"})
+
+
+@therapistRoute.route('/delete/<int:id>', methods=['DELETE'])
 def delete(id):
     found_therapist = Therapist.query.filter(Therapist.id == id).first()
-    if found_therapist :
+    if found_therapist:
         db.session.delete(found_therapist)
         db.session.commit()
-        return jsonify({"message":"deleted"})
-    else :
-        return jsonify({'err':'this therapist do not exist'})
+        return jsonify({"message": "deleted"})
+    else:
+        return jsonify({'err': 'this therapist do not exist'})
 
-@therapistRoute.route('/deleteimg/<int:id>',methods=['DELETE'])
-# in case we want to dalate image 
+
+@therapistRoute.route('/deleteimg/<int:id>', methods=['DELETE'])
+# in case we want to dalate image
 # in the same time replace it with default one
 def delete_image_file(id):
     # id patient_id
-        found_therapist = Therapist.query.filter(Therapist.id == id).first()
-        if found_therapist :
-            image_file = open('../default.jpg', 'rb')
-            encoded_image = base64.b64encode(image_file.read()).decode('utf-8')
-            found_therapist.image_file = encoded_image
-            # db.session.delete(found_therapist)
-            db.session.commit()
-            return jsonify({"message":"delete image success"})
- 
+    found_therapist = Therapist.query.filter(Therapist.id == id).first()
+    if found_therapist:
+        image_file = open('../default.jpg', 'rb')
+        encoded_image = base64.b64encode(image_file.read()).decode('utf-8')
+        found_therapist.image_file = encoded_image
+        # db.session.delete(found_therapist)
+        db.session.commit()
+        return jsonify({"message": "delete image success"})
