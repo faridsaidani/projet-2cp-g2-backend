@@ -14,7 +14,7 @@ class Patient(db.Model):
     therapist_id = db.Column(db.Integer, db.ForeignKey('therapist.id'), default = None)  # add_this
     # relations appointment 
     appointments = db.relationship('Appointment', backref='patient')
-    def __init__(self, username, name, familly_name, email, password, gender, birthday, image_file):
+    def __init__(self, username, name, familly_name, email, password, gender, birthday, image_file,therapist_id):
         self.username = username
         self.email = email
         self.name = name
@@ -23,6 +23,8 @@ class Patient(db.Model):
         self.password = password
         self.gender = gender
         self.birthday = birthday
+        self.therapist_id = therapist_id
+
 
 
 class Therapist(db.Model):
