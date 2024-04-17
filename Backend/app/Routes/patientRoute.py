@@ -1,4 +1,3 @@
-
 from ..create_app import db,bcrypt
 from flask import Blueprint, request, jsonify, session
 from ..models  import Patient, MedicalFile
@@ -14,6 +13,8 @@ patientRoute = Blueprint('patientRoute', __name__,url_prefix='/patient')
 def register():
     data = request.form
     hashed_password = bcrypt.generate_password_hash(data['password']).decode('utf-8')
+    if 'consent' not in data or data['consent'] != 'true':
+        return jsonify({"error": "Consent to save information is required"})
     if 'image_file' not in request.files:
         image_file = open('../default.jpg', 'rb')
     else:
@@ -216,3 +217,82 @@ def delete_image_file(id):
             db.session.commit()
             return jsonify({"message":"delete image success"})
 
+
+@login_required
+@patientRoute.route('/get_all', methods=['GET'])
+def get_all_patients():
+    patients = Patient.query.all()
+    patients_list = []
+    for patient in patients:
+        patient_info = {
+            'id': patient.id,
+            'username': patient.username,
+            'name': patient.name,
+            'familly_name': patient.familly_name,
+            'email': patient.email,
+            'gender': patient.gender,
+            'birthday': patient.birthday,
+            'image_file': patient.image_file,
+            'therapist_id':patient.therapist_id
+        }
+        patients_list.append(patient_info)
+    return jsonify({'patients': patients_list})
+
+@login_required
+@patientRoute.route('get/<int:id>', methods=['GET'])
+def get_patient(id):
+    patient = Patient.query.get(id)
+    if patient:
+        patient_info = {
+            'id': patient.id,
+            'username': patient.username,
+            'name': patient.name,
+            'familly_name': patient.familly_name,
+            'email': patient.email,
+            'gender': patient.gender,
+            'birthday': patient.birthday,
+            'image_file': patient.image_file,
+            'therapist_id':patient.therapist_id
+        }
+        return jsonify({'patient': patient_info})
+    else:
+        return jsonify({'error': 'Patient not found'}), 404
+    
+@login_required
+@patientRoute.route('/search', methods=['GET'])
+def search_patients():
+    # Get query parameters from the request
+    name = request.args.get('name')
+    familly_name = request.args.get('familly_name')
+    
+    # Build the query based on the provided parameters
+    query = Patient.query
+    if name:
+        query = query.filter(Patient.name.ilike(f'%{name}%'))
+    if familly_name:
+        query = query.filter(Patient.familly_name.ilike(f'%{familly_name}%'))
+  
+    # Execute the query and retrieve matching patients
+    patients = query.all()
+    
+    # Convert patients to JSON format
+    patient_list = []
+    for patient in patients:
+        patient_info = {
+            'id': patient.id,
+            'username': patient.username,
+            'name': patient.name,
+            'familly_name': patient.familly_name,
+            'email': patient.email,
+            'gender': patient.gender,
+            'birthday': patient.birthday,
+            'image_file': patient.image_file,
+            'therapist_id':patient.therapist_id
+        }
+        patient_list.append(patient_info)
+    
+    # Return the list of matching patients as JSON response
+    return jsonify({'patients': patient_list})
+
+
+ 

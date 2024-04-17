@@ -1,6 +1,5 @@
 from .create_app  import db
 
-
 class Patient(db.Model):
     id = db.Column(db.Integer, primary_key=True, unique=True)
     username = db.Column(db.String(20), unique=True)
@@ -38,12 +37,13 @@ class Therapist(db.Model):
     birthday = db.Column(db.Date)
     image_file = db.Column(db.Text, nullable=True)
     cv = db.Column(db.LargeBinary, nullable=True)
+    certificate = db.Column(db.LargeBinary, nullable=True)
     selected = db.Column(db.Boolean,default=False)
     # relations appointment and patient
     appointments = db.relationship('Appointment', backref='therpist')
     patients = db.relationship('Patient', backref='therpist')
 
-    def __init__(self, username, email, name, familly_name, password, gender, birthday, image_file,cv,selected):
+    def __init__(self, username, email, name, familly_name, password, gender, birthday, image_file,cv,certificate,selected):
         self.username = username
         self.name = name
         self.familly_name = familly_name
@@ -54,7 +54,9 @@ class Therapist(db.Model):
         self.birthday = birthday
         self.image_file = image_file
         self.cv = cv
+        self.certificate = certificate
         self.selected = selected
+        
 
 
 class MedicalFile(db.Model):

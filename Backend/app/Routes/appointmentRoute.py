@@ -7,14 +7,15 @@ appointmentRoute = Blueprint('appointmentRoute', __name__,url_prefix='/appointme
 
 #add
 # write it here
-appointmentRoute.route('/add',methods = ['POST'])
+     
+@appointmentRoute.route('/add',methods = ['POST'])
 def add():
     data = request.form
     new_appointment = Appointment(
         name = data["name"] ,
         date = data["date"] ,
         therapist_id= data["therapist_id"] ,
-        patient_id= data["patient_ud"],
+        patient_id= data["patient_id"],
     )
     if not data["name"] :
         return jsonify({'err':'name required'})
@@ -36,33 +37,28 @@ def update_appointment(id):
     appointment = Appointment.query.get(id)
     if appointment:
         data = request.form
-        # Check if the provided name conflicts with existing appointments
         
-        if "name" in data and data["name"] != appointment.name:
-            existing_appointment = Appointment.query.filter_by(name=data["name"]).first()
-            if existing_appointment:
-                return jsonify({'error': 'An appointment with this name already exists'}), 400
-            else:
-                appointment.name = data["name"]
+        # Update name if provided
+        if "name" in data:
+            appointment.name = data["name"]
 
-        # Check if the provided date conflicts with existing appointments
+        # Update date if provided
         if "date" in data:
-            new_date = data["date"]
-            existing_appointment = Appointment.query.filter_by(date=new_date).first()
-            if existing_appointment:
-                return jsonify({'error': 'An appointment already exists at this date'}), 400
-            else:
-                appointment.date = new_date
+            appointment.date = data["date"]
 
-        # Update therapist ID and patient ID
-        appointment.therapist_id = data["therapist_id"]
-        appointment.patient_id = data["patient_id"]
+        # Update therapist ID if provided
+        if "therapist_id" in data:
+            appointment.therapist_id = data["therapist_id"]
+
+        # Update patient ID if provided
+        if "patient_id" in data:
+            appointment.patient_id = data["patient_id"]
 
         db.session.commit()
         return jsonify({'message': 'Appointment updated successfully'})
     else:
         return jsonify({'error': 'Appointment not found'}), 404
-#delete
+    #delete
 # write it here
 appointmentRoute.route('/delete/<int:id>',methods = ['DELETE'])
 def delete(id):
@@ -72,3 +68,67 @@ def delete(id):
         return jsonify({"message":"deleted"})
     else :
         return jsonify({"err":"appointment do not exist"})
+    
+@appointmentRoute.route('/get_all', methods=['GET'])
+def get_all_appointments():
+    appointments = Appointment.query.all()
+    appointments_list = []
+    for appointment in appointments:
+        appointment_info = {
+            'id': appointment.id,
+            'name': appointment.name,
+            'date': appointment.date,
+            'therapist_id':appointment.therapist_id,
+            'patient_id':appointment.patient_id
+        }
+        appointments_list.append(appointment_info)
+    return jsonify({'appointments': appointments_list})
+
+@appointmentRoute.route('get/<int:id>', methods=['GET'])
+def get_appointment(id):
+    appointment = Appointment.query.get(id)
+    if appointment:
+        appointment_info = {
+            'id': appointment.id,
+            'name': appointment.name,
+            'date': appointment.date,
+            'therapist_id':appointment.therapist_id,
+            'patient_id':appointment.patient_id
+        }
+        return jsonify({'appointment': appointment_info})
+    else:
+        return jsonify({'error': 'Appointment not found'}), 404
+    
+ 
+@appointmentRoute.route('/search', methods=['GET'])
+def search_appointments():
+    # Get query parameters from the request
+    name = request.args.get('name')
+    date = request.args.get('date')
+    
+    # Build the query based on the provided parameters
+    query = Appointment.query
+    if name:
+        query = query.filter(Appointment.name.ilike(f'%{name}%'))
+    if date:
+        query = query.filter(Appointment.date.ilike(f'%{date}%'))
+
+  
+    # Execute the query and retrieve matching appointments
+    appointments = query.all()
+    
+    # Convert patients to JSON format
+    appointment_list = []
+    for appointment in appointments:
+        appointment_info = {
+            'id': appointment.id,
+            'name': appointment.name,
+            'date': appointment.date,
+            'therapist_id':appointment.therapist_id,
+            'patient_id':appointment.patient_id
+        }
+
+        appointment_list.append(appointment_info)
+    
+    # Return the list of matchingappointments as JSON response
+    return jsonify({'appointments': appointment_list})
