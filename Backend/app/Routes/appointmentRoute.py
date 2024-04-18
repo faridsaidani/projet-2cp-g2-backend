@@ -50,7 +50,7 @@ def update_appointment(id):
             new_date = data["date"]
             existing_appointment = Appointment.query.filter_by(date=new_date).first()
             if existing_appointment:
-                return jsonify({'error': 'An appointment already exists at this date'}), 400
+                return jsonify({'error': 'An appointment already exists at this date'})
             else:
                 appointment.date = new_date
 
