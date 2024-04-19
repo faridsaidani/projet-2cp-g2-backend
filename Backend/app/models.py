@@ -137,14 +137,14 @@ class Notification(db.Model):
     # therapist table and patient table are not the same
     recipient_type = db.Column(db.String(20),nullable=False)
     recipient_id = db.Column(db.Integer)
-    message = db.Column(db.String(255))
+    content = db.Column(db.String(255))
     timestamp = db.Column(db.DateTime, default=datetime.utcnow())
     read = db.Column(db.Boolean, default=False)
 
-    def __init__(self, recipient_id, message,timestamp,read,recipient_type):
+    def __init__(self, recipient_id, content,timestamp,read,recipient_type):
         self.recipient_id = recipient_id
         self.recipient_type = recipient_type
-        self.message = message
+        self.content = content
         self.timestamp = timestamp
         self.read = read
 

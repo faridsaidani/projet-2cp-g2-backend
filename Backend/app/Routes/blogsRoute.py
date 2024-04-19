@@ -2,7 +2,7 @@ from ..create_app import db
 from flask import Blueprint,request,jsonify,session
 from ..models  import Blog
 
-# done with all test for blog
+
 blogsRoute = Blueprint('blogsRoute', __name__,url_prefix='/blogs')
 
 #  add update delete  gey get all
