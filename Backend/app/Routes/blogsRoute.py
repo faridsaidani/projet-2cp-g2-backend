@@ -2,29 +2,20 @@ from ..create_app import db
 from flask import Blueprint,request,jsonify,session
 from ..models  import Blog
 
-
+# done with all test for blog
 blogsRoute = Blueprint('blogsRoute', __name__,url_prefix='/blogs')
 
 #  add update delete  gey get all
 # blog model : content name 
-
-# Create a Blog Post
-# done
 def create_blog_post(name, content,date):
     blog_post = Blog(name=name, content=content,date=date)
     db.session.add(blog_post)
     db.session.commit()
     return blog_post
-
-# Get a Single Blog Post by ID
 def get_blog_post(blog_id):
     return Blog.query.get(blog_id)
-
-# Get All Blog Posts
 def get_all_blog_posts():
     return Blog.query.all()
-
-# Update a Blog Post
 def update_blog_post(blog_id, name, content):
     blog_post = Blog.query.get(blog_id)
     if blog_post:
@@ -33,7 +24,6 @@ def update_blog_post(blog_id, name, content):
         db.session.commit()
         return True
     return False
-
 def delete_blog_post(blog_id):
     blog_post = Blog.query.get(blog_id)
     if blog_post:
@@ -41,8 +31,9 @@ def delete_blog_post(blog_id):
         db.session.commit()
         return True
     return False
-#########################################
-# done with create
+
+
+#create
 @blogsRoute.route('/add', methods=['POST'])
 def create_blog():
     data = request.form
@@ -56,7 +47,7 @@ def create_blog():
     else:
         return jsonify({'error': 'Missing name or content in request body'})
     
-# done with get one blog
+#get one blog
 @blogsRoute.route('/blog/<int:blog_id>', methods=['GET'])
 def get_blog(blog_id):
     blog_post = get_blog_post(blog_id)

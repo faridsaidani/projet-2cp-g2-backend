@@ -3,10 +3,13 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from configs import Config
 from flask_socketio import SocketIO
+from flask_mail import Mail
+import asyncio
 
 db = SQLAlchemy()
 bcrypt = Bcrypt()
 socketio = SocketIO()
+mail = Mail()
 
 def create_app():
     app = Flask(__name__)
@@ -15,6 +18,7 @@ def create_app():
     db.init_app(app)
     bcrypt.init_app(app)
     # socketio.init_app(app)
+    mail.init_app(app)
 
     from .Routes.appointmentRoute import appointmentRoute
     from .Routes.patientRoute import patientRoute
@@ -24,6 +28,7 @@ def create_app():
     from .Routes.messageRoute import messageRoute
     from .Routes.notificationRoute import notificationRoute
     from .Routes.adminRoute import adminRoute
+    from .Routes.contactRoute import contactRoute
     
 
     with app.app_context():
@@ -37,6 +42,7 @@ def create_app():
     app.register_blueprint(callenderRoute)
     app.register_blueprint(messageRoute)
     app.register_blueprint(adminRoute)
+    app.register_blueprint(contactRoute)
 
     @app.route('/', methods=['GET'])
     def home():
