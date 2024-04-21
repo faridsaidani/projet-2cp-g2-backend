@@ -1,0 +1,17 @@
+.google-login-button {
+    border-radius: 40px;
+    box-sizing: border-box;
+    padding: 10px 15px;
+    border: 1px solid #4C606E;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Avenir", sans-serif;
+    line-height: 30.05px;
+    font-weight: 400;
+    font-size: 22px;
+    gap: 16px;
+    width: 568px;
+    height: 64px;
+  }
