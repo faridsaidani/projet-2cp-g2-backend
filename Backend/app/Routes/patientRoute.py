@@ -213,7 +213,7 @@ def delete_image_file(id):
             image_file = open('../default.jpg', 'rb')
             encoded_image = base64.b64encode(image_file.read()).decode('utf-8')
             found_patient.image_file = encoded_image
-            # db.session.delete(found_patient)
+            db.session.delete(found_patient)
             db.session.commit()
             return jsonify({"message":"delete image success"})
 

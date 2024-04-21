@@ -7,7 +7,6 @@ appointmentRoute = Blueprint('appointmentRoute', __name__,url_prefix='/appointme
 
 #add
 # write it here
-     
 @appointmentRoute.route('/add',methods = ['POST'])
 def add():
     data = request.form
@@ -15,7 +14,7 @@ def add():
         name = data["name"] ,
         date = data["date"] ,
         therapist_id= data["therapist_id"] ,
-        patient_id= data["patient_id"],
+        patient_id= data["patient_ud"],
     )
     if not data["name"] :
         return jsonify({'err':'name required'})
@@ -28,7 +27,7 @@ def add():
     else:
         db.session.add(new_appointment)
         db.session.commit()
-        return jsonify({'emessage':'created'})
+        return jsonify({'message':'created'})
     
 #update
 # write it here
@@ -44,7 +43,12 @@ def update_appointment(id):
 
         # Update date if provided
         if "date" in data:
-            appointment.date = data["date"]
+            new_date = data["date"]
+            existing_appointment = Appointment.query.filter_by(date=new_date).first()
+            if existing_appointment:
+                return jsonify({'error': 'An appointment already exists at this date'}), 400
+            else:
+                appointment.date = new_date
 
         # Update therapist ID if provided
         if "therapist_id" in data:
@@ -60,11 +64,12 @@ def update_appointment(id):
         return jsonify({'error': 'Appointment not found'}), 404
     #delete
 # write it here
-appointmentRoute.route('/delete/<int:id>',methods = ['DELETE'])
+@appointmentRoute.route('/delete/<int:id>',methods = ['DELETE'])
 def delete(id):
     found_appointment = Appointment.query.filter(Appointment.id == id).first()
     if found_appointment :
         db.session.delete(found_appointment)
+        db.session.commit()
         return jsonify({"message":"deleted"})
     else :
         return jsonify({"err":"appointment do not exist"})
