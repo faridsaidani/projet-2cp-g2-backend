@@ -1,13 +1,16 @@
 
 import './index.css'
 import login from './images/login.png'
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
+import axios from 'axios';
 
 const Login = () => {
 //   const [values, setValues] = useState({ email: '', password: '' });
 const [values, setValues] = useState({ usernameOrEmail: '', password: '' });
+const [errors, setErrors] = useState({});
+const [submitting, setSubmitting] = useState(false);
 
-  const [errors, setErrors] = useState({});
+
 
   function handleInput(event) {
     const { name, value } = event.target;
@@ -18,25 +21,35 @@ const [values, setValues] = useState({ usernameOrEmail: '', password: '' });
     event.preventDefault();
     const validationErrors = validation(values);
     if (Object.keys(validationErrors).length === 0) {
-      // Proceed with login logic
-      console.log("Login successful!");
+      setSubmitting(true);
+      axios.post('/api/login', values)
+       .then(response => {
+          console.log(response.data);
+          setSubmitting(false);
+        })
+       .catch(error => {
+          console.error(error);
+          setErrors({ server: 'An error occurred while logging in' });
+          setSubmitting(false);
+        });
     } else {
       setErrors(validationErrors);
     }
   }
-
-
-
-
-
-
-
-//   const isValid = Object.keys(errors).length === 0;
-//   const dirty = values.usernameOrEmail || values.password;
-//   const isSubmitting = false; // You can set this to true when the form is submitting
-//   const isFormFilled = (values) => {
-//     return values.usernameOrEmail.trim() !== '' && values.password.trim() !== '';
-//   };
+  useEffect(() => {
+    if (submitting) {
+      axios.post('/api/login', values)
+       .then(response => {
+          console.log(response.data);
+          setSubmitting(false);
+        })
+       .catch(error => {
+          console.error(error);
+          setErrors({ server: 'An error occurred while logging in' });
+          setSubmitting(false);
+        });
+    }
+  }, [submitting, values]);
 
 
   return (
@@ -103,6 +116,17 @@ function validation(values) {
   
 
 export default Login;
+
+
+
+
+
+
+
+
+
+
+
 
 
 

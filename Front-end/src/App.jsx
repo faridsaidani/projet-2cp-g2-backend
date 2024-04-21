@@ -9,12 +9,15 @@ import BestTherapist from "./Home page/BestTherapist.jsx";
 import Clients from "./Home page/Clients.jsx";
 import Header from "./Home page/Header.jsx";
 import SideBar from "./SideBar copy.jsx";
+import Login from "./Login/Login.jsx";
+import SignUp from "./components/SignUp.jsx";
 function App() {
 
   return (
     <>
-      {/* <Login/> */}
+       {/* <Login/>  */}
       {/* Home page */}
+      <SignUp/>
       {/* <Header/>
         <GetStarted/>
         <Blogs/>
@@ -23,7 +26,7 @@ function App() {
         <Clients/>
         <Quizees/>
         <FAQ/> */}
-        <SideBar/>
+        {/* <SideBar/> */}
 
         
        
