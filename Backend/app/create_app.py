@@ -27,7 +27,7 @@ def create_app():
     #from .Routes.notificationRoute import notificationRoute
     from .Routes.adminRoute import adminRoute
     #from .Routes.contactRoute import contactRoute
-    from .Routes.video_calls import video_call_route
+    from .Routes.video_call import video_call_route
 
     with app.app_context():
         db.create_all()
