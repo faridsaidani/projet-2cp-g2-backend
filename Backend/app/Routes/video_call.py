@@ -47,3 +47,6 @@ def end_call(data):
             return jsonify({'error': 'Session ID not found'}), 404
     else:
         return jsonify({'error': 'Session ID not provided'}), 400
+    
+    
+# test socket tool
