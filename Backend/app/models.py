@@ -42,7 +42,7 @@ class Therapist(db.Model):
     selected = db.Column(db.Boolean,default=False)
     # relations appointment and patient
     appointments = db.relationship('Appointment', backref='therpist')
-    patients = db.relationship('Patient', backref='therpist')
+    patients = db.relationship('Patient', backref='therapist')
 
     def __init__(self, username, email, name, familly_name, password, gender, birthday, image_file,cv,certificate,selected):
         self.username = username
@@ -178,5 +178,17 @@ class Admin(db.Model):
         self.familly_name = familly_name
         self.gender = gender
 
+
+class VideoCall(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    session_id = db.Column(db.String(100), unique=True, nullable=False)
+    therapist_id = db.Column(db.Integer, db.ForeignKey('therapist.id'), nullable=False)
+    patient_id = db.Column(db.Integer, db.ForeignKey('patient.id'), nullable=False)
+    completed = db.Column(db.Boolean, default=False) 
+
+def __init__(self, session_id, therapist_id, patient_id):
+        self.session_id = session_id
+        self.therapist_id = therapist_id
+        self.patient_id = patient_id
 
 
