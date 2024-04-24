@@ -46,13 +46,17 @@ const Sidebar = () => {
                         <div className={`p-4 flex justify-start text-primary1   items-center cursor-pointer ${activeItem === 'home' && 'rounded-md bg-[#C3E7FA] text-primary1'}`} onClick={() => handleClick('home')}>
                             <GrHomeRounded className='mr-2 ' />Overview
                         </div>
-                        <div className={`p-4 flex justify-start items-center cursor-pointer ${activeItem === 'therapist' && ' rounded-md bg-[#C3E7FA] text-primary1'}`} onClick={() => handleClick('therapist')}>
-                            <FiUsers className='mr-2' /> List
+                        <div className={`p-4 flex justify-start items-center cursor-pointer ${activeItem === 'patient' && ' rounded-md bg-[#C3E7FA] text-primary1'}`} onClick={() => handleClick('patient')}>
+                            <FiUsers className='mr-2' /> Patient List
+                        </div>
+                        <div className={`p-4 flex justify-start items-center cursor-pointer ${activeItem === 'Appoitment' && ' rounded-md bg-[#C3E7FA]  text-primary1'}`} onClick={() => handleClick('Appointment')}>
+                            <LuMessagesSquare className='mr-2' />Appontments
                         </div>
                         
                         <div className={`p-4 flex justify-start items-center cursor-pointer ${activeItem === 'messages' && ' rounded-md bg-[#C3E7FA]  text-primary1'}`} onClick={() => handleClick('messages')}>
                             <LuMessagesSquare className='mr-2' />Messages
                         </div>
+
                         <div className={`p-4 flex justify-start items-center cursor-pointer ${activeItem === 'settings' && ' rounded-md bg-[#C3E7FA] text-primary1'}`} onClick={() => handleClick('settings')}>
                             <IoSettingsOutline className='mr-2'/>Settings
                         </div>

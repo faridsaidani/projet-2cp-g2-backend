@@ -67,12 +67,12 @@ const [submitting, setSubmitting] = useState(false);
             <div className="text-center md:text-left">
             <div className="flex flex-col py-2">
             <label className='mb-1 text-complimetary1 font-poppins font-normal text-base leading-6'>Username or Email address</label>
-            <input className='border p-2 rounded-xl border-shad' type="text" name="usernameOrEmail" value={values.usernameOrEmail} onChange={handleInput} />
+            <input className='border p-2 rounded-xl border-shad text-complimetary1 ' type="text" name="usernameOrEmail" value={values.usernameOrEmail} onChange={handleInput} />
             {errors.usernameOrEmail && <span className="text-red-500">{errors.usernameOrEmail}</span>}
           </div>
               <div className="flex flex-col py-2">
                 <label className='mb-1 text-complimetary1 font-poppins font-normal text-base leading-6'>Password</label>
-                <input className='border p-2 rounded-xl border-shad' type="password" name="password" value={values.password} onChange={handleInput} />
+                <input className='border p-2 rounded-xl border-shad text-complimetary1 '  type="password" name="password" value={values.password} onChange={handleInput} />
                 {errors.password && <span className="text-red-500">{errors.password}</span>}
               </div>
             </div>

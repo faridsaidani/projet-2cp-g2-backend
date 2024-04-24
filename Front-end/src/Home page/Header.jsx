@@ -1,7 +1,7 @@
 import React from 'react'
 import Navbar from './Navbar'
 
-const Header = ({ currentPage }) => {
+const Hheader = ({ currentPage }) => {
   return (
     <div className='bg-primary1 pt-10 pb-4 w-[100%] '>
 
@@ -78,4 +78,4 @@ const Header = ({ currentPage }) => {
   
   
 
-export default Header
+export default Hheader

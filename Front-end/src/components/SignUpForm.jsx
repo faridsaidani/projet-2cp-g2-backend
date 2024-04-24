@@ -1,6 +1,7 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import axios from 'axios';
 import TextField from './TextField'; 
 
 const generateOptions = (start, end) => {
@@ -12,9 +13,35 @@ const isFormFilled = (values) => {
 };
 
 const SignUpForm = () => {
+  const handleSubmit = async (values, { setSubmitting, resetForm }) => {
+    const formData = new FormData();
+    formData.append('name', values.name);
+    formData.append('family_name', values.familyName);
+    formData.append('username', values.profileName);
+    formData.append('email', values.email);
+    formData.append('password', values.password);
+    formData.append('gender', values.gender);
+    formData.append('birthday', `${values.dobYear}-${values.dobMonth}-${values.dobDate}`);
+    formData.append('consent', 'true'); // Add consent value
+    // Append other form fields as needed
+  
+    try {
+      const response = await axios.post('http://localhost/patient/register', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data' // Set content type to multipart/form-data
+        }
+      });
+      console.log(response.data); // Handle success response
+      resetForm(); // Reset the form after successful submission
+    } catch (error) {
+      console.error('Registration failed:', error); // Handle error response
+    } finally {
+      setSubmitting(false);
+    }
+  };
   return (
     <div>
-      <h1 className='flex justify-center text-xl text-primdark p-8'>Sign up with your email address</h1>
+      <h1 className='flex justify-center text-xl text-primary1 p-8'>Sign up with your email address</h1>
       <Formik
         initialValues={{
           name: "",
@@ -36,27 +63,28 @@ const SignUpForm = () => {
           email: Yup.string().email("Invalid email address").required("Email is required"),
           password: Yup.string()
             .required("Password is required")
-            .matches(
-              /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
-              "Password must contain at least 8 characters, one letter, one number and one special character"
-            ),
+            // .matches(
+            //   /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+            //   "Password must contain at least 8 characters, one letter, one number and one special character"
+            // )
+            ,
           therapistOrPatient: Yup.string().required("Please select therapist or patient"),
           gender: Yup.string().required("Please select your gender"),
           dobMonth: Yup.string().required("Month is required"),
           dobDate: Yup.string().required("Date is required"),
           dobYear: Yup.string().required("Year is required"),
         })}
-        onSubmit={(values) => {
-          alert(JSON.stringify(values, null, 2));
-        }}
+        onSubmit={handleSubmit}
+
+      
       >
         {({ isValid, dirty, isSubmitting, values }) => (
-          <Form>
-            <TextField label="Name" name="name" type="text" placeholder="Enter your name" />
-            <TextField label="Family Name" name="familyName" type="text" placeholder="Enter your family name" />
-            <TextField label="Profile Name" name="profileName" type="text" placeholder="Enter your profile name" />
+          <Form >
+            <TextField  label="Name" name="name" type="text" placeholder="Enter your name" />
+            <TextField  label="Family Name" name="familyName" type="text" placeholder="Enter your family name" />
+            <TextField  label="Profile Name" name="profileName" type="text" placeholder="Enter your profile name" />
             <TextField label="Email" name="email" type="email" placeholder="Enter your email address" />
-            <TextField label="Password" name="password" type="password" placeholder="Enter your password" />
+            <TextField  label="Password" name="password" type="password" placeholder="Enter your password" />
             {/* Add other form fields */}
             <div>
               <label className='mb-4'>Are you a therapist or a patient?</label>
@@ -76,7 +104,7 @@ const SignUpForm = () => {
                 <label className='mb-4'>What is your gender?</label>
                 <div className='flex space-x-16 mb-4 ml-20'>
                     <label>
-                        <Field type="radio" name="gender" value="Male" />
+                        <Field  type="radio" name="gender" value="Male" />
                         Male
                     </label>
                     <label>
@@ -127,6 +155,7 @@ const SignUpForm = () => {
               <button
                 className={`block w-full px-4 py-2 text-white rounded-md focus:outline-none ${(isValid && dirty && isFormFilled(values)) ? 'bg-blue-500 hover:bg-blue-600' : 'bg-gray-300 cursor-not-allowed'}`}
                 type="submit"
+                onClick={handleSubmit()}
                 disabled={!isValid || !dirty || !isFormFilled(values) || isSubmitting}
               >
                 Sign Up
