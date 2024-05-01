@@ -43,14 +43,14 @@ const Sidebar = () => {
 
                     <div className='flex flex-col w-[70%] text-secwhite m-10'>
 
-                        <div className={`p-4 flex justify-start items-center cursor-pointer ${activeItem === 'home' && 'rounded-md bg-[#C3E7FA] text-primary1'}`} onClick={() => handleClick('home')}>
-                            <GrHomeRounded className='mr-2' />Home
+                        <div className={`p-4 flex justify-start text-primary1   items-center cursor-pointer ${activeItem === 'home' && 'rounded-md bg-[#C3E7FA] text-primary1'}`} onClick={() => handleClick('home')}>
+                            <GrHomeRounded className='mr-2 ' />Overview
                         </div>
                         <div className={`p-4 flex justify-start items-center cursor-pointer ${activeItem === 'therapist' && ' rounded-md bg-[#C3E7FA] text-primary1'}`} onClick={() => handleClick('therapist')}>
-                            <FiUsers className='mr-2' />Therapist List
+                            <FiUsers className='mr-2' /> List
                         </div>
                         
-                        <div className={`p-4 flex justify-start items-center cursor-pointer ${activeItem === 'messages' && ' rounded-md bg-[#C3E7FA] text-primary1'}`} onClick={() => handleClick('messages')}>
+                        <div className={`p-4 flex justify-start items-center cursor-pointer ${activeItem === 'messages' && ' rounded-md bg-[#C3E7FA]  text-primary1'}`} onClick={() => handleClick('messages')}>
                             <LuMessagesSquare className='mr-2' />Messages
                         </div>
                         <div className={`p-4 flex justify-start items-center cursor-pointer ${activeItem === 'settings' && ' rounded-md bg-[#C3E7FA] text-primary1'}`} onClick={() => handleClick('settings')}>

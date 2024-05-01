@@ -1,0 +1,6 @@
+.shadow-custom {
+    box-shadow:
+        6px 6px 54px 0px rgba(0, 0, 0, 0.03), /* First shadow */
+        2px 4px 39px 0px rgba(41, 142, 166, 0.08), /* Second shadow */
+        -2px -4px 39px 0px rgba(41, 142, 166, 0.09); /* Third shadow */
+}

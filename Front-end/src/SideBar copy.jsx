@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-key */
 // eslint-disable-next-line no-unused-vars
-import React from "react";
+import React ,{useState} from "react";
 // import '../index.css'
 import { GrHomeRounded } from "react-icons/gr";
 import { FiUsers } from "react-icons/fi";
@@ -12,50 +12,41 @@ import { BiHelpCircle } from "react-icons/bi";
 
 const SideBar = () => {
   // Sidebarlist
+  // const Sidebarlist = [
+  //     { id: 1, title: "Overview", src:'GrHomeRounded'},
+  //     { id: 2, title: "Therapist List",},
+  //     { id: 3, title: "Messages",},
+  //     { id: 4, title: "Settings",  },
+  //     { id: 5, title: "Log Out", },
+  //     { id: 6, title: "Help Center",  },
+  // ];
+
+  const [activeItem, setActiveItem] = useState('home');
+
+  const handleClick = (itemId) => {
+      setActiveItem(itemId);
+  };
 
 
-  
-  const Sidebarlist = [
-      { id: 1, title: "Overview", src:'GrHomeRounded'},
-      { id: 2, title: "Therapist List",},
-      { id: 3, title: "Messages",},
-      { id: 4, title: "Settings",  },
-      { id: 5, title: "Log Out", },
-      { id: 6, title: "Help Center",  },
-  ];
 
+  const [logoutHovered, setLogoutHovered] = useState(false);
+  const [helpHovered, setHelpHovered] = useState(false);
+
+  const handleLogoutHover = () => {
+    setLogoutHovered(!logoutHovered);
+  };
+
+  const handleHelpHover = () => {
+    setHelpHovered(!helpHovered);
+  };
 
 
   // Sidebarlist--
   
-  const MySidebarlist = Sidebarlist.map((side) => {
-    if (side.id == 5) {
-      return (
-        <div
-          className="hover:text-primary1 mt-[230px] hover:bg-complimetary2 hover:border hover:rounded-lg  hover:mb-[12px] hover:flex  hover:items-center hover:fill-[#000] hover:w-[179px] hover:h-12 hover:pl-6  border-[#000]  "
-        >
-          <li key={side.id} className="my-[22px] flex items-center gap-3">
-          <GrHomeRounded className='mr-2' />
-            <a>{side.title}</a>
-          </li>
-        </div>
-      );
-    }
-    return (
-      // eslint-disable-next-line react/jsx-key
-      <div
-        className="hover:text-primary1 hover:bg-complimetary2 hover:border hover:rounded-lg  hover:my-[12px]  hover:flex  hover:items-center hover:fill-[#000] hover:w-[179px] hover:h-12 hover:pl-6  border-[#000]  "
-      >
-        <li key={side.id} className="my-[22px] flex items-center gap-3">
-        <GrHomeRounded className='mr-2' />
-          <a href="">{side.title}</a>
-        </li>
-      </div>
-    );
-  });
+
 
   return (
-    <div className="ml-[13px] fixed  h-[90vh] top-[24px] px-6 py-11 w-[15%] bg-primary1 rounded-3xl">
+    <div className="ml-[13px] fixed  h-[95vh] top-[24px] px-6 py-11 w-[15%] bg-primary1 rounded-3xl">
       {/* Logo */}
       <div className="  flex gap-2 text-2xl text-[#fff] whitespace-nowrap">
         <svg
@@ -93,53 +84,64 @@ const SideBar = () => {
       {/*  Sidebarlist */}
       <div className="mt-[90px]  text-[#fff] justify-between ">
         {/* {MySidebarlist} */}
-        <div
+        {/* <div
         className="hover:text-primary1 hover:bg-complimetary2 hover:border hover:rounded-lg  hover:my-[12px]  hover:flex  hover:items-center hover:fill-[#000] hover:w-[179px] hover:h-12 hover:pl-6  border-[#000]  "
-      >
-        <div  className="my-[22px] flex items-center gap-3">
+      > */}
+                                      <div className={`  hover:bg-complimetary2 hover:border hover:rounded-lg  hover:my-[22px]  hover:flex  hover:items-center hover:fill-[#000]   hover:h-12 hover:pl-6  justify-start text-white  my-[22px] flex items-center hover:text-primary1 gap-3 cursor-pointer ${activeItem === 'home' && 'rounded-lg h-12 items-center bg-[#C3E7FA] pl-6 text-black my-[22px] text-primary1'}`} onClick={() => handleClick('home')}>
+
+        {/* <div  className="my-[22px] flex items-center gap-3"> */}
         <GrHomeRounded  />
           <a href="">Home</a>
-        </div>
+        {/* </div> */}
       </div>
-      <div
-        className="hover:text-primary1 hover:bg-complimetary2 hover:border hover:rounded-lg  hover:my-[12px]  hover:flex  hover:items-center hover:fill-[#000] hover:w-[179px] hover:h-12 hover:pl-6  border-[#000]  "
-      >
-        <div  className="my-[22px] flex items-center gap-3">
-        <FiUsers  />
-          <a href="">herapist List</a>
+      {/* <div className=" hover:bg-complimetary2 hover:border hover:rounded-lg hover:text-primary1  hover:my-[12px]  hover:flex  hover:items-center  hover:w-[179px] hover:h-12 hover:pl-6  border-[#000]  "> */}
+      <div className={`  hover:bg-complimetary2 hover:border hover:rounded-lg  hover:my-[22px]  hover:flex  hover:items-center hover:fill-[#000]   hover:h-12 hover:pl-6  justify-start text-white  my-[22px] flex items-center hover:text-primary1 gap-3 cursor-pointer ${activeItem === 'THerapist' && 'rounded-lg h-12 items-center bg-[#C3E7FA] pl-6  my-[22px] text-primary1'}`} onClick={() => handleClick('THerapist')}>
+
+        {/* <div  className={my-[22px] flex items-center hover:text-primary1 gap-3 ${activeItem === 'therapist' && ' rounded-md bg-[#C3E7FA] text-primary1'}`} onClick={() => handleClick('therapist')}> */}
+        <FiUsers  className="hover:text-primary1 " />
+          <a href="" >Therapist List</a>
         </div>
-      </div>
-      <div
+      {/* </div> */}
+      {/* <div
         className="hover:text-primary1 hover:bg-complimetary2 hover:border hover:rounded-lg  hover:my-[12px]  hover:flex  hover:items-center hover:fill-[#000] hover:w-[179px] hover:h-12 hover:pl-6  border-[#000]  "
-      >
-        <div  className="my-[22px] flex items-center gap-3">
+      > */}
+                                            <div className={`  hover:bg-complimetary2 hover:border hover:rounded-lg  hover:my-[22px]  hover:flex  hover:items-center hover:fill-[#000]  hover:h-12 hover:pl-6  justify-start text-white  my-[22px] flex items-center hover:text-primary1 gap-3 cursor-pointer ${activeItem === 'msg' && 'rounded-lg h-12 items-center bg-[#C3E7FA] pl-6  my-[22px] text-primary1'}`} onClick={() => handleClick('msg')}>
+
+        {/* <div  className="my-[22px] flex items-center gap-3"> */}
         <LuMessagesSquare  />
           <a href=""> Messages</a>
-        </div>
+        {/* </div> */}
       </div>
-      <div
+      {/* <div
         className="hover:text-primary1 hover:bg-complimetary2 hover:border hover:rounded-lg  hover:my-[12px]  hover:flex  hover:items-center hover:fill-[#000] hover:w-[179px] hover:h-12 hover:pl-6  border-[#000]  "
-      >
-        <div  className="my-[22px] flex items-center gap-3">
+      > */}
+                                            <div className={`  hover:bg-complimetary2 hover:border hover:rounded-lg  hover:my-[22px]  hover:flex  hover:items-center hover:fill-[#000]  hover:h-12 hover:pl-6  justify-start text-white  my-[22px] flex items-center hover:text-primary1 gap-3 cursor-pointer ${activeItem === 'stg' && 'rounded-lg h-12 items-center bg-[#C3E7FA] pl-6  my-[22px] text-primary1'}`} onClick={() => handleClick('stg')}>
+
+        {/* <div  className="my-[22px] flex items-center gap-3"> */}
         <IoSettingsOutline  />
           <a href="">Settings</a>
         </div>
-      </div>
-      <div
+      {/* </div> */}
+      {/* <div
           className="hover:text-primary1 mt-[230px] hover:bg-complimetary2 hover:border hover:rounded-lg  hover:mb-[12px] hover:flex  hover:items-center hover:fill-[#000] hover:w-[179px] hover:h-12 hover:pl-6  border-[#000]  "
-        >
-          <li  className="my-[22px] flex items-center gap-3">
+        > */}
+                                              <div className={` mt-[230px] over:text-primary1 hover:mt-[230px]  hover:rounded-lg  hover:mb-[12px] hover:flex  hover:items-center hover:fill-[#000] 
+                                               hover:bg-complimetary2 hover:border   hover:my-[12px]  hover:h-12 hover:pl-6  justify-start text-white  my-[22px] flex items-center hover:text-primary1 gap-3 cursor-pointer ${activeItem === 'lg' && 'rounded-lg h-12 items-center bg-[#C3E7FA] pl-6  my-[22px] text-primary1'}`} onClick={() => handleClick('lg')}>
+
+          {/* <li  className="my-[22px] flex items-center gap-3"> */}
           <IoIosLogOut  />
             <a>Log Out</a>
-          </li>
-        </div>
-        <div
+          {/* </li> */}
+         </div> 
+        {/* <div
         className="hover:text-primary1 hover:bg-complimetary2 hover:border hover:rounded-lg  hover:my-[12px]  hover:flex  hover:items-center hover:fill-[#000] hover:w-[179px] hover:h-12 hover:pl-6  border-[#000]  "
-      >
-        <div  className="my-[22px] flex items-center gap-3">
+      > */}
+                                            <div className={`  hover:bg-complimetary2 hover:border hover:rounded-lg  hover:my-[22px]  hover:flex  hover:items-center hover:fill-[#000]  hover:h-12 hover:pl-6  justify-start text-white  my-[22px] flex items-center hover:text-primary1 gap-3 cursor-pointer ${activeItem === 'hp' && 'rounded-lg h-12 items-center bg-[#C3E7FA] pl-6  my-[22px] text-primary1'}`} onClick={() => handleClick('hp')}>
+
+        {/* <div  className="my-[22px] flex items-center gap-3"> */}
         <BiHelpCircle   />
           <a href="">Help Center</a>
-        </div>
+        {/* </div> */}
       </div>
       </div>
       {/*  Sidebarlist-- */}
