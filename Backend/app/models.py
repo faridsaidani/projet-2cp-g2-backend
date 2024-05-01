@@ -186,9 +186,10 @@ class VideoCall(db.Model):
     patient_id = db.Column(db.Integer, db.ForeignKey('patient.id'), nullable=False)
     completed = db.Column(db.Boolean, default=False) 
 
-def __init__(self, session_id, therapist_id, patient_id):
+def __init__(self, session_id, therapist_id, patient_id,completed):
         self.session_id = session_id
         self.therapist_id = therapist_id
         self.patient_id = patient_id
+        self.completed = completed
 
 

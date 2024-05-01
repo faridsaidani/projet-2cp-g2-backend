@@ -13,9 +13,10 @@ def start_call():
     session_id = data['session_id']
     therapist_id = data['therapist_id']
     patient_id = data['patient_id']
+    completed = False  # Assuming completed is False by default
     if session_id and therapist_id and patient_id:
         # Create a new VideoCall record in the database
-        new_call = VideoCall(session_id=session_id, therapist_id=therapist_id, patient_id=patient_id)
+        new_call = VideoCall(session_id=session_id, therapist_id=therapist_id, patient_id=patient_id, completed=completed)
         db.session.add(new_call)
         db.session.commit()
         return jsonify({'message': 'Session created', 'session_id': session_id})
