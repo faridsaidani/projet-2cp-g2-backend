@@ -6,7 +6,7 @@ import { IoSettingsOutline } from "react-icons/io5";
 import { IoIosLogOut } from "react-icons/io";
 import { BiHelpCircle } from "react-icons/bi";
 
-const Sidebar = () => {
+const SideBar = () => {
     const [activeItem, setActiveItem] = useState('home');
 
     const handleClick = (itemId) => {
@@ -29,7 +29,7 @@ const Sidebar = () => {
 
 
     return (
-        <div className='flex flex-col justify-between items-center fixed h-[90%] w-[18%] rounded-3xl bg-primary1 m-10'>
+        <div className='flex flex-col justify-between items-center fixed h-[90%] w-[18%] rounded-3xl bg-primdark m-10'>
             <div>
                     <div className=' flex justify-center items-center mt-4 '>
                         <svg width="148" height="34" viewBox="0 0 148 34" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -43,17 +43,17 @@ const Sidebar = () => {
 
                     <div className='flex flex-col w-[70%] text-secwhite m-10'>
 
-                        <div className={`p-4 flex justify-start text-primary1   items-center cursor-pointer ${activeItem === 'home' && 'rounded-md bg-[#C3E7FA] text-primary1'}`} onClick={() => handleClick('home')}>
-                            <GrHomeRounded className='mr-2 ' />Overview
+                        <div className={`p-4 flex justify-start items-center cursor-pointer ${activeItem === 'home' && 'rounded-md bg-seclight text-primdark'}`} onClick={() => handleClick('home')}>
+                            <GrHomeRounded className='mr-2' />Home
                         </div>
-                        <div className={`p-4 flex justify-start items-center cursor-pointer ${activeItem === 'therapist' && ' rounded-md bg-[#C3E7FA] text-primary1'}`} onClick={() => handleClick('therapist')}>
-                            <FiUsers className='mr-2' /> List
+                        <div className={`p-4 flex justify-start items-center cursor-pointer ${activeItem === 'therapist' && ' rounded-md bg-seclight text-primdark'}`} onClick={() => handleClick('therapist')}>
+                            <FiUsers className='mr-2' />Therapist List
                         </div>
                         
-                        <div className={`p-4 flex justify-start items-center cursor-pointer ${activeItem === 'messages' && ' rounded-md bg-[#C3E7FA]  text-primary1'}`} onClick={() => handleClick('messages')}>
+                        <div className={`p-4 flex justify-start items-center cursor-pointer ${activeItem === 'messages' && ' rounded-md bg-seclight text-primdark'}`} onClick={() => handleClick('messages')}>
                             <LuMessagesSquare className='mr-2' />Messages
                         </div>
-                        <div className={`p-4 flex justify-start items-center cursor-pointer ${activeItem === 'settings' && ' rounded-md bg-[#C3E7FA] text-primary1'}`} onClick={() => handleClick('settings')}>
+                        <div className={`p-4 flex justify-start items-center cursor-pointer ${activeItem === 'settings' && ' rounded-md bg-seclight text-primdark'}`} onClick={() => handleClick('settings')}>
                             <IoSettingsOutline className='mr-2'/>Settings
                         </div>
 
@@ -87,4 +87,4 @@ const Sidebar = () => {
     );
 };
 
-export default Sidebar;
+export default SideBar;

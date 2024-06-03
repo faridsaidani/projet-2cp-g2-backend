@@ -1,0 +1,18 @@
+import React from "react";
+import Header from "../../components/Header";
+import BlogBody from "../../components/BLOG/BlogBody";
+import Footer from "../../components/Footer";
+
+const Blog = () => {
+  return (
+    <>
+      <Header currentPage="blog" />
+      <body>
+        <BlogBody />
+      </body>
+      <Footer></Footer>
+    </>
+  );
+};
+
+export default Blog;
