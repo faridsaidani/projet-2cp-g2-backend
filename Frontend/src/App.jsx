@@ -12,9 +12,7 @@ import {
   ContactUs,
   QuizPage,
   SignUp,
-
-
-
+  LogIn,
 
 
   BlogAdmin,
@@ -30,20 +28,16 @@ import {
   PasswordRefusedAd,
 
 
-
-
   Overview,
   Profile,
   ChatPatient,
   TherapistsList,
   MyTherapistsPatient,
   Therapist,
+  MakeAppointment,
   Notifications,
   PasswordChanging,
-  PasswordRefused,
-
-
-
+  Password,
 
 
   OverviewTh,
@@ -56,31 +50,27 @@ import {
   AddBlog,
   TherapistProfile,
   NotificationsTh,
-  
   PasswordChangingTh,
   PasswordRefusedTh,
   NotFound,
 } from "./pages";
 
 const App = () => {
-  
   const [user, setUser] = useState({
     isAdmin: true, // or false
-    role: "therapist", // or "patient"
+    role: "patient", // or "patient"
   });
 
   return (
     <Router>
       <Routes>
-        
-
         <Route path="/" element={<Home />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/quiz" element={<QuizPage />} />
         <Route path="/sign-up" element={<SignUp />} />
-
+        <Route path="/log-in" element={<LogIn />} />
         <Route
           path="admin-dashboard/*"
           element={user?.isAdmin ? <AdminRoutes /> : <Navigate to="/" />}
@@ -114,12 +104,11 @@ const AdminRoutes = () => (
     <Route path="blog-admin" element={<BlogAdmin />} />
     <Route path="therapist-approval" element={<TherapistApproval />} />
     <Route path="therapist" element={<TherapistAd />} />
-    <Route path="my-therapists" element={<MyTherapistsAdmin/>} />
+    <Route path="my-therapists" element={<MyTherapistsAdmin />} />
     <Route path="add-team" element={<TeamAdd />} />
     <Route path="team" element={<Team />} />
     <Route path="profile" element={<ProfileAd />} />
     <Route path="notifications" element={<NotificationsAd />} />
-    
     <Route path="password-changing" element={<PasswordChangingAd />} />
     <Route path="password-refused" element={<PasswordRefusedAd />} />
   </Routes>
@@ -133,16 +122,17 @@ const PatientRoutes = () => (
     <Route path="therapists-list" element={<TherapistsList />} />
     <Route path="therapist" element={<Therapist />} />
     <Route path="my-therapists" element={<MyTherapistsPatient />} />
+    <Route path="make-appointment" element={<MakeAppointment />} />
     <Route path="notifications" element={<Notifications />} />
     <Route path="password-changing" element={<PasswordChanging />} />
-    <Route path="password-refused" element={<PasswordRefused />} />
+    <Route path="password" element={<Password />} />
   </Routes>
 );
 
 const TherapistRoutes = () => (
   <Routes>
     <Route path="/" element={<OverviewTh />} />
-    
+
     <Route path="appointments" element={<Appointments />} />
     <Route path="appointment-request" element={<AppointmentRequest />} />
     <Route path="create-appointment" element={<CreateAnAppointment />} />

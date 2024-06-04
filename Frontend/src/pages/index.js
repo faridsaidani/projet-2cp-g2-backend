@@ -4,7 +4,7 @@ export { default as Blog } from "./LANDING_PAGE/Blog.jsx";
 export { default as ContactUs } from "./LANDING_PAGE/ContactUs.jsx";
 export { default as QuizPage } from "./LANDING_PAGE/QuizPage.jsx";
 export { default as SignUp } from "./LANDING_PAGE/SignUp.jsx";
-
+export { default as LogIn } from "./LANDING_PAGE/LogIn.jsx";
 
 export { default as BlogAdmin } from "./ADMIN/BlogAdmin.jsx";
 export { default as OverviewAdmin } from "./ADMIN/OverviewAdmin.jsx";
@@ -26,9 +26,10 @@ export { default as ChatPatient } from "./PATIENT/Chat.jsx";
 export { default as TherapistsList } from "./PATIENT/TherapistsList.jsx";
 export { default as MyTherapistsPatient} from "./PATIENT/MyTherapistsPatient.jsx";
 export { default as Therapist } from "./PATIENT/Therapist.jsx";
+export { default as MakeAppointment } from "./PATIENT/MakeAppointment.jsx";
 export { default as Notifications } from "./PATIENT/Notifications.jsx";
 export { default as PasswordChanging } from "./PATIENT/PasswordChanging.jsx";
-export { default as PasswordRefused } from "./PATIENT/PasswordRefused.jsx";
+export { default as Password } from "./PATIENT/Password.jsx";
 
 
 

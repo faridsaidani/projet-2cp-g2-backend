@@ -4,10 +4,10 @@ import Messages from "./Messages";
 
 const Chat = () => {
   return (
-    <div className=" w-[80%]">
+    <div className=" w-[98%] mt-6 ">
         
         
-      <div className="flex w-[80%] top-[116px] absolute left-[250px] justify-between   h-[90vh]  ">
+      <div className="flex w-[100%]  justify-between   h-[90vh]  ">
         <div className="w-[31%] h-screen rounded-[18px]  bg-[#E3F1F4] px-[18px] py-[21px]  hidden md:block">
           <div className="h-full overflow-y-auto">
             <div className=" text-[#063248]  mb-[32px] font-[600]  leading-[38.4px] text-[32px] font-urbanist ">

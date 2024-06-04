@@ -1,7 +1,8 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unescaped-entities */
 import React from 'react'
-import './index.css'
+import { Link } from 'react-router-dom';
+
 const HowWorks = () => {
   return (
     <div className="how-it-works mx-auto  w-[86%]">
@@ -103,7 +104,10 @@ const HowWorks = () => {
             </defs>
         </svg>
     </div>
-    <button className="Request-a-Demo">Get Started</button>
+    
+    <Link to="/sign-up">
+        <button className="Request-a-Demo">Get Started</button>
+    </Link>
 </div>
   )
 }

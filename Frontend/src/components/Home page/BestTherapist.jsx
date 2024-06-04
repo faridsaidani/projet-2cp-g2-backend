@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';import './index.css'
+import React, { useState } from 'react';
 const therapists = [
   {
     name: 'Dr. Maya Sanchez',

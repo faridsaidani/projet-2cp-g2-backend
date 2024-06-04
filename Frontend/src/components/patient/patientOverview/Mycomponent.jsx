@@ -3,7 +3,7 @@ import * as React from "react";
 function MyComponent() {
   return (
     <>
-    <div className="w-[57%] absolute top-[116px] pl-[24px]   left-[250px]  bg-primary2 font-urbanist text-primary1 rounded-3xl">
+    <div className="w-[100%]  top-[116px] pl-[24px]   left-[250px]  bg-primary2 font-urbanist text-primary1 rounded-3xl">
 
       <div className="  flex  w-[100%]   ">
 
@@ -145,7 +145,7 @@ function MyComponent() {
       </div>
       
     </div>
-    <div className="text-[#063248] absolute top-[47%] left-[264px] font-urbanist text-xl font-bold leading-[normal]">Upcoming Appointements (3)</div>
+    <div className="text-[#063248]  font-urbanist my-5 text-xl font-bold leading-[normal]">Upcoming Appointements (3)</div>
     </>
   );
 }

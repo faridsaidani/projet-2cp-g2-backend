@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
+import { Link } from 'react-router-dom';
 const Footer = () => {
   const [showButton, setShowButton] = useState(false);
 
@@ -47,11 +47,11 @@ const Footer = () => {
                 <nav className='text-secwhite'>
                     <ul className='flex'>
                       {/* Navigation links */}
-                      <li className='mr-4'><a href="#">Home</a></li>
-                      <li className='mr-4'><a href="#">About Us</a></li>
-                      <li className='mr-4'><a href="#">Contact</a></li>
-                      <li className='mr-4'><a href="#">Blog</a></li>
-                      <li className='mr-4'><a href="#">Log In</a></li>
+                      <li className='mr-4'><Link to="/">Home</Link></li>
+                      <li className='mr-4'><Link to="/about-us">About Us</Link></li>
+                      <li className='mr-4'><Link to="/contact-us">Contact</Link></li>
+                      <li className='mr-4'><Link to="/blog">Blog</Link></li>
+                      <li className='mr-4'><Link to="/log-in">Login</Link></li>
                     </ul>
                 </nav>
             </div>

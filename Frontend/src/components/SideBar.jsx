@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { GrHomeRounded } from "react-icons/gr";
 import { FiUsers } from "react-icons/fi";
 import { LuMessagesSquare } from "react-icons/lu";
@@ -6,7 +7,7 @@ import { IoSettingsOutline } from "react-icons/io5";
 import { IoIosLogOut } from "react-icons/io";
 import { BiHelpCircle } from "react-icons/bi";
 
-const SideBar = () => {
+const SideBar = ({ currentPage }) => {
     const [activeItem, setActiveItem] = useState('home');
 
     const handleClick = (itemId) => {
@@ -42,20 +43,29 @@ const SideBar = () => {
                     </div>
 
                     <div className='flex flex-col w-[70%] text-secwhite m-10'>
-
-                        <div className={`p-4 flex justify-start items-center cursor-pointer ${activeItem === 'home' && 'rounded-md bg-seclight text-primdark'}`} onClick={() => handleClick('home')}>
-                            <GrHomeRounded className='mr-2' />Home
+                      <Link to='/patient/'>
+                        <div className={` p-4 flex justify-start items-center cursor-pointer ${currentPage === 'overview' ? 'rounded-md bg-seclight text-primdark' : ''}`}>
+                            <GrHomeRounded className='mr-2' />Overview
                         </div>
-                        <div className={`p-4 flex justify-start items-center cursor-pointer ${activeItem === 'therapist' && ' rounded-md bg-seclight text-primdark'}`} onClick={() => handleClick('therapist')}>
+                      </Link>
+
+                      <Link to='/patient/therapists-list'>
+                        <div className={` p-4 flex justify-start items-center cursor-pointer ${currentPage === 'therapist list' ? 'rounded-md bg-seclight text-primdark' : ''}`}>
                             <FiUsers className='mr-2' />Therapist List
                         </div>
-                        
-                        <div className={`p-4 flex justify-start items-center cursor-pointer ${activeItem === 'messages' && ' rounded-md bg-seclight text-primdark'}`} onClick={() => handleClick('messages')}>
+                      </Link> 
+
+                      <Link to='/patient/chat'>
+                        <div className={` p-4 flex justify-start items-center cursor-pointer ${currentPage === 'messages' ? 'rounded-md bg-seclight text-primdark' : ''}`} >
                             <LuMessagesSquare className='mr-2' />Messages
                         </div>
-                        <div className={`p-4 flex justify-start items-center cursor-pointer ${activeItem === 'settings' && ' rounded-md bg-seclight text-primdark'}`} onClick={() => handleClick('settings')}>
+                      </Link>
+
+                      <Link to='/patient/password'>
+                        <div className={` p-4 flex justify-start items-center cursor-pointer ${currentPage === 'settings' ? 'rounded-md bg-seclight text-primdark' : ''}`}>
                             <IoSettingsOutline className='mr-2'/>Settings
                         </div>
+                      </Link>
 
                     </div>
             </div> 

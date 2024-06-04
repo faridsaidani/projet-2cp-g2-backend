@@ -1,5 +1,5 @@
 import React from 'react';
-import './index.css';
+import { Link } from 'react-router-dom';
 
 const GetStarted = () => {
   return (
@@ -23,13 +23,15 @@ const GetStarted = () => {
           <li className='text-[#4C606E] text-[18px] font-[400] leading-[24.55px] mb-6 mt-6 font-urbanist self-center'>Your mental well-being is our priority. That's why we've created Oxypsy, a dedicated space designed to be your primary resource for enhancing your mental health and achieving a more positive outlook.
            </li>
           <li>
-            <button className='items-center rounded-[8px] w-[169px] h-[48px] text-[18px] font-[700] leading-[21.6px] mx-auto font-urbanist justify-center flex bg-[#298EA6] gap-2 px-5 py-3'>
-              <span> Get Started </span>
-              <svg className='items-center' width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12.5 5L19.5 12L12.5 19" stroke="#F8F8F7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M5.5 12L19.5 12" stroke="#F8F8F7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
+              <Link to="/sign-up">
+                  <button className='items-center rounded-[8px] w-[169px] h-[48px] text-[18px] font-[700] leading-[21.6px] mx-auto font-urbanist justify-center flex bg-[#298EA6] gap-2 px-5 py-3'>
+                    <span> Get Started </span>
+                    <svg className='items-center' width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12.5 5L19.5 12L12.5 19" stroke="#F8F8F7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                      <path d="M5.5 12L19.5 12" stroke="#F8F8F7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </button>
+              </Link>
           </li>
         </ul>
       </div>

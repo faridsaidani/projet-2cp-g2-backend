@@ -9,7 +9,7 @@ import { AiOutlineAppstore } from "react-icons/ai";
 import { LiaUserCogSolid } from "react-icons/lia";
 
 
-const SideBarAdmin = () => {
+const SideBarAdmin = ({ currentPage }) => {
     const [activeItem, setActiveItem] = useState('home');
 
     const handleClick = (itemId) => {
@@ -45,24 +45,38 @@ const SideBarAdmin = () => {
                     </div>
 
                     <div className='flex flex-col w-[70%] text-secwhite m-10'>
+                      
+                      <Link to=''></Link>
+                        <div className={` p-4 flex justify-start items-center cursor-pointer ${currentPage === 'overview' ? 'rounded-md bg-seclight text-primdark' : ''}`}>
+                            <GrHomeRounded className='mr-2' />Overview
+                        </div>
 
-                        <div className={`p-4 flex justify-start items-center cursor-pointer ${activeItem === 'home' && 'rounded-md bg-seclight text-primdark'}`} onClick={() => handleClick('home')}>
-                            <GrHomeRounded className='mr-2' />Home
+
+
+                      <Link to=''></Link>
+                        <div className={` p-4 flex justify-start items-center cursor-pointer ${currentPage === 'therapists' ? 'rounded-md bg-seclight text-primdark' : ''}`}>
+                            <FiUsers className='mr-2' />Therapists
                         </div>
-                        <div className={`p-4 flex justify-start items-center cursor-pointer ${activeItem === 'therapist' && ' rounded-md bg-seclight text-primdark'}`} onClick={() => handleClick('therapist')}>
-                            <FiUsers className='mr-2' />Therapist List
-                        </div>
-                        
-                        <div className={`p-4 flex justify-start items-center cursor-pointer ${activeItem === 'messages' && ' rounded-md bg-seclight text-primdark'}`} onClick={() => handleClick('messages')}>
+
+
+                      <Link to=''></Link>  
+                        <div className={` p-4 flex justify-start items-center cursor-pointer ${currentPage === 'messages' ? 'rounded-md bg-seclight text-primdark' : ''}`}>
                             <LuMessagesSquare className='mr-2' />Messages
                         </div>
-                        <div className={`p-4 flex justify-start items-center cursor-pointer ${activeItem === 'settings' && ' rounded-md bg-seclight text-primdark'}`} onClick={() => handleClick('settings')}>
+
+                      <Link to=''></Link>
+                        <div className={` p-4 flex justify-start items-center cursor-pointer ${currentPage === 'settings' ? 'rounded-md bg-seclight text-primdark' : ''}`}>
                             <IoSettingsOutline className='mr-2'/>Settings
                         </div>
-                        <div className={`p-4 flex justify-start items-center cursor-pointer ${activeItem === 'blog' && ' rounded-md bg-seclight text-primdark'}`} onClick={() => handleClick('blog')}>
+
+
+                      <Link ></Link>
+                        <div className={` p-4 flex justify-start items-center cursor-pointer ${currentPage === 'blog' ? 'rounded-md bg-seclight text-primdark' : ''}`}>
                           <AiOutlineAppstore className='mr-2' />Blog
                         </div>
-                        <div className={`p-4 flex justify-start items-center cursor-pointer ${activeItem === 'team' && ' rounded-md bg-seclight text-primdark'}`} onClick={() => handleClick('team')}>
+
+                      <Link></Link>
+                        <div className={` p-4 flex justify-start items-center cursor-pointer ${currentPage === 'team' ? 'rounded-md bg-seclight text-primdark' : ''}`}>
                           <LiaUserCogSolid  className='mr-2'/>Team
                         </div>
 

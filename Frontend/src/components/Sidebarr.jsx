@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { GrHomeRounded } from "react-icons/gr";
 import { FiUsers } from "react-icons/fi";
 import { LuMessagesSquare } from "react-icons/lu";
@@ -6,7 +7,7 @@ import { IoSettingsOutline } from "react-icons/io5";
 import { IoIosLogOut } from "react-icons/io";
 import { BiHelpCircle } from "react-icons/bi";
 
-const Sidebar = () => {
+const Sidebarr = () => {
 
   const [activeItem, setActiveItem] = useState('home');
 
@@ -15,30 +16,32 @@ const Sidebar = () => {
   };
 
   const sidebarItems = [
-    { id: 1, title: "Home", icon: <GrHomeRounded /> },
-    { id: 2, title: "Therapist List", icon: <FiUsers /> },
-    { id: 3, title: "Messages", icon: <LuMessagesSquare /> },
-    { id: 4, title: "Settings", icon: <IoSettingsOutline /> },
-    { id: 5, title: "Log Out", icon: <IoIosLogOut /> },
-    { id: 6, title: "Help Center", icon: <BiHelpCircle /> },
+    { id: 1, title: "Home", icon: <GrHomeRounded /> , path:''},
+    { id: 2, title: "Therapist List", icon: <FiUsers /> , path:'' },
+    { id: 3, title: "Messages", icon: <LuMessagesSquare /> , path:'' },
+    { id: 4, title: "Settings", icon: <IoSettingsOutline /> , path:'' },
+    { id: 5, title: "Log Out", icon: <IoIosLogOut /> , path:'' },
+    { id: 6, title: "Help Center", icon: <BiHelpCircle /> , path:'' },
   ];
 
   const SidebarItems = sidebarItems.map((list) => {
     if (list.id == 5) {
       return (
         <li key={list.id}>
-        <div
-          className={`
-            hover:bg-complimetary2 hover:border hover:rounded-lg hover:my-[230px] mt-[230px] hover:flex  hover:items-center hover:fill-[#000]   hover:h-12 hover:pl-6  justify-start text-white  flex items-center gap-3 cursor-pointer 
-          
-            ${activeItem === list.title &&'bg-[#C3E7FA]   my-[22px] mt-[230px] pl-6 text-primary1 border rounded-lg items-center fill-[#000]  h-12 ' } 
-          
-          `}
-          onClick={() => handleClick(list.title)}
-        >
-          <div >{list.icon}</div>
-          <p >{list.title}</p>
-        </div>
+          <Link to={list.path}>
+                <div
+                  className={`
+                        hover:bg-complimetary2 hover:border hover:rounded-lg hover:my-[230px] mt-[230px] hover:flex  hover:items-center hover:fill-[#000]   hover:h-12 hover:pl-6  justify-start text-white  flex items-center gap-3 cursor-pointer 
+
+                        ${activeItem === list.title &&'bg-[#C3E7FA]   my-[22px] mt-[230px] pl-6 text-primary1 border rounded-lg items-center fill-[#000]  h-12 ' } 
+
+                  `}
+                  onClick={() => handleClick(list.title)}
+                >
+                  <div >{list.icon}</div>
+                  <p >{list.title}</p>
+                </div>
+          </Link>
       </li>
       );
     }
@@ -77,7 +80,7 @@ const Sidebar = () => {
 
 
     return (
-      <div className="ml-[13px] fixed  h-[95vh] top-[24px] px-6 py-11 w-[15%] bg-primary1 rounded-3xl">
+      <div className=" w-[90%] h-[99vh]  px-6 py-11  bg-primary1 rounded-3xl">
            {/* Logo */}
       <div className="  flex gap-2 text-2xl text-[#fff] whitespace-nowrap">
         <svg
@@ -111,7 +114,7 @@ const Sidebar = () => {
       {/* Logo-- */}
 
          {/* {MySidebarlist} */}
-      <div className="mt-[90px]  text-[#fff] justify-between ">
+        <div className="mt-[90px]  text-[#fff] justify-between ">
              <ul>{SidebarItems}</ul>
              </div>
         </div>
@@ -119,4 +122,4 @@ const Sidebar = () => {
     );
 };
 
-export default Sidebar;
+export default Sidebarr;

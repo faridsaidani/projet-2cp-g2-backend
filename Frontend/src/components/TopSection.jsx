@@ -4,7 +4,7 @@ import React from "react";
 function TopSection() {
   
   return (
-    <div className="  flex fixed top-[26px] left-[250px] z-50  items-center justify-between  px-6 py-2.5 rounded-xl bg-primary2 w-[80%]">
+    <div className="flex items-center justify-between px-6 py-2.5 rounded-xl bg-primary2 w-[98%]">
       {/* Search_input */}
       <div className="w-[73%] flex  py-[12px] px-6 rounded-2xl border border-solid border-complimetary1 border-opacity-10  ">
         <svg

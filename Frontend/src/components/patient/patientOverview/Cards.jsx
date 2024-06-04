@@ -3,7 +3,7 @@ import "./index.css";
 
 export default function Therapistist() {
   return (
-    <div className="absolute left-[250px] top-[401px]  gap-[12px] flex px-px mt-7 w-[57.6%] max-md:max-w-full justify-between">
+    <div className="   gap-[12px] flex px-px mt-7 w-[100%] max-md:max-w-full justify-between">
       <div className="w-[33%]  flex flex-col  ">
         <div className="flex flex-col grow px-2.5 py-3.5   font-semibold bg-white rounded-2xl shadow-custom ">
           <div className="text-[14px] font-['Urbanist'] leading-[16.8px] text-primary1  ">

@@ -1,8 +1,9 @@
 // eslint-disable-next-line no-unused-vars
 import * as React from "react";
+import { Link } from 'react-router-dom';
 // import { useHistory } from "react-router-dom";
 
-//import Calendar from "../../util/Calendarr";
+import Calendar from "../util/Calendarr";
 
 
 
@@ -14,18 +15,20 @@ function Asidebar() {
 //   history.push("/Users/pc/Documents/GitHub/project-2CP-G2/Front-end/src/Login/Login.jsx");
 // };
   return (
-    <div className="border-black absolute top-[116px] right-[24px] text-primary1 font-urbanist flex flex-col grow justify-end px-3 pt-3 mx-auto w-[22%] rounded-3xl bg-primary2 max-md:mt-1.5">
+    <div className="  top-[116px] right-[24px] text-primary1 font-urbanist flex flex-col grow justify-end px-3 pt-3 mx-auto w-[100%] rounded-3xl bg-primary2 max-md:mt-1.5 mb-10">
       
       
       <div className="flex gap-5 justify-between">
         <div className="my-auto text-xl font-bold text-sky-950">
           My Therapists
         </div>
-        <button className="justify-center px-3 py-2 text-xs font-medium text-[#298EA6] rounded-lg border border-[#298EA6] border-solid"
-                  // onClick={handleViewAllClick} // Call the function when clicked
-                  >
-          View all
-        </button>
+        <Link to="/patient/my-therapists">
+            <button className="justify-center px-3 py-2 text-xs font-medium text-[#298EA6] rounded-lg border border-[#298EA6] border-solid"
+                      // onClick={handleViewAllClick} // Call the function when clicked
+                      >
+              View all
+            </button>
+        </Link>
       </div>
 
 
@@ -113,7 +116,7 @@ function Asidebar() {
 
       <div className="flex gap-5 justify-between mt-6 w-full">
         
-        {/** <Calendar/>*/} 
+         <Calendar/>
    
       </div>
 
@@ -121,7 +124,7 @@ function Asidebar() {
 
 <hr className="border-[#4C606E80]" />
 
-      <div className="flex gap-3.5 justify-between mt-11 max-md:mt-10">
+      <div className="flex gap-3.5 justify-between mt-6 max-md:mt-10">
         <div className="my-auto text-xl font-bold text-sky-950">
           Today appointements
         </div>

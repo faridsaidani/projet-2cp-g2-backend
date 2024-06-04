@@ -1,5 +1,4 @@
 import React from 'react'
-import './index.css'
 import Link from './Links'
 const Clients = () => {
   return (

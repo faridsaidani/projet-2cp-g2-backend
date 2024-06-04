@@ -1,19 +1,12 @@
-// eslint-disable-next-line no-unused-vars
-import React from "react";
-import { Link } from 'react-router-dom';
-import "./index.css";
-import { useState } from "react";
-//import Modal from "./Modal";
+import React from 'react'
+import './index.css'
 
-
-const TherProfile = () => {
-  //const [openModal, setOpenModal] = useState(false);
-
+const AdminTearlist = () => {
+  
   return (
-    <div className="w-[98%] flex justify-between mt-6">
-      <div className="w-[27%]  border-[black] border-solid  ">
-        <Link to="/patient/therapists-list">
-        <button className="flex justify-between w-[35%] items-center">
+    <div className='w-[98%] flex mt-6 justify-between  '>
+        <div className='w-[27%]  border-[black] border-solid  '>
+        <div className="flex justify-between w-[35%] items-center">
           <svg
             width="22"
             height="22"
@@ -40,17 +33,18 @@ const TherProfile = () => {
           </svg>
 
           <p className="text-complimetary1"> Back to List</p>
-        </button>
-        </Link>
-
-        <div className=" shadow-custom mt-[12%] flex flex-col justify-start items-center gap-8 w-[100%] h-[453px] px-[25px] py-5 rounded-xl box-border  bg-[rgba(255,255,255,1)] shadow-multiple">
-          <img
-            src="https://firebasestorage.googleapis.com/v0/b/unify-v3-copy.appspot.com/o/x2og7113ea-64%3A26549?alt=media&token=31c37af4-6e70-4aa9-8498-d50123112f97"
-            alt="Not Found"
-            className=" w-[130px] h-[130px]"
-          />
-          <div className=" flex flex-col justify-center items-center gap-6 w-[100%] box-border">
-            <div className=" flex flex-col justify-start items-center gap-3 w-[100%] box-border">
+        </div>
+        
+        
+        
+        <div className=" shadow-custom mt-[12%] flex flex-col justify-start items-center gap-8 w-[100%] h-[394px] px-[25px] py-5 rounded-xl box-border  bg-[rgba(255,255,255,1)] shadow-multiple">
+    <img
+      src="https://firebasestorage.googleapis.com/v0/b/unify-v3-copy.appspot.com/o/x2og7113ea-64%3A26549?alt=media&token=31c37af4-6e70-4aa9-8498-d50123112f97"
+      alt="Not Found"
+      className=" w-[130px] h-[130px]"
+    />
+    <div className=" flex flex-col justify-center items-center gap-6 w-[100%] box-border">
+    <div className=" flex flex-col justify-start items-center gap-3 w-[100%] box-border">
               <p className="  border-[#063248ff] text-xl leading-5 text-[#063248] font-urbanist  font-[600]">
                 Dr. Bellatreche Hibatallah
               </p>
@@ -69,8 +63,8 @@ const TherProfile = () => {
                 </p>
               </div>
             </div>
-            <div className=" flex flex-col justify-start items-start gap-3 w-[undefinedundefined] box-border">
-              {/* <button  
+      <div className=" flex flex-col justify-start items-start gap-3 w-[undefinedundefined] box-border">
+        {/* <button  
                  className=" border-[#ffffffff] text-[#fff] text-base leading-4  font-urbanist  font-[600]
                  flex flex-row justify-center items-center gap-2.5 w-[100%] px-[39px] py-3.5 rounded-lg box-border  bg-[#298EA6]">
 
@@ -78,29 +72,37 @@ Make Appointement
 
         </button> */}
 
+        <button  
+                 className=" border-[#298ea6ff] text-[#298EA6] text-base leading-4  font-urbanist  font-[600]
+                 flex flex-row justify-center items-center gap-2.5 w-[100%] px-[39px] py-3.5 rounded-lg box-border  bg-[#E3F1F4]">
 
-              <button
-                onClick={() => setOpenModal(true)}
-                className=" border-[#ffffffff] text-[#fff] text-base leading-4  font-urbanist  font-[600]
-      flex flex-row justify-center items-center gap-2.5 w-[100%] px-[39px] py-3.5 rounded-lg box-border  bg-[#298EA6]"
-              >
-                Make Appointement
-              </button>
-              {/** 
-              <Modal open={openModal} onClose={() => setOpenModal(false)} />
-              */}
-              <button
-                className=" border-[#298ea6ff] text-[#298EA6] text-base leading-4  font-urbanist  font-[600]
-                 flex flex-row justify-center items-center gap-2.5 w-[100%] px-[39px] py-3.5 rounded-lg box-border  bg-[#E3F1F4]"
-              >
-                Chat with Therapist
-              </button>
-            </div>
-          </div>
-        </div>
+Chat with Therapist
+
+        </button>
+       
+       
+        
       </div>
+    </div>
+  </div>
 
-       <div className="w-[72%] shadow-custom h-[83vh] rounded-[12px]  px-[13px] py-[19px] gap-[30px] flex justify-between">
+
+
+        
+
+
+
+      
+        </div>
+
+
+
+
+
+
+
+
+        <div className="w-[72%] shadow-custom h-[83vh] rounded-[12px]  px-[13px] py-[19px] gap-[30px] flex justify-between">
         <div className=" flex flex-col justify-start items-start   w-[403px] h-[100%]  box-border">
           <div className=" flex flex-col justify-start items-start gap-3 w-[100%] box-border">
             <div className=" flex flex-col justify-start items-start gap-3 w-[100%] box-border">
@@ -390,22 +392,11 @@ Make Appointement
           </div>
         </div>
       </div>
-
- 
-
-
-
-
-
-
+      
 
 
     </div>
+  )
+}
 
-
-
-
-  );
-};
-
-export default TherProfile;
+export default AdminTearlist

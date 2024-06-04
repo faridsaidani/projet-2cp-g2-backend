@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from 'react-router-dom';
 import ContactUsForm from "./ContactUsForm";
 import { MdEmail } from "react-icons/md";
 import { MdLocalPhone } from "react-icons/md";
@@ -74,7 +75,12 @@ const ContactUsBody = () => {
             </p>
           </div>
 
-          <button className="p-2 bg-sechover rounded-md">Join Us Now</button>
+          <Link to="/sign-up">
+            <button className="p-2 bg-sechover rounded-md">
+              Join Us Now
+            </button>
+          </Link>
+          
         </div>
 
         <div className=" w-[5%] h-[5%]">

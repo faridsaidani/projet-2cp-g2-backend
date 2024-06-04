@@ -1,6 +1,7 @@
 import React from "react";
 import AboutUsFAQ from "./AboutUsFAQ";
 import AboutUsTable from "./AboutUsTable";
+import { Link } from 'react-router-dom';
 
 const AboutUsBody = () => {
   return (
@@ -49,34 +50,42 @@ const AboutUsBody = () => {
 
       <AboutUsTable></AboutUsTable>
 
+
+
+
       {/*Get started button zone */}
       <div className=" flex justify-center items-center w-screen h-[40vh] bg-secwhite">
-        <button className="bg-sechover border rounded-md font-bold text-secwhite px-6 py-2 flex items-center justify-center">
-          <span className="mr-1">Get started</span>
-          <svg
-            width="25"
-            height="24"
-            viewBox="0 0 25 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M12.5 5L19.5 12L12.5 19"
-              stroke="#F8F8F7"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-            <path
-              d="M5.5 12L19.5 12"
-              stroke="#F8F8F7"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
-        </button>
+        <Link to="/sign-up">
+          <button className="bg-sechover border rounded-md font-bold text-secwhite px-6 py-2 flex items-center justify-center">
+              <span className="mr-1">Get started</span>
+              <svg
+                width="25"
+                height="24"
+                viewBox="0 0 25 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12.5 5L19.5 12L12.5 19"
+                  stroke="#F8F8F7"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M5.5 12L19.5 12"
+                  stroke="#F8F8F7"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+          </button>
+        </Link>
       </div>
+
+
+
 
       {/*Common questions section */}
       <div>
@@ -130,13 +139,21 @@ const AboutUsBody = () => {
                   </p>
                 </div>
                 <br />
-                <button className="bg-sechover border rounded-md font-bold text-secwhite h-[35px] w-[140px] flex items-center justify-center">
-                  Ask A question
-                </button>
+
+
+
+
+                <Link to="/contact-us">
+                  <button className="bg-sechover border rounded-md font-bold text-secwhite h-[35px] w-[140px] flex items-center justify-center">
+                    Ask A question
+                  </button>
+                </Link>
+
+
               </div>
             </div>
           </div>
-        </div>{" "}
+        </div>
         <br /> <br /> <br />
       </div>
     </div>

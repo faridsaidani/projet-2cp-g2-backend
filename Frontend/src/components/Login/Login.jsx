@@ -1,5 +1,6 @@
 
 import './index.css'
+import { Link } from 'react-router-dom';
 import login from './images/login.png'
 import React, { useState,useEffect } from 'react';
 import axios from 'axios';
@@ -59,11 +60,17 @@ const [submitting, setSubmitting] = useState(false);
       </div>
       <div className='leading-relaxed bg-white flex flex-col justify-center'>
         <form className='border border-[#ffff] w-full mx-auto p-20 bg-white' onSubmit={handleLogin}>
-          <div className="text-complimetary1 font-normal text-base font-poppins mt-1 text-center md:text-left absolute right-14 top-14 ">
-            Dont have an account? <a className="text-primary1 underline hover:underline hover:underline-offset-4" href="https://tailwindcss.com/docs/border-radius">Sign Up</a>
+          <div className="flex text-complimetary1 font-normal text-base font-poppins mt-1 text-center md:text-left absolute right-14 top-14 ">
+            Dont have an account? 
+            <Link to='/sign-up'>
+              <p className="ml-2 text-primary1 underline hover:underline hover:underline-offset-4" >Sign Up</p>
+            </Link>
           </div>
           <div className="mx-auto">
+            
             <h1 className='font-poppins font-medium text-[32px] leading-[48px] text-complimetary1 mb-12'>Sign in</h1>
+            
+
             <div className="text-center md:text-left">
             <div className="flex flex-col py-2">
             <label className='mb-1 text-complimetary1 font-poppins font-normal text-base leading-6'>Username or Email address</label>
@@ -85,8 +92,11 @@ const [submitting, setSubmitting] = useState(false);
                 
                 Sign In</button>
             <a className="underline absolute text-[16px] leading-[24px] font-poppins font-[400] text-primary1 right-20 hover:underline-offset-4" href="https://tailwindcss.com/docs/border-radius">Forgot your password</a>
-            <div className="text-complimetary1 font-normal text-base font-poppins mt-1 text-center md:text-left">
-              Dont have an account? <a className="text-primary underline hover:underline hover:underline-offset-4" href="https://tailwindcss.com/docs/border-radius">Sign Up</a>
+            <div className="flex text-complimetary1 font-normal text-base font-poppins mt-1 text-center md:text-left">
+              Dont have an account? 
+              <Link to='/sign-up'>
+                <p className="ml-2 text-primary underline hover:underline hover:underline-offset-4">Sign Up</p>
+              </Link>  
             </div>
           </div>
         </form>

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const MakeAppointment = () => {
+export const MakeAppointment = () => {
   return (
     <div>MakeAppointment</div>
   )

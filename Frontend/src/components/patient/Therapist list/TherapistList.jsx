@@ -1,6 +1,8 @@
 // eslint-disable-next-line no-unused-vars
 import React from "react";
 import './index.css'
+import { Link } from 'react-router-dom';
+
 
 const TherapistList = () => {
   // therpist-list
@@ -78,16 +80,21 @@ const TherapistList = () => {
                 </div>
 
                 <div className=" flex flex-row  mt-4 justify-end items-end gap-3 w-[undefinedundefined] box-border">
-                  <button className=" flex flex-row justify-center items-center gap-2.5 w-[150px] h-[100%] p-3 rounded-lg box-border  bg-primary2">
-                    <p className=" flex flex-col justify-center   text-complimetary3 text-sm  leading-[14px]  font-urbanist  font-[600] text-center">
-                      View Profile
-                    </p>
-                  </button>
-                  <button className=" flex flex-row justify-center items-center gap-2.5 h-[100%] w-[150px] p-3 rounded-lg box-border  bg-complimetary3">
-                    <p className="   text-sm   text-[#fff] leading-[14px]  font-urbanist  font-[600]">
-                      Make Appointement
-                    </p>
-                  </button>
+                  <Link to="/patient/therapist">
+                      <button className=" flex flex-row justify-center items-center gap-2.5 w-[150px] h-[100%] p-3 rounded-lg box-border  bg-primary2">
+                        <p className=" flex flex-col justify-center   text-complimetary3 text-sm  leading-[14px]  font-urbanist  font-[600] text-center">
+                          View Profile
+                        </p>
+                      </button>
+                  </Link>
+
+                  <Link to="/patient/make-appointment">
+                      <button className=" flex flex-row justify-center items-center gap-2.5 h-[100%] w-[150px] p-3 rounded-lg box-border  bg-complimetary3">
+                        <p className="   text-sm   text-[#fff] leading-[14px]  font-urbanist  font-[600]">
+                          Make Appointement
+                        </p>
+                      </button>
+                  </Link>
                 {/* </div> */}
               </div>
             </div>
