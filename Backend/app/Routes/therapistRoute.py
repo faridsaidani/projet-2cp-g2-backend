@@ -13,6 +13,7 @@ therapistRoute = Blueprint('therapistRoute', __name__, url_prefix='/therapist')
 @therapistRoute.route('/register', methods=['POST'])
 def register():
     data = request.form
+    print(data)
     hashed_password = bcrypt.generate_password_hash(data['password']).decode('utf-8')
     
     if 'consent' not in data or data['consent'] != 'true':

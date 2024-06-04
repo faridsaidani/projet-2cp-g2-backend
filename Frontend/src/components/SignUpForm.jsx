@@ -13,7 +13,7 @@ const isFormFilled = (values) => {
   // Check all form fields (including therapistOrPatient, gender, etc.)
   const requiredFields = [
     "name",
-    "familyName",
+    "famillyName",
     "profileName",
     "email",
     "password",
@@ -36,10 +36,12 @@ const isFormFilled = (values) => {
 };
 
 const SignUpForm = () => {
+  const [submitting, setSubmitting] = useState(false);
+
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     const formData = new FormData();
     formData.append("name", values.name);
-    formData.append("family_name", values.familyName);
+    formData.append("familly_name", values.famillyName);
     formData.append("username", values.profileName);
     formData.append("email", values.email);
     formData.append("password", values.password);
@@ -50,10 +52,11 @@ const SignUpForm = () => {
     );
     formData.append("consent", "true"); // Add consent value
     // Append other form fields as needed
+    formData.append("medical_file", values.file);
 
     try {
       const response = await axios.post(
-        "http://localhost/patient/register",
+        "http://localhost:5000/patient/register",
         formData,
         {
           headers: {
@@ -68,6 +71,18 @@ const SignUpForm = () => {
     } finally {
       setSubmitting(false);
     }
+  };
+
+  const resetForm = () => {
+    setFormFields({
+      // Reset fields to initial state
+      name: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+
+      therapistOrPatient: "",
+    });
   };
 
   const [showPassword, setShowPassword] = useState(false);
@@ -89,7 +104,7 @@ const SignUpForm = () => {
       <Formik
         initialValues={{
           name: "",
-          familyName: "",
+          famillyName: "",
           profileName: "",
           email: "",
           password: "",
@@ -103,7 +118,7 @@ const SignUpForm = () => {
         }}
         validationSchema={Yup.object({
           name: Yup.string().required("Name is required"),
-          familyName: Yup.string().required("Family name is required"),
+          famillyName: Yup.string().required("Family name is required"),
           profileName: Yup.string().required("Profile name is required"),
           email: Yup.string()
             .email("Invalid email address")
@@ -126,7 +141,8 @@ const SignUpForm = () => {
           dobYear: Yup.string().required("Year is required"),
         })}
         onSubmit={(values) => {
-          alert(JSON.stringify(values, null, 2));
+          handleSubmit(values, { setSubmitting });
+          console.log(JSON.stringify(values, null, 2));
         }}
       >
         {({ isValid, dirty, isSubmitting, values, setFieldValue }) => (
@@ -144,7 +160,7 @@ const SignUpForm = () => {
               <TextField
                 className="mt-2 border rounded-[12px] pl-6 py-4"
                 label="Family Name"
-                name="familyName"
+                name="famillyName"
                 type="text"
                 placeholder="Enter your family name"
               />
@@ -362,14 +378,14 @@ const SignUpForm = () => {
               <button
                 className={`block w-full px-4 py-2 text-white rounded-md focus:outline-none ${
                   isValid && dirty && isFormFilled(values)
-                    ? "bg-gray-300"
-                    : "bg-sechover hover:bg-blue-600"
+                    ? "bg-sechover hover:bg-blue-600"
+                    : "bg-gray-300"
                 }`}
                 type="submit"
-                onClick={handleSubmit}
-                disabled={
-                  !isValid || !dirty || !isFormFilled(values) || isSubmitting
-                }
+                onClick={() => handleSubmit(values, { setSubmitting })}
+                // disabled={
+                //   !isValid || !dirty || !isFormFilled(values) || isSubmitting
+                // }
               >
                 {/* {console.log(
                   "valid" +

@@ -13,7 +13,7 @@ patientRoute = Blueprint('patientRoute', __name__,url_prefix='/patient')
 @patientRoute.route('/register', methods= ['POST'])
 def register():
     data = request.form
-    print(data)
+    # print(data)
     if 'password' not in data:
         return jsonify({"error": "Password is required"}), 400
     hashed_password = bcrypt.generate_password_hash(data['password']).decode('utf-8')
