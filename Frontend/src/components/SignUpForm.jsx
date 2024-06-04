@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import axios from 'axios'
+import axios from "axios";
 import TextField from "./TextField";
 import { VscEye, VscEyeClosed } from "react-icons/vsc";
 
@@ -35,47 +35,40 @@ const isFormFilled = (values) => {
   return true;
 };
 
-const   SignUpForm = () => {
-
+const SignUpForm = () => {
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     const formData = new FormData();
-    formData.append('name', values.name);
-    formData.append('family_name', values.familyName);
-    formData.append('username', values.profileName);
-    formData.append('email', values.email);
-    formData.append('password', values.password);
-    formData.append('gender', values.gender);
-    formData.append('birthday', `${values.dobYear}-${values.dobMonth}-${values.dobDate}`);
-    formData.append('consent', 'true'); // Add consent value
+    formData.append("name", values.name);
+    formData.append("family_name", values.familyName);
+    formData.append("username", values.profileName);
+    formData.append("email", values.email);
+    formData.append("password", values.password);
+    formData.append("gender", values.gender);
+    formData.append(
+      "birthday",
+      `${values.dobYear}-${values.dobMonth}-${values.dobDate}`
+    );
+    formData.append("consent", "true"); // Add consent value
     // Append other form fields as needed
-  
+
     try {
-      const response = await axios.post('http://localhost/patient/register', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data' // Set content type to multipart/form-data
+      const response = await axios.post(
+        "http://localhost/patient/register",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data", // Set content type to multipart/form-data
+          },
         }
-      });
+      );
       console.log(response.data); // Handle success response
       resetForm(); // Reset the form after successful submission
     } catch (error) {
-      console.error('Registration failed:', error); // Handle error response
+      console.error("Registration failed:", error); // Handle error response
     } finally {
       setSubmitting(false);
     }
   };
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -89,7 +82,7 @@ const   SignUpForm = () => {
   };
 
   return (
-    <div >
+    <div>
       <h1 className="flex justify-center text-xl text-primdark p-8 font-urbanist text-sx font-base leading-5 text-left  placeholder-urbanist">
         Sign up with your email address
       </h1>
@@ -140,7 +133,7 @@ const   SignUpForm = () => {
           <Form>
             <div className="font-urbanist text-sx font-light leading-5 text-left text-primdark placeholder-urbanist">
               <TextField
-                class="mt-2 border rounded-[12px] pl-6 py-4"
+                className="mt-2 border rounded-[12px] pl-6 py-4"
                 label="Name"
                 name="name"
                 type="text"
@@ -149,7 +142,7 @@ const   SignUpForm = () => {
             </div>
             <div className="font-urbanist text-sx font-light leading-5 text-left text-primdark placeholder-urbanist">
               <TextField
-                class="mt-2 border rounded-[12px] pl-6 py-4"
+                className="mt-2 border rounded-[12px] pl-6 py-4"
                 label="Family Name"
                 name="familyName"
                 type="text"
@@ -158,7 +151,7 @@ const   SignUpForm = () => {
             </div>
             <div className="font-urbanist text-sx font-light leading-5 text-left text-primdark placeholder-urbanist">
               <TextField
-                class="mt-2 border rounded-[12px] pl-6 py-4"
+                className="mt-2 border rounded-[12px] pl-6 py-4"
                 label="Profile Name"
                 name="profileName"
                 type="text"
@@ -167,7 +160,7 @@ const   SignUpForm = () => {
             </div>
             <div className="font-urbanist text-sx font-light leading-5 text-left text-primdark placeholder-urbanist">
               <TextField
-                class="mt-2 border rounded-[12px] pl-6 py-4"
+                className="mt-2 border rounded-[12px] pl-6 py-4"
                 label="Email"
                 name="email"
                 type="email"
@@ -182,7 +175,7 @@ const   SignUpForm = () => {
               </label>
               <div className="relative">
                 <TextField
-                  class="mt-2 border rounded-[12px] pl-6 py-4"
+                  className="mt-2 border rounded-[12px] pl-6 py-4"
                   id="password"
                   name="password"
                   type={showPassword ? "text" : "password"}
@@ -198,19 +191,19 @@ const   SignUpForm = () => {
               </div>
             </div>
 
-            {/*Comfirm password*/}
+            {/*Confirm password*/}
             <div className="font-urbanist text-sx font-light leading-5 text-left text-primdark placeholder-urbanist">
-              <label htmlFor="comfirm password" className="mr-2">
+              <label htmlFor="confirmpPassword" className="mr-2">
                 {" "}
-                Comfirm Password
+                Confirm Password
               </label>
               <div className=" relative">
                 <TextField
-                  class="mt-2 border rounded-[12px] pl-6 py-4"
-                  id="comfirm password"
-                  name="comfirm password"
-                  type={showPassword ? "text" : "comfirm password"}
-                  placeholder="Comfirm your password"
+                  className="mt-2 border rounded-[12px] pl-6 py-4"
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Confirm your password"
                 />
                 <button
                   type="button"
@@ -373,11 +366,12 @@ const   SignUpForm = () => {
                     : "bg-sechover hover:bg-blue-600"
                 }`}
                 type="submit"
-                onClick={handleSubmit()}
-                disabled={!isValid || !dirty || !isFormFilled(values) || isSubmitting}
-                
+                onClick={handleSubmit}
+                disabled={
+                  !isValid || !dirty || !isFormFilled(values) || isSubmitting
+                }
               >
-                {console.log(
+                {/* {console.log(
                   "valid" +
                     !isValid +
                     " dirty" +
@@ -386,7 +380,7 @@ const   SignUpForm = () => {
                     !isFormFilled(values) +
                     " submitting" +
                     isSubmitting
-                )}
+                )} */}
                 Sign Up
               </button>
             </div>

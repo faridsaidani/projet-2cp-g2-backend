@@ -3,6 +3,7 @@ from flask import Blueprint, request, jsonify, session
 from ..models  import Patient, MedicalFile
 from validate_email import validate_email
 import base64
+import os
 
 # the functions for patient
 # register log_in log_out update delete get_one get_all
@@ -12,11 +13,16 @@ patientRoute = Blueprint('patientRoute', __name__,url_prefix='/patient')
 @patientRoute.route('/register', methods= ['POST'])
 def register():
     data = request.form
+    print(data)
+    if 'password' not in data:
+        return jsonify({"error": "Password is required"}), 400
     hashed_password = bcrypt.generate_password_hash(data['password']).decode('utf-8')
     if 'consent' not in data or data['consent'] != 'true':
         return jsonify({"error": "Consent to save information is required"})
     if 'image_file' not in request.files:
-        image_file = open('../default.jpg', 'rb')
+        script_dir = os.path.dirname(os.path.realpath(__file__))
+        default_image_path = os.path.join(script_dir, '..', 'default.jpg')
+        image_file = open(default_image_path, 'rb')
     else:
         image_file = request.files['image_file']
  
@@ -262,8 +268,8 @@ def get_patient(id):
 @patientRoute.route('/search', methods=['GET'])
 def search_patients():
     # Get query parameters from the request
-    name = request.args.get('name')
-    familly_name = request.args.get('familly_name')
+    name = request.form.get('name')
+    familly_name = request.form.get('familly_name')
     
     # Build the query based on the provided parameters
     query = Patient.query
