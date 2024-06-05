@@ -94,6 +94,22 @@ def get_all_appointments():
         appointments_list.append(appointment_info)
     return jsonify({'appointments': appointments_list})
 
+
+@appointmentRoute.route('/get_all/<int:id>', methods=['GET'])
+def get_all_user_appointments(id):
+    appointments = Appointment.query.filter_by(patient_id=id).all()
+    appointments_list = []
+    for appointment in appointments:
+        appointment_info = {
+            'id': appointment.id,
+            'name': appointment.name,
+            'date': appointment.date,
+            'therapist_id':appointment.therapist_id,
+            'patient_id':appointment.patient_id
+        }
+        appointments_list.append(appointment_info)
+    return jsonify({'appointments': appointments_list})
+
 @appointmentRoute.route('get/<int:id>', methods=['GET'])
 def get_appointment(id):
     appointment = Appointment.query.get(id)
