@@ -24,11 +24,8 @@ const AboutUsBody = () => {
               </h2>
             </div>
           </div>
-          <p className="">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corporis
-            quas perspiciatis assumenda ducimus deleniti? Magnam sequi dolorem
-            voluptatem amet pariatur esse, itaque quo suscipit ipsa nisi dicta
-            incidunt exercitationem consequuntur.
+          <p className="text-center mt-4">
+            Feeling overwhelmed? Oxypsy is here to support you.  Our web app provides a safe space packed with evidence-based tools and resources to manage stress, improve mood, and build resilience. Take control of your mental well-being and start your journey to a happier, healthier you with Oxypsy.
           </p>{" "}
           <br /> <br /> <br />
         </div>

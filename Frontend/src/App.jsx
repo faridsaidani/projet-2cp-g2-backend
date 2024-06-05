@@ -61,7 +61,7 @@ import {
 const App = () => {
   const [user, setUser] = useState({
     isAdmin: true, // true or false
-    role: "patient", //"therapist"  or "patient"
+    role: "therapist", //"therapist"  or "patient"
   });
 
   return (
