@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
@@ -38,7 +39,18 @@ const isFormFilled = (values) => {
 const SignUpForm = () => {
   const [submitting, setSubmitting] = useState(false);
 
-  const handleSubmit = async (values, { setSubmitting, resetForm }) => {
+  const resetForm = () => {
+    setFormFields({
+      // Reset fields to initial state
+      name: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+      therapistOrPatient: "",
+    });
+  };
+  const navigate = useNavigate();
+  const handleSubmit = async (values, { setSubmitting }) => {
     const formData = new FormData();
     formData.append("name", values.name);
     formData.append("familly_name", values.famillyName);
@@ -53,36 +65,35 @@ const SignUpForm = () => {
     formData.append("consent", "true"); // Add consent value
     // Append other form fields as needed
     formData.append("medical_file", values.file);
-
+    formData.append("cv", values.cvfile);
+    formData.append("certificate", values.certificatefile);
+    let postLink = "http://localhost:5000/patient/register";
+    let followUpLink = "/patient";
+    if (values.therapistOrPatient === "therapist") {
+      postLink = "http://localhost:5000/therapist/register";
+      followUpLink = "/therapist";
+    }
     try {
-      const response = await axios.post(
-        "http://localhost:5000/patient/register",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data", // Set content type to multipart/form-data
-          },
-        }
-      );
+      const response = await axios.post(postLink, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data", // Set content type to multipart/form-data
+        },
+      });
       console.log(response.data); // Handle success response
-      resetForm(); // Reset the form after successful submission
+      console.log("Redirecting to:", followUpLink);
+      if (response.data.message === "success") {
+        navigate(followUpLink);
+      } else {
+        alert("User already exists");
+      }
+      // navigate(followUpLink);
+      // resetForm(); // Reset the form after successful submission
+      // Redirect to /patient after successful submission
     } catch (error) {
       console.error("Registration failed:", error); // Handle error response
     } finally {
       setSubmitting(false);
     }
-  };
-
-  const resetForm = () => {
-    setFormFields({
-      // Reset fields to initial state
-      name: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-
-      therapistOrPatient: "",
-    });
   };
 
   const [showPassword, setShowPassword] = useState(false);
@@ -354,7 +365,7 @@ const SignUpForm = () => {
             {/* Upload File */}
             <div className="flex flex-col items-start mt-6 mb-10 font-urbanist text-sx font-light leading-5 text-left text-primdark placeholder-urbanist">
               <label className=" my-4">
-                Here you upload your medical file or CV and certificates{" "}
+                Here you upload your medical file if you're a patient{" "}
               </label>
               <div className="flex">
                 <input
@@ -364,6 +375,49 @@ const SignUpForm = () => {
                   name="file"
                   onChange={(event) =>
                     setFieldValue("file", event.currentTarget.files[0])
+                  }
+                />
+
+                {values.file && (
+                  <div className="text-sechover">File uploaded</div>
+                )}
+              </div>
+            </div>
+            <div className="flex flex-col items-start mt-6 mb-10 font-urbanist text-sx font-light leading-5 text-left text-primdark placeholder-urbanist">
+              <label className=" my-4">
+                Here you upload your CV if you're a therapist{" "}
+              </label>
+              <div className="flex">
+                <input
+                  className=""
+                  type="file"
+                  id="cvfile"
+                  name="cvfile"
+                  onChange={(event) =>
+                    setFieldValue("cvfile", event.currentTarget.files[0])
+                  }
+                />
+
+                {values.file && (
+                  <div className="text-sechover">File uploaded</div>
+                )}
+              </div>
+            </div>
+            <div className="flex flex-col items-start mt-6 mb-10 font-urbanist text-sx font-light leading-5 text-left text-primdark placeholder-urbanist">
+              <label className=" my-4">
+                Here you upload your certificate if you're a therapist{" "}
+              </label>
+              <div className="flex">
+                <input
+                  className=""
+                  type="file"
+                  id="certificatefile"
+                  name="certificatefile"
+                  onChange={(event) =>
+                    setFieldValue(
+                      "certificatefile",
+                      event.currentTarget.files[0]
+                    )
                   }
                 />
 
@@ -382,7 +436,7 @@ const SignUpForm = () => {
                     : "bg-gray-300"
                 }`}
                 type="submit"
-                onClick={() => handleSubmit(values, { setSubmitting })}
+                // onClick={() => handleSubmit(values, { setSubmitting })}
                 // disabled={
                 //   !isValid || !dirty || !isFormFilled(values) || isSubmitting
                 // }

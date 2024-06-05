@@ -106,7 +106,7 @@ def login():
             # If the password is correct, store the patient's username in the session
             session['patient_username'] = patient.username
             session['patient_id'] = patient.id
-            return jsonify({'message': 'Login successful'})
+            return jsonify({'message': 'Login successful', 'patient_id': patient.id, 'patient_username': patient.username, 'role' : 'patient'})
         return jsonify({'error': 'Invalid email or password'}), 401
     
     

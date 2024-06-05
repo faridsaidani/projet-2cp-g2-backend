@@ -4,6 +4,8 @@ from ..models import Therapist
 from validate_email import validate_email
 import base64
 import binascii
+import os
+
 
 # the functions for therapist
 # register log_in log_out update delete get_one get_all
@@ -13,15 +15,16 @@ therapistRoute = Blueprint('therapistRoute', __name__, url_prefix='/therapist')
 @therapistRoute.route('/register', methods=['POST'])
 def register():
     data = request.form
-    print(data)
+    # print(data)
     hashed_password = bcrypt.generate_password_hash(data['password']).decode('utf-8')
     
     if 'consent' not in data or data['consent'] != 'true':
         return jsonify({"error": "Consent to save information is required"})
     
     if 'image_file' not in request.files:
-        print("the default one")
-        image_file = open('../default.jpg', 'rb')
+        script_dir = os.path.dirname(os.path.realpath(__file__))
+        default_image_path = os.path.join(script_dir, '..', 'default.jpg')
+        image_file = open(default_image_path, 'rb')
     else:
         image_file = request.files['image_file']
 
@@ -97,7 +100,7 @@ def login():
             if therapist.selected:
                 # If approved, store the therapist's ID in the session
                 session['therapist_id'] = therapist.id
-                return jsonify({'message': 'Login successful'})
+                return jsonify({'message': 'Login successful' , 'therapist_id': therapist.id, 'therapist_username': therapist.username, 'role' : 'therapist'})
             else:
                 return jsonify({'error': 'Therapist not approved by admin'}), 401
 
