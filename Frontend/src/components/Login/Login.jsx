@@ -61,7 +61,7 @@ const Login = () => {
         }
         localStorage.setItem("role", values.role);
         console.log("Redirecting to:", followUpLink);
-        // navigate(followUpLink);
+        navigate(followUpLink);
       } catch (error) {
         alert("Login failed");
         console.error("Login failed:", error); // Handle error response
