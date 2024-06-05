@@ -87,7 +87,7 @@ def login_required(func):
 @patientRoute.route('/login', methods=['POST'])
 def login():
     data = request.form
-
+    print(data)
     # Check if 'email' and 'password' keys exist in the JSON payload
     if 'email' not in data or 'password' not in data:
         return jsonify({'error': 'Email and password are required'}), 400

@@ -1,102 +1,176 @@
+import "./index.css";
+import { Link } from "react-router-dom";
+import login from "./images/login.png";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-import './index.css'
-import { Link } from 'react-router-dom';
-import login from './images/login.png'
-import React, { useState,useEffect } from 'react';
-import axios from 'axios';
+import axios from "axios";
 
 const Login = () => {
-//   const [values, setValues] = useState({ email: '', password: '' });
-const [values, setValues] = useState({ usernameOrEmail: '', password: '' });
-const [errors, setErrors] = useState({});
-const [submitting, setSubmitting] = useState(false);
+  // const [values, setValues] = useState({ email: '', password: '' });
+  const [values, setValues] = useState({ email: "", password: "" });
+  const [errors, setErrors] = useState({});
+  const [submitting, setSubmitting] = useState(false);
 
-
-
+  const navigate = useNavigate();
   function handleInput(event) {
     const { name, value } = event.target;
     setValues({ ...values, [name]: value });
   }
 
-  function handleLogin(event) {
+  async function handleLogin(event) {
     event.preventDefault();
+    let postLink = "http://localhost:5000/patient/login";
+    let followUpLink = "/patient";
+    if (values.role === "therapist") {
+      postLink = "http://localhost:5000/therapist/login";
+      followUpLink = "/therapist";
+    }
     const validationErrors = validation(values);
     if (Object.keys(validationErrors).length === 0) {
+      const formData = new FormData();
+      formData.append("email", values.email);
+      formData.append("password", values.password);
+      console.log("Logging in:", formData);
       setSubmitting(true);
-      axios.post('/api/login', values)
-       .then(response => {
-          console.log(response.data);
-          setSubmitting(false);
-        })
-       .catch(error => {
-          console.error(error);
-          setErrors({ server: 'An error occurred while logging in' });
-          setSubmitting(false);
+      try {
+        const response = await axios.post(postLink, values, {
+          headers: {
+            "Content-Type": "multipart/form-data", // Set content type to multipart/form-data
+          },
         });
+        console.log(response.data); // Handle success response
+        console.log("Redirecting to:", followUpLink);
+        navigate(followUpLink);
+      } catch (error) {
+        alert("Login failed");
+        console.error("Login failed:", error); // Handle error response
+      } finally {
+        setSubmitting(false);
+      }
     } else {
       setErrors(validationErrors);
     }
   }
-  useEffect(() => {
-    if (submitting) {
-      axios.post('/api/login', values)
-       .then(response => {
-          console.log(response.data);
-          setSubmitting(false);
-        })
-       .catch(error => {
-          console.error(error);
-          setErrors({ server: 'An error occurred while logging in' });
-          setSubmitting(false);
-        });
-    }
-  }, [submitting, values]);
-
+  // useEffect(() => {
+  //   if (submitting) {
+  //     axios
+  //       .post("/api/login", values)
+  //       .then((response) => {
+  //         console.log(response.data);
+  //         setSubmitting(false);
+  //       })
+  //       .catch((error) => {
+  //         console.error(error);
+  //         setErrors({ server: "An error occurred while logging in" });
+  //         setSubmitting(false);
+  //       });
+  //   }
+  // }, [submitting, values]);
 
   return (
-    <div className='grid grid-cols-1 sm:grid-cols-2 h-screen w-full'>
-      <div className='hidden sm:block'>
-        <img className='w-full h-full object-cover' src={login} alt="Login" />
+    <div className="grid grid-cols-1 sm:grid-cols-2 h-screen w-full">
+      <div className="hidden sm:block">
+        <img className="w-full h-full object-cover" src={login} alt="Login" />
       </div>
-      <div className='leading-relaxed bg-white flex flex-col justify-center'>
-        <form className='border border-[#ffff] w-full mx-auto p-20 bg-white' onSubmit={handleLogin}>
+      <div className="leading-relaxed bg-white flex flex-col justify-center">
+        <form
+          className="border border-[#ffff] w-full mx-auto p-20 bg-white"
+          onSubmit={handleLogin}
+        >
           <div className="flex text-complimetary1 font-normal text-base font-poppins mt-1 text-center md:text-left absolute right-14 top-14 ">
-            Dont have an account? 
-            <Link to='/sign-up'>
-              <p className="ml-2 text-primary1 underline hover:underline hover:underline-offset-4" >Sign Up</p>
+            Dont have an account?
+            <Link to="/sign-up">
+              <p className="ml-2 text-primary1 underline hover:underline hover:underline-offset-4">
+                Sign Up
+              </p>
             </Link>
           </div>
           <div className="mx-auto">
-            
-            <h1 className='font-poppins font-medium text-[32px] leading-[48px] text-complimetary1 mb-12'>Sign in</h1>
-            
+            <h1 className="font-poppins font-medium text-[32px] leading-[48px] text-complimetary1 mb-12">
+              Sign in
+            </h1>
 
             <div className="text-center md:text-left">
-            <div className="flex flex-col py-2">
-            <label className='mb-1 text-complimetary1 font-poppins font-normal text-base leading-6'>Username or Email address</label>
-            <input className='border p-2 rounded-xl border-shad text-complimetary1 ' type="text" name="usernameOrEmail" value={values.usernameOrEmail} onChange={handleInput} />
-            {errors.usernameOrEmail && <span className="text-red-500">{errors.usernameOrEmail}</span>}
-          </div>
               <div className="flex flex-col py-2">
-                <label className='mb-1 text-complimetary1 font-poppins font-normal text-base leading-6'>Password</label>
-                <input className='border p-2  rounded-xl border-shad text-complimetary1 '  type="password" name="password" value={values.password} onChange={handleInput} />
-                {errors.password && <span className="text-red-500">{errors.password}</span>}
+                <label className="mb-1 text-complimetary1 font-poppins font-normal text-base leading-6">
+                  Username or Email address
+                </label>
+                <input
+                  className="border p-2 rounded-xl border-shad text-complimetary1 "
+                  type="text"
+                  name="email"
+                  value={values.email}
+                  onChange={handleInput}
+                />
+                {errors.email && (
+                  <span className="text-red-500">{errors.email}</span>
+                )}
+              </div>
+
+              <div className="flex flex-col py-2">
+                <label className="mb-1 text-complimetary1 font-poppins font-normal text-base leading-6">
+                  Password
+                </label>
+                <input
+                  className="border p-2  rounded-xl border-shad text-complimetary1 "
+                  type="password"
+                  name="password"
+                  value={values.password}
+                  onChange={handleInput}
+                />
+                {errors.password && (
+                  <span className="text-red-500">{errors.password}</span>
+                )}
               </div>
             </div>
-            <button className='border my-5 w-1/4 rounded-lg bg-complimetary2 py-3 text-primary1 font-[700] text-[18px] leading-[21.6px] font-urbanist' type="submit"> 
-            {/* <button
+            <div className="flex">
+              <label className="mr-2">
+                <input
+                  type="radio"
+                  name="role"
+                  value="therapist"
+                  checked={values.role === "therapist"}
+                  onChange={handleInput}
+                />
+                Therapist
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  name="role"
+                  value="patient"
+                  checked={values.role === "patient"}
+                  onChange={handleInput}
+                />
+                Patient
+              </label>
+            </div>
+
+            <button
+              className="border my-5 w-1/4 rounded-lg bg-complimetary2 py-3 text-primary1 font-[700] text-[18px] leading-[21.6px] font-urbanist"
+              type="submit"
+            >
+              {/* <button
               className={`border my-5 w-1/4 rounded-lg bg-complimetary2 py-3 text-primary1 font-[700] text-[18px] leading-[21.6px] font-urbanist ${(isValid && dirty && isFormFilled(values)) ? 'hover:bg-blue-600' : ''}`}
               type="submit"
               disabled={!isValid || !dirty || !isFormFilled(values) || isSubmitting}
             > */}
-                
-                Sign In</button>
-            <a className="underline absolute text-[16px] leading-[24px] font-poppins font-[400] text-primary1 right-20 hover:underline-offset-4" href="https://tailwindcss.com/docs/border-radius">Forgot your password</a>
+              Sign In
+            </button>
+            <a
+              className="underline absolute text-[16px] leading-[24px] font-poppins font-[400] text-primary1 right-20 hover:underline-offset-4"
+              href="https://tailwindcss.com/docs/border-radius"
+            >
+              Forgot your password
+            </a>
             <div className="flex text-complimetary1 font-normal text-base font-poppins mt-1 text-center md:text-left">
-              Dont have an account? 
-              <Link to='/sign-up'>
-                <p className="ml-2 text-primary underline hover:underline hover:underline-offset-4">Sign Up</p>
-              </Link>  
+              Dont have an account?
+              <Link to="/sign-up">
+                <p className="ml-2 text-primary underline hover:underline hover:underline-offset-4">
+                  Sign Up
+                </p>
+              </Link>
             </div>
           </div>
         </form>
@@ -106,54 +180,33 @@ const [submitting, setSubmitting] = useState(false);
 };
 
 function validation(values) {
-    const errors = {};
-    const email_pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  
-    if (!values.usernameOrEmail.trim()) {
-      errors.usernameOrEmail = "Username or Email is required!";
-    } else {
-      if (!email_pattern.test(values.usernameOrEmail)) {
-        errors.usernameOrEmail = "Invalid email format";
-      }
+  const errors = {};
+  const email_pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!values.email.trim()) {
+    errors.email = "Username or Email is required!";
+  } else {
+    if (!email_pattern.test(values.email)) {
+      errors.email = "Invalid email format";
     }
-  
-    if (!values.password.trim()) {
-      errors.password = "Password is required!";
-    }
-  
-    return errors;
   }
-  
+
+  if (!values.password.trim()) {
+    errors.password = "Password is required!";
+  }
+
+  return errors;
+}
 
 export default Login;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // const Login = () => {
 //   return (
 //     <div className='grid grid-cols-1 sm:grid-cols-2 h-screen w-full'>
 //     <div className='hidden sm:block'>
-//         <img className='w-full h-full object-cover' 
+//         <img className='w-full h-full object-cover'
 // src={login}      alt=" " />
-        
+
 //     </div>
 //     <div className= 'leading-relaxed  bg-white flex flex-col justify-center '>
 //         <form className=' border border-[#ffff] w-full mx-auto  p-20  bg-white '>
@@ -192,7 +245,7 @@ export default Login;
 
 //             <button className='border  my-5 w-1/4 rounded-lg bg-complimetary2 py-3 text-primary1 font-[700] text-[18px] leading-[21.6px] font-urbanist  '>Sign In</button>
 //             <a  className="  underline absolute text-[16px] leading-[24px] font-poppins font-[400] text-primary1  right-20  hover:underline-offset-4" href="https://tailwindcss.com/docs/border-radius">Forget your password</a>
-                
+
 //             <div className="text-complimetary1 font-normal text-base  font-poppins mt-1 text-center md:text-left">
 //       Dont have an account? <a className=" text-primary underline hover:underline hover:underline-offset-4" href="https://tailwindcss.com/docs/border-radius">Sign Up</a>
 //     </div>

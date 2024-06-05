@@ -86,9 +86,6 @@ const SignUpForm = () => {
       } else {
         alert("User already exists");
       }
-      // navigate(followUpLink);
-      // resetForm(); // Reset the form after successful submission
-      // Redirect to /patient after successful submission
     } catch (error) {
       console.error("Registration failed:", error); // Handle error response
     } finally {
