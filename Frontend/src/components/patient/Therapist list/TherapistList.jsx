@@ -1,11 +1,28 @@
 // eslint-disable-next-line no-unused-vars
 import React from "react";
-import './index.css'
-import { Link } from 'react-router-dom';
-
-
+import "./index.css";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { TherapistsList } from "../../../pages";
 const TherapistList = () => {
   // therpist-list
+  useEffect(() => {
+    getTherapist();
+  }, []);
+  const [therapists, setTherapists] = useState([]);
+
+  const getTherapist = () =>
+    axios
+      .get("http://localhost:5000/therapist/get_all")
+      .then((response) => {
+        console.log(response.data);
+        setTherapists(response.data.therapists);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
   const therpistlist = [
     {
       id: 1,
@@ -30,74 +47,108 @@ const TherapistList = () => {
     },
   ];
 
-  const Mytherpistlist = therpistlist.map((list) => {
+  const Mytherpistlist = therapists.map((therapist) => {
+    let img = document.createElement("img");
+    img.src = "data:image/jpeg;base64," + therapist.image_file;
     return (
       // eslint-disable-next-line react/jsx-key
-      <li key={list.id} >
+      <li key={therapist.id}>
         {/* <div className="p-5  mb-[20px] mt-8 bg-white rounded-xl  bg-[rgba(255,255,255,1)] shadow-multiple  border border-black"> */}
-          <div className="flex gap-5 max-md:flex-col max-md:gap-0 p-5 mt-4 bg-white rounded-xl  bg-[rgba(255,255,255,1)] shadow-multiple   ">
-            {/* <div className="flex flex-col w-[18%] max-md:ml-0 max-md:w-full border border-black"> */}
-              <img
-                loading="lazy"
-                src={list.src}
-                className="shrink-0 max-w-full rounded-[12px] aspect-square w-[137px] max-md:mt-10"
-              />
-            {/* </div> */}
-            <div className="flex flex-col ml-5 w-[82%] max-md:ml-0 max-md:w-full ">
-              {/* <div className="flex flex-col grow justify-end max-md:mt-10 max-md:max-w-full border border-black"> */}
-                <div className="flex gap-5 justify-between  w-full max-md:flex-wrap max-md:max-w-full">
-                  <p className="my-auto text-xl font-semibold text-primary1">
-                    {list.name}
-                  </p>
-                  <div className="flex items-center ">
-                    <div className="flex items-start  gap-2.5 p-1.5  rounded-full">
-                      <svg
-                        width={20}
-                        height={20}
-                        viewBox="0 0 20 20"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M15.8334 11.6667C17.0751 10.45 18.3334 8.99167 18.3334 7.08333C18.3334 5.86776 17.8505 4.70197 16.991 3.84243C16.1314 2.98289 14.9657 2.5 13.7501 2.5C12.2834 2.5 11.2501 2.91667 10.0001 4.16667C8.75008 2.91667 7.71675 2.5 6.25008 2.5C5.03451 2.5 3.86872 2.98289 3.00918 3.84243C2.14963 4.70197 1.66675 5.86776 1.66675 7.08333C1.66675 9 2.91675 10.4583 4.16675 11.6667L10.0001 17.5L15.8334 11.6667Z"
-                          stroke="#4C606E"
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    </div>
-                    <div className="text-[#4c606e] font-['Urbanist'] font-medium leading-[normal]">
-                      426
-                    </div>
-                  </div>
+        <div className="flex gap-5 max-md:flex-col max-md:gap-0 p-5 mt-4 bg-white rounded-xl  bg-[rgba(255,255,255,1)] shadow-multiple   ">
+          {/* <div className="flex flex-col w-[18%] max-md:ml-0 max-md:w-full border border-black"> */}
+          <img
+            loading="lazy"
+            src={img.src}
+            className="shrink-0 max-w-full rounded-[12px] aspect-square w-[137px] max-md:mt-10"
+          />
+          {/* </div> */}
+          <div className="flex flex-col ml-5 w-[82%] max-md:ml-0 max-md:w-full ">
+            {/* <div className="flex flex-col grow justify-end max-md:mt-10 max-md:max-w-full border border-black"> */}
+            <div className="flex gap-5 justify-between  w-full max-md:flex-wrap max-md:max-w-full">
+              <p className="my-auto text-xl font-semibold text-primary1">
+                {therapist.name} {therapist.familly_name}
+              </p>
+              <div className="flex items-center ">
+                <div className="flex items-start  gap-2.5 p-1.5  rounded-full">
+                  <svg
+                    width={20}
+                    height={20}
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M15.8334 11.6667C17.0751 10.45 18.3334 8.99167 18.3334 7.08333C18.3334 5.86776 17.8505 4.70197 16.991 3.84243C16.1314 2.98289 14.9657 2.5 13.7501 2.5C12.2834 2.5 11.2501 2.91667 10.0001 4.16667C8.75008 2.91667 7.71675 2.5 6.25008 2.5C5.03451 2.5 3.86872 2.98289 3.00918 3.84243C2.14963 4.70197 1.66675 5.86776 1.66675 7.08333C1.66675 9 2.91675 10.4583 4.16675 11.6667L10.0001 17.5L15.8334 11.6667Z"
+                      stroke="#4C606E"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
                 </div>
-                <div className=" text-base font-semibold text-complimetary1 max-md:max-w-full">
-                  {list.experience}
+                <div className="text-[#4c606e] font-['Urbanist'] font-medium leading-[normal]">
+                  {
+                    // random number between 25 and 400
+                    Math.floor(Math.random() * 375) + 25
+                  }
                 </div>
-                <div className=" text-base font-medium text-[#4C606ECC] text-opacity-80 max-md:max-w-full">
-                  {list.specialite}
-                </div>
-
-                <div className=" flex flex-row  mt-4 justify-end items-end gap-3 w-[undefinedundefined] box-border">
-                  <Link to="/patient/therapist">
-                      <button className="    text-complimetary3 text-sm  leading-[14px]  font-urbanist  font-[600] text-center flex flex-row justify-center items-center gap-2.5 w-[170px] h-[100%] p-3 rounded-lg box-border  bg-primary2">
-                    
-                          View Profile
-                     
-                      </button>
-                  </Link>
-
-                  <Link to="/patient/make-appointment">
-                      <button className=" text-sm   text-[#fff] leading-[14px]  font-urbanist  font-[600] r gap-2.5 h-[100%] w-[170px] p-3 rounded-lg box-border  bg-complimetary3">
-                          Make Appointement
-                     
-                      </button>
-                  </Link>
-                {/* </div> */}
               </div>
             </div>
+            <div className=" text-base font-semibold text-complimetary1 max-md:max-w-full">
+              {
+                // select a random element from the array
+                [
+                  "12 years of experience",
+                  "10 years of experience",
+                  "15 years of experience",
+                  "8 years of experience",
+                  "3 years of experience",
+                  "6 years of experience",
+                  "20 years of experience",
+                  "7 years of experience",
+                  "5 years of experience",
+                ][Math.floor(Math.random() * 9)]
+              }
+            </div>
+            <div className=" text-base font-medium text-[#4C606ECC] text-opacity-80 max-md:max-w-full">
+              {
+                [
+                  "Psychologie clinique",
+                  "Psychologie cognitive",
+                  "Psychologie du développement",
+                  "Psychologie sociale",
+                  "Psychologie du travail et des organisations",
+                  "Psychologie de la santé",
+                  "Neuropsychologie",
+                  "Psychologie scolaire",
+                  "Psychologie légale et criminelle",
+                  "Psychologie sportive",
+                ][Math.floor(Math.random() * 10)]
+              }
+            </div>
+
+            <div className=" flex flex-row  mt-4 justify-end items-end gap-3 w-[undefinedundefined] box-border">
+              <Link to="/patient/therapist">
+                <button
+                  className="    text-complimetary3 text-sm  leading-[14px]  font-urbanist  font-[600] text-center flex flex-row justify-center items-center gap-2.5 w-[170px] h-[100%] p-3 rounded-lg box-border  bg-primary2"
+                  // read the therapist id from therapist.id and pass it to the next page
+                  onClick={() => {
+                    localStorage.setItem("therapist_id", therapist.id);
+                  }}
+                >
+                  View Profile
+                </button>
+              </Link>
+
+              <Link to="/patient/make-appointment">
+                <button className=" text-sm   text-[#fff] leading-[14px]  font-urbanist  font-[600] r gap-2.5 h-[100%] w-[170px] p-3 rounded-lg box-border  bg-complimetary3">
+                  Make Appointement
+                </button>
+              </Link>
+              {/* </div> */}
+            </div>
           </div>
+        </div>
         {/* </div> */}
       </li>
     );
@@ -120,42 +171,39 @@ const TherapistList = () => {
       {/* heading */}
 
       <div className=" w-[44%] flex  justify-between self-start mt-6 text-[16px] leading-[19.2px] font-urbanist font-semibold ">
-          
-            <div className="flex justify-center items-center gap-2">
-              <div className="flex justify-center items-center gap-2.5 p-1.5 ">
-                <svg
-                  width={20}
-                  height={20}
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2.5 5H17.5"
-                    stroke="#4C606E"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M2.5 10H17.5"
-                    stroke="#4C606E"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M2.5 15H17.5"
-                    stroke="#4C606E"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </div>
-              <div className="text-[#063248] font-urbanist font-semibold leading-[normal]">
-                All Therapists
-              </div>
-            </div>
-          
-        
+        <div className="flex justify-center items-center gap-2">
+          <div className="flex justify-center items-center gap-2.5 p-1.5 ">
+            <svg
+              width={20}
+              height={20}
+              viewBox="0 0 20 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M2.5 5H17.5"
+                stroke="#4C606E"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M2.5 10H17.5"
+                stroke="#4C606E"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M2.5 15H17.5"
+                stroke="#4C606E"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </div>
+          <div className="text-[#063248] font-urbanist font-semibold leading-[normal]">
+            All Therapists
+          </div>
+        </div>
 
         <div className="flex text-complimetary3 flex-col justify-center  border-b  border-b-complimetary3">
           <div className="flex gap-1 font-urbanist justify-between px-2 py-1.5">
