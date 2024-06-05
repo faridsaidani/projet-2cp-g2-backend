@@ -8,10 +8,15 @@ import axios from "axios";
 
 const Login = () => {
   // const [values, setValues] = useState({ email: '', password: '' });
-  const [values, setValues] = useState({ email: "", password: "" });
+  const [values, setValues] = useState({
+    email: "",
+    password: "",
+    role: "patient",
+  });
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
 
+  // values.role = "patient";
   const navigate = useNavigate();
   function handleInput(event) {
     const { name, value } = event.target;
@@ -40,8 +45,23 @@ const Login = () => {
           },
         });
         console.log(response.data); // Handle success response
+        localStorage.clear();
+        if (values.role === "therapist") {
+          localStorage.setItem("user_id", response.data.therapist_id);
+          localStorage.setItem(
+            "therapist_username",
+            response.data.therapist_username
+          );
+        } else {
+          localStorage.setItem("user_id", response.data.patient_id);
+          localStorage.setItem(
+            "patient_username",
+            response.data.patient_username
+          );
+        }
+        localStorage.setItem("role", values.role);
         console.log("Redirecting to:", followUpLink);
-        navigate(followUpLink);
+        // navigate(followUpLink);
       } catch (error) {
         alert("Login failed");
         console.error("Login failed:", error); // Handle error response
