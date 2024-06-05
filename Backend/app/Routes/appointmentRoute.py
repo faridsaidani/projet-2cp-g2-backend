@@ -103,11 +103,14 @@ def get_all_user_appointments(id):
         appointment_info = {
             'id': appointment.id,
             'name': appointment.name,
-            'date': appointment.date,
+            'date': appointment.date.strftime("%d/%m/%Y"),
+            'time' : appointment.time.strftime("%H:%M"),
             'therapist_id':appointment.therapist_id,
             'patient_id':appointment.patient_id
         }
+        print(appointment_info)
         appointments_list.append(appointment_info)
+
     return jsonify({'appointments': appointments_list})
 
 @appointmentRoute.route('get/<int:id>', methods=['GET'])

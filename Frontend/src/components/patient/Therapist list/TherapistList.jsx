@@ -23,30 +23,6 @@ const TherapistList = () => {
         console.log(error);
       });
 
-  const therpistlist = [
-    {
-      id: 1,
-      name: "Dr. Bellatreche Hibataalah",
-      experience: "12 years of experience",
-      specialite: "Psychologist, Family Psychologist",
-      src: "https://s3-alpha-sig.figma.com/img/a20c/d770/fcc05d21c7ec6ff7470bd1214a804cc1?Expires=1713139200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=jqnqByFPNqxaNzCIBP8cI2ZtXeU~WLhGrMhWQgVMtEUf-q-JuybaTxJ7TolI08hQDLqnqug3JjgBc~wiVikHfLpjKYHcJbk~BwfvVHdEwUs4mJDYJimPogIpit7-ZNWZPVQn4dFZrrY8-WMd5I~lNYleifyjhcGehERgoPhkd9TkUpuNSyYiRMolf-mNSr0vC6xQDxipbFflyV4zMDQriOvnoRN5ddIovlcAPY9355GexfXzlltcVCgVYQmDOtjGUmv7ZMQMEcrWEyVl5P2m6S7PAYUYr6NELlXMDaHW-zQgN3c0FnCeUV7DnipvoQGwNxI1iRL4lRqfxu0T2w3veQ__",
-    },
-    {
-      id: 2,
-      name: "Dr. Bellatreche Hibataalah",
-      experience: "12 years of experience",
-      specialite: "Psychologist, Family Psychologist",
-      src: "https://s3-alpha-sig.figma.com/img/a20c/d770/fcc05d21c7ec6ff7470bd1214a804cc1?Expires=1713139200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=jqnqByFPNqxaNzCIBP8cI2ZtXeU~WLhGrMhWQgVMtEUf-q-JuybaTxJ7TolI08hQDLqnqug3JjgBc~wiVikHfLpjKYHcJbk~BwfvVHdEwUs4mJDYJimPogIpit7-ZNWZPVQn4dFZrrY8-WMd5I~lNYleifyjhcGehERgoPhkd9TkUpuNSyYiRMolf-mNSr0vC6xQDxipbFflyV4zMDQriOvnoRN5ddIovlcAPY9355GexfXzlltcVCgVYQmDOtjGUmv7ZMQMEcrWEyVl5P2m6S7PAYUYr6NELlXMDaHW-zQgN3c0FnCeUV7DnipvoQGwNxI1iRL4lRqfxu0T2w3veQ__",
-    },
-    {
-      id: 3,
-      name: "Dr. Bellatreche Hibataalah",
-      experience: "12 years of experience",
-      specialite: "Psychologist, Family Psychologist",
-      src: "https://s3-alpha-sig.figma.com/img/a20c/d770/fcc05d21c7ec6ff7470bd1214a804cc1?Expires=1713139200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=jqnqByFPNqxaNzCIBP8cI2ZtXeU~WLhGrMhWQgVMtEUf-q-JuybaTxJ7TolI08hQDLqnqug3JjgBc~wiVikHfLpjKYHcJbk~BwfvVHdEwUs4mJDYJimPogIpit7-ZNWZPVQn4dFZrrY8-WMd5I~lNYleifyjhcGehERgoPhkd9TkUpuNSyYiRMolf-mNSr0vC6xQDxipbFflyV4zMDQriOvnoRN5ddIovlcAPY9355GexfXzlltcVCgVYQmDOtjGUmv7ZMQMEcrWEyVl5P2m6S7PAYUYr6NELlXMDaHW-zQgN3c0FnCeUV7DnipvoQGwNxI1iRL4lRqfxu0T2w3veQ__",
-    },
-  ];
-
   const Mytherpistlist = therapists.map((therapist) => {
     let img = document.createElement("img");
     img.src = "data:image/jpeg;base64," + therapist.image_file;
