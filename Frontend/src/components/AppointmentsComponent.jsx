@@ -11,6 +11,8 @@ const AppointmentsComponent = ({upcAppNbr}) => {
             Upcoming Appointments(4{upcAppNbr})
         </span>
         <div className='grid grid-cols-3 gap-2 justify-between w-[100%] h-[70%]'>
+            
+            
             <div className='flex justify-center items-center border border-dashed  rounded-xl '>
               <div className='flex flex-col justify-center items-center bg-primback px-6 py-4 rounded-xl'>
                 <button className='my-4'>
@@ -26,7 +28,6 @@ const AppointmentsComponent = ({upcAppNbr}) => {
                 </Link>
 
               </div>
-
             </div>
 
 
