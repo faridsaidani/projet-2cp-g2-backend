@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { GrHomeRounded } from "react-icons/gr";
 import { FiUsers } from "react-icons/fi";
 import { LuMessagesSquare } from "react-icons/lu";
@@ -46,39 +47,43 @@ const SideBarAdmin = ({ currentPage }) => {
 
                     <div className='flex flex-col w-[70%] text-secwhite m-10'>
                       
-                      <Link to=''></Link>
+                      <Link to='/admin-dashboard/'>
                         <div className={` p-4 flex justify-start items-center cursor-pointer ${currentPage === 'overview' ? 'rounded-md bg-seclight text-primdark' : ''}`}>
                             <GrHomeRounded className='mr-2' />Overview
                         </div>
+                      </Link>
 
-
-
-                      <Link to=''></Link>
+                      <Link to='/admin-dashboard/therapist-approval'>
                         <div className={` p-4 flex justify-start items-center cursor-pointer ${currentPage === 'therapists' ? 'rounded-md bg-seclight text-primdark' : ''}`}>
                             <FiUsers className='mr-2' />Therapists
                         </div>
+                      </Link>
 
-
-                      <Link to=''></Link>  
-                        <div className={` p-4 flex justify-start items-center cursor-pointer ${currentPage === 'messages' ? 'rounded-md bg-seclight text-primdark' : ''}`}>
-                            <LuMessagesSquare className='mr-2' />Messages
+                      <a href="https://mail.google.com" target="_blank" rel="noopener noreferrer">
+                        <div className={`p-4 flex justify-start items-center cursor-pointer ${currentPage === 'messages' ? 'rounded-md bg-seclight text-primdark' : ''}`}>
+                          <LuMessagesSquare className='mr-2' />
+                          Messages
                         </div>
+                      </a>
+  
 
-                      <Link to=''></Link>
-                        <div className={` p-4 flex justify-start items-center cursor-pointer ${currentPage === 'settings' ? 'rounded-md bg-seclight text-primdark' : ''}`}>
-                            <IoSettingsOutline className='mr-2'/>Settings
+                      <Link to='/admin-dashboard/patient-list'>
+                        <div className={` p-4 flex justify-start items-center cursor-pointer ${currentPage === 'patient' ? 'rounded-md bg-seclight text-primdark' : ''}`}>
+                            <IoSettingsOutline className='mr-2'/>Patient List
                         </div>
+                      </Link>
 
-
-                      <Link ></Link>
+                      <Link to='/admin-dashboard/blog-admin'>
                         <div className={` p-4 flex justify-start items-center cursor-pointer ${currentPage === 'blog' ? 'rounded-md bg-seclight text-primdark' : ''}`}>
                           <AiOutlineAppstore className='mr-2' />Blog
                         </div>
+                      </Link>
 
-                      <Link></Link>
+                      <Link to='/admin-dashboard/team'>
                         <div className={` p-4 flex justify-start items-center cursor-pointer ${currentPage === 'team' ? 'rounded-md bg-seclight text-primdark' : ''}`}>
                           <LiaUserCogSolid  className='mr-2'/>Team
                         </div>
+                      </Link>
 
 
 

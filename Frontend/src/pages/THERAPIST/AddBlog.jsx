@@ -1,4 +1,5 @@
 import React,{useState} from 'react'
+import { Link } from 'react-router-dom';
 import SideBarTherapist from "../../components/SideBarTherapist"
 import TopBar from "../../components/TopBar"
 import { AiFillCamera } from "react-icons/ai"
@@ -30,7 +31,7 @@ const AddBlog = () => {
 
   return (
     <div className="grid grid-cols-[20%_80%] h-screen overflow-hidden">
-        <SideBarTherapist/>
+        <SideBarTherapist currentPage='settings'/>
         <div className='flex flex-col h-screen'>
             <TopBar/>
             <div className='grid grid-cols-[25%_70%] text-urbanist h-full gap-10 pt-4 pb-10 mr-10'>
@@ -41,7 +42,7 @@ const AddBlog = () => {
                     <h3 className="text-xl ">Settings</h3>
                     <div className="flex flex-col justify-center items-center">
 
-                      <button
+                      <Link to='/therapist/notifications'
                         className={`flex items-center w-[90%] border-b border-gray-300 p-4 ${
                           activeButton === "notifications" ? "text-sechover" : ""
                         }`}
@@ -55,10 +56,10 @@ const AddBlog = () => {
                           </p>
                         </div>
                         <GrFormNext />
-                      </button>
+                      </Link>
                     
                       {/*Profile*/}
-                      <button
+                      <Link to='/therapist/profile'
                         className={`flex items-center w-[90%] border-b border-gray-300 p-4 ${
                           activeButton === "profile" ? "text-sechover" : ""
                         }`}
@@ -73,10 +74,10 @@ const AddBlog = () => {
                           </p>
                         </div>
                         <GrFormNext />
-                      </button>
+                      </Link>
                     
                       {/*My blogs*/}
-                      <button
+                      <Link to='/therapist/my-blogs'
                         className={`flex items-center w-[90%] border-b border-gray-300 p-4 text-sechover ${
                           activeButton === "blog" ? "text-sechover" : ""
                         }`}
@@ -91,10 +92,10 @@ const AddBlog = () => {
                           </p>
                         </div>
                         <GrFormNext />
-                      </button>
+                      </Link>
                     
                       {/*Password*/}
-                      <button
+                      <Link to='/therapist/password'
                         className={`flex items-center w-[90%] border-b border-gray-300 p-4 ${
                           activeButton === "password" ? "text-sechover" : ""
                         }`}
@@ -108,7 +109,7 @@ const AddBlog = () => {
                           </p>
                         </div>
                         <GrFormNext />
-                      </button>
+                      </Link>
                     
                     </div>
                 </div>

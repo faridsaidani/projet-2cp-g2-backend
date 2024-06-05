@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import SideBarAdmin from "../../components/SideBarAdmin"
 import TopBar from "../../components/TopBar"
 import { AiFillCamera } from "react-icons/ai"
@@ -6,7 +7,7 @@ import { AiFillCamera } from "react-icons/ai"
 const TeamAdd = () => {
   return (
     <div className='grid grid-cols-[20%_80%] h-screen overflow-hidden'>
-        <SideBarAdmin/>
+        <SideBarAdmin currentPage='team'/>
         <div className='flex flex-col h-screen'>
             <TopBar/>
             <div className='flex flex-col text-urbanist  mb-2 sm:mb-4 lg:mb-6 xl:mb-10 mr-2 sm:mr-4 lg:mr-6 xl:mr-10 mt-10 '>
@@ -45,9 +46,11 @@ const TeamAdd = () => {
                             </div>
                         </div>
 
-                        <button className='px-8 py-2 bg-sechover text-secwhite border rounded-lg font-urbanist text-sm font-normal leading-5 text-center'>
-                            Add Now
-                        </button>
+                        <Link to='/admin-dashboard/team'>
+                            <button className='my-6 px-8 py-2 bg-sechover text-secwhite border rounded-lg font-urbanist text-sm font-normal leading-5 text-center'>
+                                Add Now
+                            </button>
+                        </Link>
 
                     </div>
             </div>

@@ -8,12 +8,12 @@ import IMG from '/assets/MariaDolce.png';
 const OverviewTh = () => {
   return (
     <div className='grid grid-cols-[20%_80%] h-screen overflow-hidden'>
-        <SideBarTherapist />
+        <SideBarTherapist currentPage='overview' />
         
         <div className='flex flex-col justify-center overflow-hidden my-10 pt-12 pb-12'>
             <TopBar />
             <span className="text-3xl text-primdark font-semibold leading-[38.4px] tracking-tighter text-left mt-4">
-                        Appointments
+                        Overview
             </span>
             <div className='flex h-full'>
                 <div className='flex flex-col w-[70%] overflow-y-auto py-4 mb-10 pr-4'>

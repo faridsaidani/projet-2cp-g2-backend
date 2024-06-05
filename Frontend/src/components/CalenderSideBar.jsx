@@ -1,17 +1,17 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import CompletedAppointmentSB from "./CompletedAppointmentSB"
 import IMG from '/assets/MariaDolce.png';
 import { MdOutlineTrendingUp } from "react-icons/md";
-
-import Calendar from './Calendar';
+import Calendarr from './patient/util/Calendarr.jsx'
 
 
 const CalenderSideBar = () => {
   return (
     <div className='border rounded-lg bg-primback p-2'>
-        <div className='flex justify-between'>
-            <p className='font-urbanist text-20 font-bold leading-24 text-left text-primdark'>My therapists</p>
-            <button className='font-urbanist text-xs font-medium leading-4 text-left text-sechover px-2 border border-sechover rounded-lg'>View all</button>
+        <div className='flex'>
+            <p className='font-urbanist text-20 font-bold leading-24 text-left text-primdark'>My statistics</p>
+            
         </div>
         {/*statistics*/}
         <div className='grid grid-cols-2 my-2 gap-2'>
@@ -46,13 +46,18 @@ const CalenderSideBar = () => {
                 </div>
             
 
-        </div>
+        </div >
         {/*calender*/}
-        <Calendar/>
+        <div className="flex gap-5 justify-between mt-6 w-full">
+            <Calendarr/>
+        </div>
         
         <div className='flex justify-between my-4'>
             <p className='font-urbanist text-20 font-bold leading-24 text-left text-primdark'>Today appointments</p>
-            <button className='font-urbanist text-xs font-medium leading-4 text-left text-sechover px-2 border border-sechover rounded-lg'>View all</button>
+            
+            <Link to='/therapist/appointments' className='flex justify-center items-center font-urbanist text-xs font-medium leading-4 text-left text-sechover px-2 border border-sechover rounded-lg'>
+                View all
+            </Link>
         </div>
         <p className='font-urbanist text-xs font-medium leading-4 text-left text-primdark'>You have two events</p>
 

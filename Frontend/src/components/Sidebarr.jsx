@@ -16,10 +16,10 @@ const Sidebarr = () => {
   };
 
   const sidebarItems = [
-    { id: 1, title: "Home", icon: <GrHomeRounded /> , path:''},
-    { id: 2, title: "Therapist List", icon: <FiUsers /> , path:'' },
-    { id: 3, title: "Messages", icon: <LuMessagesSquare /> , path:'' },
-    { id: 4, title: "Settings", icon: <IoSettingsOutline /> , path:'' },
+    { id: 1, title: "Home", icon: <GrHomeRounded /> , path:'/patient/'},
+    { id: 2, title: "Therapist List", icon: <FiUsers /> , path:'/patient/therapists-list' },
+    { id: 3, title: "Messages", icon: <LuMessagesSquare /> , path:'/patient/chat' },
+    { id: 4, title: "Settings", icon: <IoSettingsOutline /> , path:'/patient/password' },
     { id: 5, title: "Log Out", icon: <IoIosLogOut /> , path:'' },
     { id: 6, title: "Help Center", icon: <BiHelpCircle /> , path:'' },
   ];
@@ -50,6 +50,7 @@ const Sidebarr = () => {
    
     
     <li key={list.id}>
+        <Link to={list.path}>
         <div
           className={`
             hover:bg-complimetary2 hover:border hover:rounded-lg hover:my-[22px]  hover:flex  hover:items-center hover:fill-[#000]   hover:h-12 hover:pl-6  justify-start text-white my-[22px] flex items-center gap-3 cursor-pointer 
@@ -61,7 +62,7 @@ const Sidebarr = () => {
         >
           <div >{list.icon}</div>
           <p >{list.title}</p>
-        </div>
+        </div></Link>
       </li>
         
     

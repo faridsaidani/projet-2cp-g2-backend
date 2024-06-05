@@ -1,7 +1,10 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react'
-import './index.css'
+import { Link } from 'react-router-dom';
 import { useState } from "react"
+import './index.css'
+
+
 
 const Admintherapistlist = () => {
   
@@ -27,40 +30,48 @@ const Admintherapistlist = () => {
   const MySidebarlist = Sidebarlist.map((side) => {
     
     return (
-      // eslint-disable-next-line react/jsx-key
-     
-      // eslint-disable-next-line react/jsx-key
-      <div className="
-      shadow-custom     gap-2.5   border-[#b9b9b9ff] border-solid rounded-[18px] box-border  bg-[rgba(255,255,255,1)]
-            bg-[url('https://cdn.builder.io/api/v1/image/assets/TEMP/5dbbb5472b81ee571c419f13444a53394bd4c379134d684febf175dbcb4fbc16')] bg-cover bg-center bg-no-repeat
-            px-12 py-8 
-          
-       
-         "> 
+    // eslint-disable-next-line react/jsx-key
   
-  
-      <div className="   flex flex-col justify-start items-center gap-9  h-[undefinedundefined] box-border">
-      <img
-        src={side.src}
-        alt="Not Found"
-        className=" w-[120px] h-[120px]"
-      />
-      <div className=" flex flex-col justify-start items-center gap-3 w-[100%] box-border">
-        <div className=" flex flex-col justify-start items-center gap-2 w-[undefinedundefined] box-border">
-          <p className=" flex flex-col justify-center text-[#063248] border-[#063248ff] text-base leading-4  font-urbanist  font-[700] text-center  tracking-[-0.1px]">
-          { side.name}
-          </p>
-          <p className=" flex flex-col justify-center text-[#4C606E] border-[#4c606eff] text-sm  leading-[14px]  font-urbanist  font-[600] text-center  tracking-[0px]">
-            {side.title}
-          </p>
+    // eslint-disable-next-line react/jsx-key
+
+    
+    <div>
+      <Link to='/admin-dashboard/therapist'>
+        <div className="
+        shadow-custom     gap-2.5   border-[#b9b9b9ff] border-solid rounded-[18px] box-border  bg-[rgba(255,255,255,1)]
+              bg-[url('https://cdn.builder.io/api/v1/image/assets/TEMP/5dbbb5472b81ee571c419f13444a53394bd4c379134d684febf175dbcb4fbc16')] bg-cover bg-center bg-no-repeat
+              px-12 py-8 
+            mb-10
+
+        "> 
+
+
+          <div className="flex flex-col justify-start items-center gap-9  h-[undefinedundefined] box-border">
+              <img
+                src={side.src}
+                alt="Not Found"
+                className=" w-[120px] h-[120px]"
+              />
+
+              <div className=" flex flex-col justify-start items-center gap-3 w-[100%] box-border">
+                <div className=" flex flex-col justify-start items-center gap-2 w-[undefinedundefined] box-border">
+                  <p className=" flex flex-col justify-center text-[#063248] border-[#063248ff] text-base leading-4  font-urbanist  font-[700] text-center  tracking-[-0.1px]">
+                  { side.name}
+                  </p>
+                  <p className=" flex flex-col justify-center text-[#4C606E] border-[#4c606eff] text-sm  leading-[14px]  font-urbanist  font-[600] text-center  tracking-[0px]">
+                    {side.title}
+                  </p>
+                </div>
+                <p className=" flex flex-col justify-center  text-[#4C606E]  border-[#4c606eff] text-sm  leading-[14px]  font-urbanist  font-[400] text-center  tracking-[0px] mix-blend-normal">
+                  {side.email}
+                </p>
+              </div>
+
+          </div>
+
         </div>
-        <p className=" flex flex-col justify-center  text-[#4C606E]  border-[#4c606eff] text-sm  leading-[14px]  font-urbanist  font-[400] text-center  tracking-[0px] mix-blend-normal">
-          {side.email}
-        </p>
-      </div>
+      </Link>  
     </div>
-     
-      </div>
     );
   });
   

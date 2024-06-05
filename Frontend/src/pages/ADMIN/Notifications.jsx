@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import SideBarAdmin from "../../components/SideBarAdmin";
+import SideBar from "../../components/SideBar";
 import TopBar from "../../components/TopBar";
+import { Link } from 'react-router-dom';
 import { AiOutlineAppstore } from "react-icons/ai";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { GrFormNext } from "react-icons/gr";
@@ -58,66 +59,72 @@ const Notifications = () => {
 
   return (
     <div className='grid grid-cols-[20%_80%] h-screen overflow-hidden'>
-      <SideBarAdmin/>
+      <SideBar currentPage='settings'/>
     <div className=" flex flex-col"> 
       <TopBar/>
-      <div className="flex justify-between items-center fixed h-[75%] text-urbanist mb-10  bottom-0">
+      <div className="grid grid-cols-[25%_70%] text-urbanist h-full pt-4 pb-10 mr-10">
         {/*Settings section */}
-        <div className="w-[30%] h-[100%] left-0 bg-primback rounded-xl  p-4">
-          {/*Notifications*/}
+        <div className="w-[100%] h-[100%] left-0 bg-primback rounded-xl  p-4">
+          
           <h3 className="text-xl ">Settings</h3>
           <div className="flex flex-col justify-center items-center">
-           
-            <button
-              className={`flex items-center w-[90%] border-b border-gray-300 p-4 text-sechover ${
-                activeButton === "notifications" ? "text-sechover" : ""
-              }`}
-              onClick={() => setActiveButton("notifications")}
-            >
-              <IoMdNotificationsOutline />
-              <div className="flex flex-col w-[70%] text-start px-6">
-                <p className="text-bold">Notifications</p>
-                <p className="text-xs">
-                  Select notifications you want to receive
-                </p>
-              </div>
-              <GrFormNext />
-            </button>
-          
+            {/*Notifications*/}
+            <Link to='/patient/notifications'>
+                <button
+                className={`flex items-center w-[90%] border-b border-gray-300 p-4 text-sechover ${
+                  activeButton === "notifications" ? "text-sechover" : ""
+                }`}
+                onClick={() => setActiveButton("notifications")}
+                >
+                <IoMdNotificationsOutline />
+                <div className="flex flex-col w-[70%] text-start px-6">
+                  <p className="text-bold">Notifications</p>
+                  <p className="text-xs">
+                    Select notifications you want to receive
+                  </p>
+                </div>
+                <GrFormNext />
+                </button>
+            </Link>
+
             {/*Profile*/}
-            <button
-              className={`flex items-center w-[90%] border-b border-gray-300 p-4 ${
-                activeButton === "profile" ? "text-sechover" : ""
-              }`}
-              onClick={() => setActiveButton("profile")}
-            >
-              <FiUser />
-              <div className="flex flex-col w-[70%] text-start px-6">
-                <p className="text-bold">Profile</p>
-                <p className="text-xs">
-                  Update your personal information to get more information about
-                  you
-                </p>
-              </div>
-              <GrFormNext />
-            </button>
+            <Link to='/patient/profile'>
+                <button
+                  className={`flex items-center w-[90%] border-b border-gray-300 p-4 ${
+                    activeButton === "profile" ? "text-sechover" : ""
+                  }`}
+                  onClick={() => setActiveButton("profile")}
+                >
+                  <FiUser />
+                  <div className="flex flex-col w-[70%] text-start px-6">
+                    <p className="text-bold">Profile</p>
+                    <p className="text-xs">
+                      Update your personal information to get more information about
+                      you
+                    </p>
+                  </div>
+                  <GrFormNext />
+                </button>
+            </Link>
 
             {/*Password*/}
-            <button
-              className={`flex items-center w-[90%] border-b border-gray-300 p-4 ${
-                activeButton === "password" ? "text-sechover" : ""
-              }`}
-              onClick={() => setActiveButton("password")}
-            >
-              <CgLock />
-              <div className="flex flex-col w-[70%] text-start px-6">
-                <p className="text-bold">Password</p>
-                <p className="text-xs">
-                  Choose a strong password to protect your information
-                </p>
-              </div>
-              <GrFormNext />
-            </button>
+            <Link to='/patient/password'>
+                <button
+                  className={`flex items-center w-[90%] border-b border-gray-300 p-4 ${
+                    activeButton === "password" ? "text-sechover" : ""
+                  }`}
+                  onClick={() => setActiveButton("password")}
+                >
+                  <CgLock />
+                  <div className="flex flex-col w-[70%] text-start px-6">
+                    <p className="text-bold">Password</p>
+                    <p className="text-xs">
+                      Choose a strong password to protect your information
+                    </p>
+                  </div>
+                  <GrFormNext />
+                </button>
+            </Link>
 
           </div>
         </div>
@@ -128,7 +135,7 @@ const Notifications = () => {
 
 
         {/*Notifications section*/}
-        <div className="flex flex-col justify-start m-10 w-[70%] ">
+        <div className="flex flex-col justify-start mx-10 w-[70%] ">
           <div >
             <h3 className="text-2xl font-semibold text-primdark font-urbanist leading-9 text-left">Notifications</h3>
             <p className="text-sm text-secdark font-urbanist  font-medium leading-6 text-left">

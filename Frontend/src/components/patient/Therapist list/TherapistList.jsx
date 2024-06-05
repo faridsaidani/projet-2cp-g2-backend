@@ -81,18 +81,17 @@ const TherapistList = () => {
 
                 <div className=" flex flex-row  mt-4 justify-end items-end gap-3 w-[undefinedundefined] box-border">
                   <Link to="/patient/therapist">
-                      <button className=" flex flex-row justify-center items-center gap-2.5 w-[150px] h-[100%] p-3 rounded-lg box-border  bg-primary2">
-                        <p className=" flex flex-col justify-center   text-complimetary3 text-sm  leading-[14px]  font-urbanist  font-[600] text-center">
+                      <button className="    text-complimetary3 text-sm  leading-[14px]  font-urbanist  font-[600] text-center flex flex-row justify-center items-center gap-2.5 w-[170px] h-[100%] p-3 rounded-lg box-border  bg-primary2">
+                    
                           View Profile
-                        </p>
+                     
                       </button>
                   </Link>
 
                   <Link to="/patient/make-appointment">
-                      <button className=" flex flex-row justify-center items-center gap-2.5 h-[100%] w-[150px] p-3 rounded-lg box-border  bg-complimetary3">
-                        <p className="   text-sm   text-[#fff] leading-[14px]  font-urbanist  font-[600]">
+                      <button className=" text-sm   text-[#fff] leading-[14px]  font-urbanist  font-[600] r gap-2.5 h-[100%] w-[170px] p-3 rounded-lg box-border  bg-complimetary3">
                           Make Appointement
-                        </p>
+                     
                       </button>
                   </Link>
                 {/* </div> */}

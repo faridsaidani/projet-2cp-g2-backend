@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import UpComingAppointment from './UpComingAppointment'
 
 
@@ -7,7 +8,7 @@ const AppointmentsComponent = ({upcAppNbr}) => {
   return (
     <div className=' flex flex-col gap-4'>
         <span className="text-xl text-primdark font-semibold leading-38.4 tracking-tighter text-left gap-0 ">
-             Upcoming Appointments(4{upcAppNbr})
+            Upcoming Appointments(4{upcAppNbr})
         </span>
         <div className='grid grid-cols-3 gap-2 justify-between w-[100%] h-[70%]'>
             <div className='flex justify-center items-center border border-dashed  rounded-xl '>
@@ -19,9 +20,10 @@ const AppointmentsComponent = ({upcAppNbr}) => {
                       <path d="M27.1641 40.5H53.8307" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                       </svg>
                 </button>
-                <button className='px-6 py-4 bg-sechover text-secwhite rounded-lg font-urbanist text-sm font-semibold leading-3 text-left mt-2'>
+
+                <Link to='/therapist/create-appointment' className='px-6 py-4 bg-sechover text-secwhite rounded-lg font-urbanist text-sm font-semibold leading-3 text-left mt-2'>
                   Create Appointment
-                </button>
+                </Link>
 
               </div>
 

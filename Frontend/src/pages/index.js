@@ -11,12 +11,13 @@ export { default as OverviewAdmin } from "./ADMIN/OverviewAdmin.jsx";
 export { default as TherapistApproval } from "./ADMIN/TherapistApproval.jsx";
 export { default as TherapistAd} from "./ADMIN/Therapist.jsx";
 export { default as MyTherapistsAdmin} from "./ADMIN/MyTherapists.jsx";
+export { default as PatientListAd } from "./ADMIN/PatientList.jsx";
 export { default as TeamAdd } from "./ADMIN/TeamAdd.jsx";
 export { default as Team } from "./ADMIN/Team.jsx";
 export { default as ProfileAd } from "./ADMIN/Profile.jsx";
 export { default as NotificationsAd } from "./ADMIN/Notifications.jsx";
 export { default as PasswordChangingAd } from "./ADMIN/PasswordChanging.jsx";
-export { default as PasswordRefusedAd } from "./ADMIN/PasswordRefused.jsx";
+export { default as PasswordAd } from "./ADMIN/Password.jsx";
 
 
 
@@ -40,13 +41,14 @@ export { default as AppointmentRequest } from "./THERAPIST/AppointmentRequest.js
 export { default as CreateAnAppointment } from "./THERAPIST/CreateAppointment.jsx";
 export { default as PatientTh } from "./THERAPIST/Patient.jsx";
 export { default as PatientList } from "./THERAPIST/PatientList.jsx";
+export { default as ChatTh } from "./THERAPIST/Chat.jsx";
 export { default as MyBlogs} from "./THERAPIST/MyBlogs.jsx";
 export { default as AddBlog } from "./THERAPIST/AddBlog.jsx";
 export { default as TherapistProfile } from "./THERAPIST/Profile.jsx";
 export { default as ChatTherapist } from "./THERAPIST/Chat.jsx";
 export { default as NotificationsTh } from "./THERAPIST/Notifications.jsx";
 export { default as PasswordChangingTh } from "./THERAPIST/PasswordChanging.jsx";
-export { default as PasswordRefusedTh } from "./THERAPIST/PasswordRefused.jsx";
+export { default as PasswordTh } from "./THERAPIST/Password.jsx";
 
 
 export { default as NotFound } from "./NotFound.jsx";

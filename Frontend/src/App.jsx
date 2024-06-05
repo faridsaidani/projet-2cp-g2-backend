@@ -20,12 +20,13 @@ import {
   TherapistApproval,
   TherapistAd,
   MyTherapistsAdmin,
+  PatientListAd,
   TeamAdd,
   Team,
   ProfileAd,
   NotificationsAd,
   PasswordChangingAd,
-  PasswordRefusedAd,
+  PasswordAd,
 
 
   Overview,
@@ -46,19 +47,21 @@ import {
   CreateAnAppointment,
   PatientTh,
   PatientList,
+  ChatTh,
   MyBlogs,
   AddBlog,
   TherapistProfile,
   NotificationsTh,
   PasswordChangingTh,
-  PasswordRefusedTh,
+  PasswordTh,
+
   NotFound,
 } from "./pages";
 
 const App = () => {
   const [user, setUser] = useState({
-    isAdmin: true, // or false
-    role: "patient", // or "patient"
+    isAdmin: true, // true or false
+    role: "therapist", //"therapist"  or "patient"
   });
 
   return (
@@ -105,12 +108,13 @@ const AdminRoutes = () => (
     <Route path="therapist-approval" element={<TherapistApproval />} />
     <Route path="therapist" element={<TherapistAd />} />
     <Route path="my-therapists" element={<MyTherapistsAdmin />} />
+    <Route path="patient-list" element={<PatientListAd />} />
     <Route path="add-team" element={<TeamAdd />} />
     <Route path="team" element={<Team />} />
     <Route path="profile" element={<ProfileAd />} />
     <Route path="notifications" element={<NotificationsAd />} />
     <Route path="password-changing" element={<PasswordChangingAd />} />
-    <Route path="password-refused" element={<PasswordRefusedAd />} />
+    <Route path="password" element={<PasswordAd />} />
   </Routes>
 );
 
@@ -132,17 +136,18 @@ const PatientRoutes = () => (
 const TherapistRoutes = () => (
   <Routes>
     <Route path="/" element={<OverviewTh />} />
-
     <Route path="appointments" element={<Appointments />} />
     <Route path="appointment-request" element={<AppointmentRequest />} />
     <Route path="create-appointment" element={<CreateAnAppointment />} />
     <Route path="patient" element={<PatientTh />} />
+    <Route path="patient-list" element={<PatientList />} />
+    <Route path="chat" element={<ChatTh />} />
     <Route path="my-blogs" element={<MyBlogs />} />
     <Route path="add-blog" element={<AddBlog />} />
     <Route path="profile" element={<TherapistProfile />} />
     <Route path="notifications" element={<NotificationsTh />} />
     <Route path="password-changing" element={<PasswordChangingTh />} />
-    <Route path="password-refused" element={<PasswordRefusedTh />} />
+    <Route path="password" element={<PasswordTh />} />
   </Routes>
 );
 

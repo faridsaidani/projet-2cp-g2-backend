@@ -47,7 +47,7 @@ const BlogAdmin = () => {
             <TopBar/>
             <div className="flex flex-col items-center text-urbanist my-10 mr-10 border">
             <div className='flex justify-between w-[100%] mb-6'>
-                <span className="text-2xl text-primdark font-semibold leading-38.4 tracking-tighter text-left w-83 h-38 gap-0">Blog?</span>
+                <span className="text-2xl text-primdark font-semibold leading-38.4 tracking-tighter text-left w-83 h-38 gap-0">Blog</span>
             </div>
             <div className='grid grid-cols-4 gap-2 w-[100%] h-[28%] mb-6'>
 

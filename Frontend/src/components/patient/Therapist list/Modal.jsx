@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../index.css'
+
 import REquest from './REquest';
 import { useState } from "react";
 
@@ -9,7 +9,7 @@ const Modal = ({ open, onClose }) => {
 
   if (!open) return null;
   return (
-    <div onClick={onClose} >
+    <div onClick={onClose}  className={`modal ${open ? 'block' : 'hidden'} fixed z-50 inset-0 overflow-auto bg-gray-700 bg-opacity-50`} >
       <div
 
 
@@ -50,20 +50,20 @@ const Modal = ({ open, onClose }) => {
           </p>
         </div>
         <div className=" flex flex-col justify-start items-start gap-3 w-[undefinedundefined] box-border">
-          <p className="  border-[#063248ff] text-base leading-4  font-urbanist  font-[600]">
+          <p className="   text-primary1 border-[#063248ff] text-base leading-4  font-urbanist  font-[600]">
             Topic
           </p>
        
 
-          <input type="text" placeholder='What are you bothered you'  className='border-[#4c606e7f] flex flex-row justify-center items-center gap-2.5 w-[100%] pl-[9px] pr-[261px] py-[13px] border-[0.5px]  border-solid rounded-lg box-border text-xs leading-3  font-urbanist  font-[500]'/>
+          <input type="text" placeholder='What are you bothered you'  className='border-[#4c606e7f] text-primary1 flex flex-row justify-center items-center gap-2.5 w-[100%] pl-[9px] pr-[261px] py-[13px] border-[0.5px]  border-solid rounded-lg box-border text-xs leading-3  font-urbanist  font-[500]'/>
            
         
         </div>
         <div className=" flex flex-col justify-start items-start gap-3 w-[undefinedundefined] box-border">
-          <p className="  border-[#063248ff] text-base leading-4  font-urbanist  font-[600]">
+          <p className="   text-primary1 border-[#063248ff] text-base leading-4  font-urbanist  font-[600]">
             Description
           </p>
-          <input type="text"  placeholder='What are you bothered you'  className="  border-[#4c606e7f] text-xs leading-3  font-urbanist  font-[500] justify-center items-center  w-[100%] pl-[9px]  pt-[13px] pb-[69px] border-[0.5px] pr-[261px] border-solid rounded-lg box-border"/>
+          <input type="text"  placeholder='What are you bothered you'  className="text-primary1  border-[#4c606e7f] text-xs leading-3  font-urbanist  font-[500] justify-center items-center  w-[100%] pl-[9px]  pt-[13px] pb-[69px] border-[0.5px] pr-[261px] border-solid rounded-lg box-border"/>
           
       
         </div>
@@ -77,12 +77,8 @@ const Modal = ({ open, onClose }) => {
                 {/* <p className="  border-[#4c606eff] text-base leading-4  font-urbanist  font-[500]">
                   8 july, 2023
                 </p> */}
-            <input type="time" id="meetingTime" placeholder="HH:MM" className='text-primary1'/>
-                <img
-                  src="https://firebasestorage.googleapis.com/v0/b/unify-v3-copy.appspot.com/o/fxhz40b2zdn-64%3A26767?alt=media&token=226483ee-cb51-4809-84bc-ac3ba6872f90"
-                  alt="Not Found"
-                  className=" w-6 h-[100%]"
-                />
+            <input type="time" id="meetingTime" placeholder="HH:MM" className='text-primary1 text-base leading-4  font-urbanist  font-[500]'/>
+             
               </div>
             </div>
             <div className=" flex flex-col justify-start items-start gap-3 h-[100%] box-border">
@@ -93,19 +89,14 @@ const Modal = ({ open, onClose }) => {
                 {/* <p className="  border-[#4c606eff] text-base leading-4  font-urbanist  font-[500]">
                   10:00 AM
                 </p> */}
-                <input type="date" id="meetingDate"/>
+                <input type="date" id="meetingDate"  className='text-primary1 text-base leading-4  font-urbanist  font-[500]'/>
                 
                 
 
-                <img
-                  src="https://firebasestorage.googleapis.com/v0/b/unify-v3-copy.appspot.com/o/fxhz40b2zdn-64%3A26772?alt=media&token=d8628705-718f-47d0-9879-d45707d10c7c"
-                  alt="Not Found"
-                  className=" w-6 h-[100%]"
-                />
               </div>
             </div>
           </div>
-          <div className=" flex flex-row justify-center items-center gap-3 w-[undefinedundefined] box-border">
+          {/* <div className=" flex flex-row justify-center items-center gap-3 w-[undefinedundefined] box-border">
             <img
               src="https://firebasestorage.googleapis.com/v0/b/unify-v3-copy.appspot.com/o/fxhz40b2zdn-64%3A26774?alt=media&token=4142e0e8-10c9-43b9-9cd5-de7ba4886ee9"
               alt="Not Found"
@@ -114,29 +105,38 @@ const Modal = ({ open, onClose }) => {
             <p className="  border-[#4c606eff]  text-[13px]  leading-[13px]  font-urbanist  font-[600]">
               Reminder 30 minutes before the start of the session
             </p>
-          </div>
+          </div> */}
+             <div className="mb-4">
+              <label className="flex items-center text-primary1  border-[#4c606eff]  text-[13px]  leading-[13px]  font-urbanist  font-[600]">
+                <input 
+                  type="checkbox" 
+                  className="mr-2"
+                />
+                Reminder 30 minutes before the start of the session
+              </label>
+            </div>
         </div>
       </div>
       <div className="   border-[#298ea6ff]  text-[15px]  text-[#298ea6ff] leading-[15px]  font-urbanist  font-[600] flex flex-row justify-start items-start gap-3 w-[undefinedundefined] box-border">
-        <button       className=" flex flex-row justify-center items-center gap-2.5 h-[100%] px-[66px] py-[13px] border-[0.5px]  border-[#298ea6ff] border-solid rounded-lg box-border">
+        <button  onClick={onClose}      className=" flex flex-row justify-center items-center gap-2.5 h-[100%] px-[66px] py-[13px] border-[0.5px]  border-[#298ea6ff] border-solid rounded-lg box-border">
 
 
       
-          <p >
+       
             Cancel
-          </p>
+       
     
         </button>
       
           
-        <button       onClick={() => setOpenRequest(true)}
+        <button       onClick={() => setOpenRequest(true) }
              className="   items-center gap-2.5 h-[100%] px-[31px] py-3.5 rounded-lg box-border  text-[white] bg-[rgba(41,142,166,1)] flex flex-col justify-center  border-[#ffffffff]  text-[15px]  leading-[15px]  font-urbanist  font-[600] text-center">
                   
             Book Appointement
         
     
         </button>
-        {/* <REquest open={openRequest} onClose={() => setOpenRequest(false)} /> */}
+         <REquest open={openRequest} onClose={() => setOpenRequest(false)} />  
       </div>
  
 

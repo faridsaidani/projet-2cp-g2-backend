@@ -3,11 +3,11 @@ import React from "react";
 import { Link } from 'react-router-dom';
 import "./index.css";
 import { useState } from "react";
-//import Modal from "./Modal";
+import Modal from "./Modal";
 
 
 const TherProfile = () => {
-  //const [openModal, setOpenModal] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
 
   return (
     <div className="w-[98%] flex justify-between mt-6">
@@ -70,13 +70,7 @@ const TherProfile = () => {
               </div>
             </div>
             <div className=" flex flex-col justify-start items-start gap-3 w-[undefinedundefined] box-border">
-              {/* <button  
-                 className=" border-[#ffffffff] text-[#fff] text-base leading-4  font-urbanist  font-[600]
-                 flex flex-row justify-center items-center gap-2.5 w-[100%] px-[39px] py-3.5 rounded-lg box-border  bg-[#298EA6]">
-
-Make Appointement
-
-        </button> */}
+          
 
 
               <button
@@ -86,9 +80,9 @@ Make Appointement
               >
                 Make Appointement
               </button>
-              {/** 
+              
               <Modal open={openModal} onClose={() => setOpenModal(false)} />
-              */}
+              
               <button
                 className=" border-[#298ea6ff] text-[#298EA6] text-base leading-4  font-urbanist  font-[600]
                  flex flex-row justify-center items-center gap-2.5 w-[100%] px-[39px] py-3.5 rounded-lg box-border  bg-[#E3F1F4]"

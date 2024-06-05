@@ -4,7 +4,6 @@ import AdminTearlist from "./Adminthelist";
 const ChatWithTherapist = () => {
   return (
     <div>
-     
       <AdminTearlist />
     </div>
   );

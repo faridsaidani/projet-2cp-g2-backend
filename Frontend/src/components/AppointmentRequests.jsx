@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import AppointmentRequestCard from './AppointmentRequestCard'
 import IMG1 from '/assets/MouhamedIslam.png'
 import IMG2 from '/assets/Takieddine.png'
@@ -17,9 +18,13 @@ const AppointmentRequests = () => {
     
   return (
     <div className='flex flex-col h-[100%] w-[100%]'>
-        <div className='flex justify-between items-center w-[100%]'>
+        <div className='flex justify-between items-center w-[100%] my-2'>
             <p className='flex flex-start font-urbanist text-lg font-bold leading-6 text-left text-primdark pb-2'>Appointment Requests</p>
-            <button className='text-center text-xs text-sechover border border-sechover rounded-lg h-[80%] w-[13%] '>View all</button>
+            
+            <Link to='/therapist/appointment-request' className='flex justify-center items-center text-xs text-sechover border border-sechover rounded-lg h-[80%] w-[13%] ' >
+                View all
+            </Link>
+            
         </div>
         <div className='border rounded-xl shadow-xl h-[49%]'> 
             <div className='flex h-auto justify-between p-2'>

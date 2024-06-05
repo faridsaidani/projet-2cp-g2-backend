@@ -1,48 +1,51 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import './index.css'
 
 const AdminTearlist = () => {
   
   return (
-    <div className='w-[98%] flex mt-6 justify-between  '>
+    <div className='w-[98%] flex mt-6 justify-between '>
         <div className='w-[27%]  border-[black] border-solid  '>
-        <div className="flex justify-between w-[35%] items-center">
-          <svg
-            width="22"
-            height="22"
-            viewBox="0 0 22 22"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <rect
-              x="21.6"
-              y="21.2078"
-              width="21.45"
-              height="21.0578"
-              rx="2.85"
-              transform="rotate(-180 21.6 21.2078)"
-              stroke="#298EA6"
-              strokeWidth="0.3"
-            />
-            <path
-              d="M12.75 6.99997L9 10.6789L12.75 14.3578"
-              stroke="#298EA6"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+          <Link to='/admin-dashboard/my-therapists'> 
+            <div className="flex justify-between w-[35%] items-center">
+                  <svg
+                    width="22"
+                    height="22"
+                    viewBox="0 0 22 22"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect
+                      x="21.6"
+                      y="21.2078"
+                      width="21.45"
+                      height="21.0578"
+                      rx="2.85"
+                      transform="rotate(-180 21.6 21.2078)"
+                      stroke="#298EA6"
+                      strokeWidth="0.3"
+                    />
+                    <path
+                      d="M12.75 6.99997L9 10.6789L12.75 14.3578"
+                      stroke="#298EA6"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
 
-          <p className="text-complimetary1"> Back to List</p>
-        </div>
+                  <p className="text-complimetary1"> Back to List</p>
+            </div>
+          </Link> 
         
         
         
         <div className=" shadow-custom mt-[12%] flex flex-col justify-start items-center gap-8 w-[100%] h-[394px] px-[25px] py-5 rounded-xl box-border  bg-[rgba(255,255,255,1)] shadow-multiple">
-    <img
-      src="https://firebasestorage.googleapis.com/v0/b/unify-v3-copy.appspot.com/o/x2og7113ea-64%3A26549?alt=media&token=31c37af4-6e70-4aa9-8498-d50123112f97"
-      alt="Not Found"
-      className=" w-[130px] h-[130px]"
-    />
+              <img
+                src="https://firebasestorage.googleapis.com/v0/b/unify-v3-copy.appspot.com/o/x2og7113ea-64%3A26549?alt=media&token=31c37af4-6e70-4aa9-8498-d50123112f97"
+                alt="Not Found"
+                className=" w-[130px] h-[130px]"
+              />
     <div className=" flex flex-col justify-center items-center gap-6 w-[100%] box-border">
     <div className=" flex flex-col justify-start items-center gap-3 w-[100%] box-border">
               <p className="  border-[#063248ff] text-xl leading-5 text-[#063248] font-urbanist  font-[600]">
@@ -72,16 +75,14 @@ Make Appointement
 
         </button> */}
 
-        <button  
-                 className=" border-[#298ea6ff] text-[#298EA6] text-base leading-4  font-urbanist  font-[600]
-                 flex flex-row justify-center items-center gap-2.5 w-[100%] px-[39px] py-3.5 rounded-lg box-border  bg-[#E3F1F4]">
+        <a href="https://mail.google.com" target="_blank" rel="noopener noreferrer">
+            <button className=" border-[#298ea6ff] text-[#298EA6] text-base leading-4  font-urbanist  font-[600] flex flex-row justify-center items-center gap-2.5 w-[100%] px-[39px] py-3.5 rounded-lg box-border  bg-[#E3F1F4]">
 
-Chat with Therapist
+              Chat with Therapist
 
-        </button>
-       
-       
-        
+            </button>
+        </a>
+
       </div>
     </div>
   </div>

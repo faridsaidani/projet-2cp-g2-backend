@@ -1,4 +1,5 @@
 import React,{useState} from 'react'
+import { Link } from 'react-router-dom';
 import SideBarTherapist from '../../components/SideBarTherapist'
 import TopBar from '../../components/TopBar'
 import { MdOutlineFileUpload } from "react-icons/md";
@@ -17,84 +18,101 @@ const MyBlogs = () => {
 
   return (
     <div className='grid grid-cols-[20%_80%] h-screen overflow-hidden'>
-        <SideBarTherapist/>
+        <SideBarTherapist currentPage='settings'/>
         <div className='flex flex-col h-screen'>
             <TopBar/>   
             <div className='grid grid-cols-[25%_75%] text-urbanist h-full pt-4 pb-10 mr-10'>
-            
-                
+              
               {/*Settings section */}
-              <div className="left-0 bg-primback rounded-xl p-4">
-                {/*Notifications*/}
-                <h3 className="text-xl ">Settings</h3>
-                <div className="flex flex-col justify-center items-center">
-                  <button
-                    className={`flex items-center w-[90%] border-b border-gray-300 p-4 ${
-                      activeButton === "notifications" ? "text-sechover" : ""
-                    }`}
-                    onClick={() => setActiveButton("notifications")}
-                  >
-                    <IoMdNotificationsOutline />
-                    <div className="flex flex-col w-[70%] text-start px-6">
-                      <p className="text-bold">Notifications</p>
-                      <p className="text-xs">
-                        Select notifications you want to receive
-                      </p>
-                    </div>
-                    <GrFormNext />
-                  </button>
-                  
-                  {/*Profile*/}
-                  <button
-                    className={`flex items-center w-[90%] border-b border-gray-300 p-4 ${
-                      activeButton === "profile" ? "text-sechover" : ""
-                    }`}
-                    onClick={() => setActiveButton("profile")}
-                  >
-                    <FiUser />
-                    <div className="flex flex-col w-[70%] text-start px-6">
-                      <p className="text-bold">Profile</p>
-                      <p className="text-xs">
-                        Update your personal information to get more information about
-                        you
-                      </p>
-                    </div>
-                    <GrFormNext />
-                  </button>
-                  
-                  {/*My blogs*/}
-                  <button
-                    className={`flex items-center w-[90%] border-b border-gray-300 p-4  text-sechover ${
-                      activeButton === "blog" ? "text-sechover" : ""
-                    }`}
-                    onClick={() => setActiveButton("blog")}
-                  >
-                    <AiOutlineAppstore />
-                    <div className="flex flex-col w-[70%] text-start px-6">
-                      <p className="text-bold">My blogs</p>
-                      <p className="text-xs">Manage your blog posts and settings</p>
-                    </div>
-                    <GrFormNext />
-                  </button>
-                  
-                  {/*Password*/}
-                  <button
-                    className={`flex items-center w-[90%] border-b border-gray-300 p-4 ${
-                      activeButton === "password" ? "text-sechover" : ""
-                    }`}
-                    onClick={() => setActiveButton("password")}
-                  >
-                    <CgLock />
-                    <div className="flex flex-col w-[70%] text-start px-6">
-                      <p className="text-bold">Password</p>
-                      <p className="text-xs">
-                        Choose a strong password to protect your information
-                      </p>
-                    </div>
-                    <GrFormNext />
-                  </button>
-                </div>
-              </div>
+              <div className='w-[100%] h-[100%] left-0 bg-primback rounded-xl  p-4'>
+                  <h3 className="text-xl ">Settings</h3>
+                  <div className="flex flex-col justify-center items-center">
+                        {/*Notifications*/}
+                        <Link to='/therapist/notifications'>
+                            <button
+                            className={`flex items-center w-[90%] border-b border-gray-300 p-4 ${
+                              activeButton === "notifications" ? "text-sechover" : ""
+                            }`}
+                            onClick={() => setActiveButton("notifications")}
+                            >
+                            <IoMdNotificationsOutline />
+                            <div className="flex flex-col w-[70%] text-start px-6">
+                              <p className="text-bold">Notifications</p>
+                              <p className="text-xs">
+                                Select notifications you want to receive
+                              </p>
+                            </div>
+                            <GrFormNext />
+                            </button>
+                        </Link>
+                          
+                          
+                        {/*Profile*/}
+                        <Link to='/therapist/profile'>
+                            <button
+                              className={`flex items-center w-[90%] border-b border-gray-300 p-4 ${
+                                activeButton === "profile" ? "text-sechover" : ""
+                              }`}
+                              onClick={() => setActiveButton("profile")}
+                            >
+                              <FiUser />
+                              <div className="flex flex-col w-[70%] text-start px-6">
+                                <p className="text-bold">Profile</p>
+                                <p className="text-xs">
+                                  Update your personal information to get more information about
+                                  you
+                                </p>
+                              </div>
+                              <GrFormNext />
+                            </button>
+                        </Link>
+                            
+                            
+                        {/*My blogs*/}
+                        <Link to='/therapist/my-blogs'>
+                            <button
+                              className={`flex items-center w-[90%] border-b border-gray-300 p-4 text-sechover ${
+                                activeButton === "blogs" ? "text-sechover" : ""
+                              }`}
+                              onClick={() => setActiveButton("blogs")}
+                            >
+                              <AiOutlineAppstore />
+                              <div className="flex flex-col w-[70%] text-start px-6">
+                                <p className="text-bold">Blogs</p>
+                                <p className="text-xs">
+                                  Edit blogs and share your thoughts and insights
+                                </p>
+                              </div>
+                              <GrFormNext />
+                            </button>
+                        </Link>
+                            
+                            
+                        {/*Password*/}
+                        <Link to='/therapist/password'>
+                            <button
+                              className={`flex items-center w-[90%] border-b border-gray-300 p-4 ${
+                                activeButton === "password" ? "text-sechover" : ""
+                              }`}
+                              onClick={() => setActiveButton("password")}
+                            >
+                              <CgLock />
+                              <div className="flex flex-col w-[70%] text-start px-6">
+                                <p className="text-bold">Password</p>
+                                <p className="text-xs">
+                                  Choose a strong password to protect your information
+                                </p>
+                              </div>
+                              <GrFormNext />
+                            </button>
+                        </Link>
+                  </div>
+                            
+                            
+                            
+                            
+                            
+              </div> 
 
 
 
@@ -110,12 +128,12 @@ const MyBlogs = () => {
                             Share your thoughts and experiences
                           </p>
                         </div>
-                        <button className="flex justify-center items-center space-x-2  py-2 px-4 bg-sechover rounded-lg text-secwhite">
+                        <Link to='/therapist/add-blog' className="flex justify-center items-center space-x-2  py-2 px-4 bg-sechover rounded-lg text-secwhite">
                           <p className="font-urbanist text-sm font-semibold leading-5 text-center">
                             Add New Blog
                           </p>
                           <LiaEdit />
-                        </button>
+                        </Link>
                     </div>
                     
                     

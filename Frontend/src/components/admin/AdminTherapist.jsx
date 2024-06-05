@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 import "./index.css";
 const AdminTherapist = () => {
   const Sidebarlist = [
@@ -103,18 +104,22 @@ const AdminTherapist = () => {
 
   return (
     <>
-      <div className="  w-[97%] mt-6">
+      <div className="w-[97%] mt-6 mb-10">
         <div className=" flex flex-col mb-[30px] justify-between items-center  w-[100%] h-[46px] box-border">
           <div className=" flex flex-row justify-between items-start   w-[100%] h-[100%] box-border">
             <p className="  border-[#063248ff] text-[#063248] text-[32px] leading-8  font-urbanist  font-[700]  tracking-[-0.1px]">
               Therapist List
             </p>
-            <button
-              className=" flex flex-row justify-center items-center gap-2.5 w-[186px] h-[100%] px-[31px] py-3.5 rounded-lg box-border  bg-[rgba(41,142,166,1)]
-       border-[#ffffffff]  text-[15px]  leading-[15px]  font-urbanist  font-[600] text-center"
-            >
-              View Therapists
-            </button>
+
+            <Link to='/admin-dashboard/my-therapists'>
+              <button
+                className=" flex flex-row justify-center items-center gap-2.5 w-[186px] h-[100%] px-[31px] py-3.5 rounded-lg box-border  bg-[rgba(41,142,166,1)] border-[#ffffffff]  text-[15px]  leading-[15px]  font-urbanist text-secwhite font-[600] text-center"
+              >
+                View Therapists
+              </button>
+            </Link>
+
+
           </div>
         </div>
 

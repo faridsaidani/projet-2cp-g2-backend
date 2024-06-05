@@ -8,7 +8,7 @@ import CalenderSideBar from "../../components/CalenderSideBar"
 const Appointments = () => {
   return (
     <div className='grid grid-cols-[20%_80%] h-screen overflow-hidden'>
-        <SideBarTherapist />
+        <SideBarTherapist currentPage='appointments' />
         
         <div className='flex flex-col justify-center overflow-hidden py-10'>
             <TopBar />

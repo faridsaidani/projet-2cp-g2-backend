@@ -1,5 +1,6 @@
 import React,{useState} from 'react'
-import SideBarAdmin from '../../components/SideBarAdmin'
+import { Link } from 'react-router-dom';
+import SideBar from '../../components/SideBar'
 import TopBar from '../../components/TopBar'
 import IMG from '/assets/Profile.png'
 import { MdOutlineFileUpload } from "react-icons/md";
@@ -20,69 +21,77 @@ const Profile = () => {
 
   return (
     <div className="grid grid-cols-[20%_80%] h-screen overflow-hidden">
-      <SideBarAdmin/>
+      <SideBar currentPage='settings'/>
       <div className='flex flex-col h-screen'>
         <TopBar/>
         <div className="grid grid-cols-[25%_70%] text-urbanist h-full pt-4 pb-10 mr-10">
-          {/*Settings section */}
-          <div className="left-0 bg-primback rounded-xl p-4">
-          {/*Notifications*/}
+          
+        {/*Settings section */}
+        <div className="w-[100%] h-[100%] left-0 bg-primback rounded-xl  p-4">
+          
           <h3 className="text-xl ">Settings</h3>
           <div className="flex flex-col justify-center items-center">
-            <button
-              className={`flex items-center w-[90%] border-b border-gray-300 p-4 ${
-                activeButton === "notifications" ? "text-sechover" : ""
-              }`}
-              onClick={() => setActiveButton("notifications")}
-            >
-              <IoMdNotificationsOutline />
-              <div className="flex flex-col w-[70%] text-start px-6">
-                <p className="text-bold">Notifications</p>
-                <p className="text-xs">
-                  Select notifications you want to receive
-                </p>
-              </div>
-              <GrFormNext />
-            </button>
+            {/*Notifications*/}
+            <Link to='/patient/notifications'>
+                <button
+                className={`flex items-center w-[90%] border-b border-gray-300 p-4 ${
+                  activeButton === "notifications" ? "text-sechover" : ""
+                }`}
+                onClick={() => setActiveButton("notifications")}
+                >
+                <IoMdNotificationsOutline />
+                <div className="flex flex-col w-[70%] text-start px-6">
+                  <p className="text-bold">Notifications</p>
+                  <p className="text-xs">
+                    Select notifications you want to receive
+                  </p>
+                </div>
+                <GrFormNext />
+                </button>
+            </Link>
 
             {/*Profile*/}
-            <button
-              className={`flex items-center w-[90%] border-b border-gray-300 p-4 text-sechover ${
-                activeButton === "profile" ? "text-sechover" : ""
-              }`}
-              onClick={() => setActiveButton("profile")}
-            >
-              <FiUser />
-              <div className="flex flex-col w-[70%] text-start px-6">
-                <p className="text-bold">Profile</p>
-                <p className="text-xs">
-                  Update your personal information to get more information about
-                  you
-                </p>
-              </div>
-              <GrFormNext />
-            </button>
-
-            
+            <Link to='/patient/profile'>
+                <button
+                  className={`flex items-center w-[90%] border-b border-gray-300 p-4 text-sechover ${
+                    activeButton === "profile" ? "text-sechover" : ""
+                  }`}
+                  onClick={() => setActiveButton("profile")}
+                >
+                  <FiUser />
+                  <div className="flex flex-col w-[70%] text-start px-6">
+                    <p className="text-bold">Profile</p>
+                    <p className="text-xs">
+                      Update your personal information to get more information about
+                      you
+                    </p>
+                  </div>
+                  <GrFormNext />
+                </button>
+            </Link>
 
             {/*Password*/}
-            <button
-              className={`flex items-center w-[90%] border-b border-gray-300 p-4 ${
-                activeButton === "password" ? "text-sechover" : ""
-              }`}
-              onClick={() => setActiveButton("password")}
-            >
-              <CgLock />
-              <div className="flex flex-col w-[70%] text-start px-6">
-                <p className="text-bold">Password</p>
-                <p className="text-xs">
-                  Choose a strong password to protect your information
-                </p>
-              </div>
-              <GrFormNext />
-            </button>
+            <Link to='/patient/password'>
+                <button
+                  className={`flex items-center w-[90%] border-b border-gray-300 p-4 ${
+                    activeButton === "password" ? "text-sechover" : ""
+                  }`}
+                  onClick={() => setActiveButton("password")}
+                >
+                  <CgLock />
+                  <div className="flex flex-col w-[70%] text-start px-6">
+                    <p className="text-bold">Password</p>
+                    <p className="text-xs">
+                      Choose a strong password to protect your information
+                    </p>
+                  </div>
+                  <GrFormNext />
+                </button>
+            </Link>
+
           </div>
-          </div>
+        </div>
+
 
           {/*Page content*/}
           <div className="flex flex-col justify-start px-4 ">
@@ -110,8 +119,8 @@ const Profile = () => {
               <h3 className="text-primdark font-bold">
                 Bellatreche Hibatellah
               </h3>
-              <p className="text-xs">It will be displayed on your profile</p>
-              <button className="text-sechover text-sm">Update</button>
+              <p className="text-xs text-secdark">It will be displayed on your profile</p>
+              <button className="flex flex-start items-center  text-sechover text-sm">Update</button>
             </div>
           </div>
 
@@ -198,7 +207,7 @@ const Profile = () => {
           <div className="flex flex-col justify-between mx-4 my-2 w-[95%]">
             <div>
               {" "}
-              <p className="font-urbanist text-base font-semibold leading-5 text-left">
+              <p className="font-urbanist text-base text-primdark font-semibold leading-5 text-left">
                 Files & Documents
               </p>
             </div>

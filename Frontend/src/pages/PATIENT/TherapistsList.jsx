@@ -4,7 +4,7 @@ import SideBar from '../../components/SideBar';
 import TherapistList from "../../components/patient/Therapist list/TherapistList"
 const TherapistsList = () => {
   return (
-    <div className='flex'>
+    <div className='flex justify-between'>
       <SideBar currentPage='therapist list'></SideBar>
       
       <div className='grid-rows-2 w-[80%] my-10 '>

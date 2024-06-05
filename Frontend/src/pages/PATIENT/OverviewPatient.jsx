@@ -7,7 +7,7 @@ import Therapistist from "../../components/patient/patientOverview/Cards";
 
 const OverviewPatient = () => {
   return (
-    <div className="grid grid-cols-[20%_80%] ml-5 mt-3 h-screen ">
+    <div className="grid grid-cols-[20%_80%] ml-5 mt-2 h-screen ">
       <div className="">
         <SideBar currentPage='overview' />
       </div>
