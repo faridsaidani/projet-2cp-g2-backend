@@ -10,12 +10,15 @@ appointmentRoute = Blueprint('appointmentRoute', __name__,url_prefix='/appointme
 @appointmentRoute.route('/add',methods = ['POST'])
 def add():
     data = request.form
+    print(data)
     new_appointment = Appointment(
         name = data["name"] ,
         date = data["date"] ,
+        time = data["time"] ,
         therapist_id= data["therapist_id"] ,
-        patient_id= data["patient_ud"],
+        patient_id= data["patient_id"],
     )
+
     if not data["name"] :
         return jsonify({'err':'name required'})
     elif not data["date"] :
@@ -24,6 +27,8 @@ def add():
         return jsonify({'err':'therapist_id required'})
     elif not data["patient_id"] :
         return jsonify({'err':'patient_id required'})
+    elif not data["time"] :
+        return jsonify({'err':'time required'})
     else:
         db.session.add(new_appointment)
         db.session.commit()

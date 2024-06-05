@@ -75,9 +75,11 @@ class Appointment(db.Model):
     date = db.Column(db.Date)
     therapist_id = db.Column(db.Integer, db.ForeignKey('therapist.id'), nullable=False)
     patient_id =  db.Column(db.Integer,db.ForeignKey('patient.id'),nullable=False)
-    def __init__(self, name, date, therapist_id, patient_id):
+    time = db.Column(db.Time, nullable=False)
+    def __init__(self, name, date, therapist_id, patient_id, time):
        self.name = name
        self.date = date
+       self.time = time
        self.therapist_id = therapist_id
        self.patient_id = patient_id
 

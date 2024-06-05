@@ -50,20 +50,48 @@ const TherapistList = () => {
   const Mytherpistlist = therapists.map((therapist) => {
     let img = document.createElement("img");
     img.src = "data:image/jpeg;base64," + therapist.image_file;
+    let rating = Math.floor(Math.random() * 375) + 25;
+    let specialite = [
+      "Clinical Psychology",
+      "Cognitive Psychology",
+      "Developmental Psychology",
+      "Social Psychology",
+      "Occupational and Organizational Psychology",
+      "Health Psychology",
+      "Neuropsychology",
+      "School Psychology",
+      "Legal and Criminal Psychology",
+      "Sports Psychology",
+    ][Math.floor(Math.random() * 10)];
+    let experience = [
+      "1 year of experience",
+      "2 years of experience",
+      "3 years of experience",
+      "4 years of experience",
+      "5 years of experience",
+      "6 years of experience",
+      "7 years of experience",
+      "8 years of experience",
+      "9 years of experience",
+      "10 years of experience",
+      "11 years of experience",
+      "12 years of experience",
+      "13 years of experience",
+      "14 years of experience",
+      "15 years of experience",
+      "16 years of experience",
+      "17 years of experience",
+    ][Math.floor(Math.random() * 16)];
+
     return (
-      // eslint-disable-next-line react/jsx-key
       <li key={therapist.id}>
-        {/* <div className="p-5  mb-[20px] mt-8 bg-white rounded-xl  bg-[rgba(255,255,255,1)] shadow-multiple  border border-black"> */}
         <div className="flex gap-5 max-md:flex-col max-md:gap-0 p-5 mt-4 bg-white rounded-xl  bg-[rgba(255,255,255,1)] shadow-multiple   ">
-          {/* <div className="flex flex-col w-[18%] max-md:ml-0 max-md:w-full border border-black"> */}
           <img
             loading="lazy"
             src={img.src}
             className="shrink-0 max-w-full rounded-[12px] aspect-square w-[137px] max-md:mt-10"
           />
-          {/* </div> */}
           <div className="flex flex-col ml-5 w-[82%] max-md:ml-0 max-md:w-full ">
-            {/* <div className="flex flex-col grow justify-end max-md:mt-10 max-md:max-w-full border border-black"> */}
             <div className="flex gap-5 justify-between  w-full max-md:flex-wrap max-md:max-w-full">
               <p className="my-auto text-xl font-semibold text-primary1">
                 {therapist.name} {therapist.familly_name}
@@ -97,34 +125,11 @@ const TherapistList = () => {
             <div className=" text-base font-semibold text-complimetary1 max-md:max-w-full">
               {
                 // select a random element from the array
-                [
-                  "12 years of experience",
-                  "10 years of experience",
-                  "15 years of experience",
-                  "8 years of experience",
-                  "3 years of experience",
-                  "6 years of experience",
-                  "20 years of experience",
-                  "7 years of experience",
-                  "5 years of experience",
-                ][Math.floor(Math.random() * 9)]
+                experience
               }
             </div>
             <div className=" text-base font-medium text-[#4C606ECC] text-opacity-80 max-md:max-w-full">
-              {
-                [
-                  "Psychologie clinique",
-                  "Psychologie cognitive",
-                  "Psychologie du développement",
-                  "Psychologie sociale",
-                  "Psychologie du travail et des organisations",
-                  "Psychologie de la santé",
-                  "Neuropsychologie",
-                  "Psychologie scolaire",
-                  "Psychologie légale et criminelle",
-                  "Psychologie sportive",
-                ][Math.floor(Math.random() * 10)]
-              }
+              {specialite}
             </div>
 
             <div className=" flex flex-row  mt-4 justify-end items-end gap-3 w-[undefinedundefined] box-border">
@@ -134,6 +139,15 @@ const TherapistList = () => {
                   // read the therapist id from therapist.id and pass it to the next page
                   onClick={() => {
                     localStorage.setItem("therapist_id", therapist.id);
+                    localStorage.setItem("experience", experience);
+                    localStorage.setItem("specialite", specialite);
+                    localStorage.setItem("rating", rating);
+                    localStorage.setItem("name", therapist.name);
+                    localStorage.setItem(
+                      "familly_name",
+                      therapist.familly_name
+                    );
+                    localStorage.setItem("image_file", img.src);
                   }}
                 >
                   View Profile
