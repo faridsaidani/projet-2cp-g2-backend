@@ -11,7 +11,7 @@ const TherProfile = () => {
 
   return (
     <div className="w-[98%] flex justify-between mt-6">
-      <div className="w-[27%]  border-[black] border-solid  ">
+      <div className="w-[27%] border-[black] border-solid">
         <Link to="/patient/therapists-list">
         <button className="flex justify-between w-[35%] items-center">
           <svg

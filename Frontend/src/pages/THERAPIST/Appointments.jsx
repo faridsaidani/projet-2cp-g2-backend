@@ -5,6 +5,7 @@ import AppointmentsComponent from '../../components/AppointmentsComponent';
 import CompletedAppointment from '../../components/CompletedAppointment';
 import CalenderSideBar from "../../components/CalenderSideBar"
 
+
 const Appointments = () => {
   return (
     <div className='grid grid-cols-[20%_80%] h-screen overflow-hidden'>

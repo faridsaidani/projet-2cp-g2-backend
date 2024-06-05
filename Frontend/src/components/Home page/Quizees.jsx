@@ -45,7 +45,7 @@ const Quizees = () => {
                     </div>
                 </div>
 
-                <Link to="/sign-up">
+                <Link to="/quiz">
                     <button className="justify-center  mx-auto my-auto font-urbanist items-center h-[46px] w-[202px] px-5 py-3 bg-cyan-600 rounded-lg">
                         Get Your Quizz Now
                     </button>

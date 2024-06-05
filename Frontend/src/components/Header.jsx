@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import Navbar from './Navbar'
 
 const Header = ({ currentPage }) => {
@@ -9,7 +10,7 @@ const Header = ({ currentPage }) => {
         <div className="flex justify-center items-center h-auto text-white mb-10">
           
           {/* Button */}
-            <button className='relative  h-[10%] w-[90%] px-10 py-2 border border-sechover text-white rounded-md flex items-center justify-center'> 
+            <Link to='/sign-up' className='relative  h-[10%] w-[90%] px-10 py-2 border border-sechover text-white rounded-md flex items-center justify-center'> 
 
                  
                     <svg className=' absolute left-4 ' width="11%" height="100%" viewBox="0 0 146 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -30,7 +31,7 @@ const Header = ({ currentPage }) => {
                     </svg>
                      
 
-            </button>
+            </Link>
             
             
         </div>
