@@ -13,8 +13,6 @@ import {
   QuizPage,
   SignUp,
   LogIn,
-
-
   BlogAdmin,
   OverviewAdmin,
   TherapistApproval,
@@ -27,8 +25,6 @@ import {
   NotificationsAd,
   PasswordChangingAd,
   PasswordAd,
-
-
   Overview,
   Profile,
   ChatPatient,
@@ -39,8 +35,6 @@ import {
   Notifications,
   PasswordChanging,
   Password,
-
-
   OverviewTh,
   Appointments,
   AppointmentRequest,
@@ -54,14 +48,12 @@ import {
   NotificationsTh,
   PasswordChangingTh,
   PasswordTh,
-
   NotFound,
 } from "./pages";
 
 const App = () => {
   const [user, setUser] = useState({
     isAdmin: true, // true or false
-    role: "patient", //"therapist"  or "patient"
   });
 
   return (
@@ -78,22 +70,8 @@ const App = () => {
           path="admin-dashboard/*"
           element={user?.isAdmin ? <AdminRoutes /> : <Navigate to="/" />}
         />
-        <Route
-          path="patient/*"
-          element={
-            user?.role === "patient" ? <PatientRoutes /> : <Navigate to="/" />
-          }
-        />
-        <Route
-          path="therapist/*"
-          element={
-            user?.role === "therapist" ? (
-              <TherapistRoutes />
-            ) : (
-              <Navigate to="/" />
-            )
-          }
-        />
+        <Route path="patient/*" element={<PatientRoutes />} />
+        <Route path="therapist/*" element={<TherapistRoutes />} />
 
         <Route path="*" element={<NotFound />} />
       </Routes>

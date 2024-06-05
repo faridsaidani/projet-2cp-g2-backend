@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { GrHomeRounded } from "react-icons/gr";
 import { FiUsers } from "react-icons/fi";
 import { LuMessagesSquare } from "react-icons/lu";
@@ -8,20 +8,34 @@ import { IoIosLogOut } from "react-icons/io";
 import { BiHelpCircle } from "react-icons/bi";
 
 const Sidebarr = () => {
-
-  const [activeItem, setActiveItem] = useState('home');
+  const [activeItem, setActiveItem] = useState("home");
 
   const handleClick = (itemId) => {
     setActiveItem(itemId);
   };
 
   const sidebarItems = [
-    { id: 1, title: "Home", icon: <GrHomeRounded /> , path:'/patient/'},
-    { id: 2, title: "Therapist List", icon: <FiUsers /> , path:'/patient/therapists-list' },
-    { id: 3, title: "Messages", icon: <LuMessagesSquare /> , path:'/patient/chat' },
-    { id: 4, title: "Settings", icon: <IoSettingsOutline /> , path:'/patient/password' },
-    { id: 5, title: "Log Out", icon: <IoIosLogOut /> , path:'' },
-    { id: 6, title: "Help Center", icon: <BiHelpCircle /> , path:'' },
+    { id: 1, title: "Home", icon: <GrHomeRounded />, path: "/patient/" },
+    {
+      id: 2,
+      title: "Therapist List",
+      icon: <FiUsers />,
+      path: "/patient/therapists-list",
+    },
+    {
+      id: 3,
+      title: "Messages",
+      icon: <LuMessagesSquare />,
+      path: "/patient/chat",
+    },
+    {
+      id: 4,
+      title: "Settings",
+      icon: <IoSettingsOutline />,
+      path: "/patient/password",
+    },
+    { id: 5, title: "Log Out", icon: <IoIosLogOut />, path: "" },
+    { id: 6, title: "Help Center", icon: <BiHelpCircle />, path: "" },
   ];
 
   const SidebarItems = sidebarItems.map((list) => {
@@ -29,60 +43,51 @@ const Sidebarr = () => {
       return (
         <li key={list.id}>
           <Link to={list.path}>
-                <div
-                  className={`
+            <div
+              className={`
                         hover:bg-complimetary2 hover:border hover:rounded-lg hover:my-[230px] mt-[230px] hover:flex  hover:items-center hover:fill-[#000]   hover:h-12 hover:pl-6  justify-start text-white  flex items-center gap-3 cursor-pointer 
 
-                        ${activeItem === list.title &&'bg-[#C3E7FA]   my-[22px] mt-[230px] pl-6 text-primary1 border rounded-lg items-center fill-[#000]  h-12 ' } 
+                        ${
+                          activeItem === list.title &&
+                          "bg-[#C3E7FA]   my-[22px] mt-[230px] pl-6 text-primary1 border rounded-lg items-center fill-[#000]  h-12 "
+                        } 
 
                   `}
-                  onClick={() => handleClick(list.title)}
-                >
-                  <div >{list.icon}</div>
-                  <p >{list.title}</p>
-                </div>
+              onClick={() => handleClick(list.title)}
+            >
+              <div>{list.icon}</div>
+              <p>{list.title}</p>
+            </div>
           </Link>
-      </li>
+        </li>
       );
     }
     return (
-    
-   
-    
-    <li key={list.id}>
+      <li key={list.id}>
         <Link to={list.path}>
-        <div
-          className={`
+          <div
+            className={`
             hover:bg-complimetary2 hover:border hover:rounded-lg hover:my-[22px]  hover:flex  hover:items-center hover:fill-[#000]   hover:h-12 hover:pl-6  justify-start text-white my-[22px] flex items-center gap-3 cursor-pointer 
           
-            ${activeItem === list.title &&'bg-[#C3E7FA] pl-6  my-[22px] text-primary1 border rounded-lg items-center fill-[#000]  h-12 ' } 
+            ${
+              activeItem === list.title &&
+              "bg-[#C3E7FA] pl-6  my-[22px] text-primary1 border rounded-lg items-center fill-[#000]  h-12 "
+            } 
           
           `}
-          onClick={() => handleClick(list.title)}
-        >
-          <div >{list.icon}</div>
-          <p >{list.title}</p>
-        </div></Link>
+            onClick={() => handleClick(list.title)}
+          >
+            <div>{list.icon}</div>
+            <p>{list.title}</p>
+          </div>
+        </Link>
       </li>
-        
-    
     );
   });
 
-
-
-
-
-
-
-
- 
-
-
-
-    return (
-      <div className=" w-[90%] h-[99vh]  px-6 py-11  bg-primary1 rounded-3xl">
-           {/* Logo */}
+  return (
+    <div className=" w-[90%] h-[99vh]  px-6 py-11  bg-primary1 rounded-3xl">
+      {/* Logo */}
       <div className="  flex gap-2 text-2xl text-[#fff] whitespace-nowrap">
         <svg
           width="34"
@@ -114,13 +119,12 @@ const Sidebarr = () => {
       </div>
       {/* Logo-- */}
 
-         {/* {MySidebarlist} */}
-        <div className="mt-[90px]  text-[#fff] justify-between ">
-             <ul>{SidebarItems}</ul>
-             </div>
-        </div>
-        
-    );
+      {/* {MySidebarlist} */}
+      <div className="mt-[90px]  text-[#fff] justify-between ">
+        <ul>{SidebarItems}</ul>
+      </div>
+    </div>
+  );
 };
 
 export default Sidebarr;

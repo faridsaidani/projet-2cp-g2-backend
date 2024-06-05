@@ -1,53 +1,50 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
-import './index.css'
+import React from "react";
+import { Link } from "react-router-dom";
+import "./index.css";
 
 const AdminTearlist = () => {
-  
   return (
-    <div className='w-[98%] flex mt-6 justify-between '>
-        <div className='w-[27%]  border-[black] border-solid  '>
-          <Link to='/admin-dashboard/my-therapists'> 
-            <div className="flex justify-between w-[35%] items-center">
-                  <svg
-                    width="22"
-                    height="22"
-                    viewBox="0 0 22 22"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <rect
-                      x="21.6"
-                      y="21.2078"
-                      width="21.45"
-                      height="21.0578"
-                      rx="2.85"
-                      transform="rotate(-180 21.6 21.2078)"
-                      stroke="#298EA6"
-                      strokeWidth="0.3"
-                    />
-                    <path
-                      d="M12.75 6.99997L9 10.6789L12.75 14.3578"
-                      stroke="#298EA6"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-
-                  <p className="text-complimetary1"> Back to List</p>
-            </div>
-          </Link> 
-        
-        
-        
-        <div className=" shadow-custom mt-[12%] flex flex-col justify-start items-center gap-8 w-[100%] h-[394px] px-[25px] py-5 rounded-xl box-border  bg-[rgba(255,255,255,1)] shadow-multiple">
-              <img
-                src="https://firebasestorage.googleapis.com/v0/b/unify-v3-copy.appspot.com/o/x2og7113ea-64%3A26549?alt=media&token=31c37af4-6e70-4aa9-8498-d50123112f97"
-                alt="Not Found"
-                className=" w-[130px] h-[130px]"
+    <div className="w-[98%] flex mt-6 justify-between ">
+      <div className="w-[27%]  border-[black] border-solid  ">
+        <Link to="/admin-dashboard/my-therapists">
+          <div className="flex justify-between w-[35%] items-center">
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 22 22"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect
+                x="21.6"
+                y="21.2078"
+                width="21.45"
+                height="21.0578"
+                rx="2.85"
+                transform="rotate(-180 21.6 21.2078)"
+                stroke="#298EA6"
+                strokeWidth="0.3"
               />
-    <div className=" flex flex-col justify-center items-center gap-6 w-[100%] box-border">
-    <div className=" flex flex-col justify-start items-center gap-3 w-[100%] box-border">
+              <path
+                d="M12.75 6.99997L9 10.6789L12.75 14.3578"
+                stroke="#298EA6"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+
+            <p className="text-complimetary1"> Back to List</p>
+          </div>
+        </Link>
+
+        <div className=" shadow-custom mt-[12%] flex flex-col justify-start items-center gap-8 w-[100%] h-[394px] px-[25px] py-5 rounded-xl box-border  bg-[rgba(255,255,255,1)] shadow-multiple">
+          <img
+            src="https://firebasestorage.googleapis.com/v0/b/unify-v3-copy.appspot.com/o/x2og7113ea-64%3A26549?alt=media&token=31c37af4-6e70-4aa9-8498-d50123112f97"
+            alt="Not Found"
+            className=" w-[130px] h-[130px]"
+          />
+          <div className=" flex flex-col justify-center items-center gap-6 w-[100%] box-border">
+            <div className=" flex flex-col justify-start items-center gap-3 w-[100%] box-border">
               <p className="  border-[#063248ff] text-xl leading-5 text-[#063248] font-urbanist  font-[600]">
                 Dr. Bellatreche Hibatallah
               </p>
@@ -66,8 +63,8 @@ const AdminTearlist = () => {
                 </p>
               </div>
             </div>
-      <div className=" flex flex-col justify-start items-start gap-3 w-[undefinedundefined] box-border">
-        {/* <button  
+            <div className=" flex flex-col justify-start items-start gap-3 w-[undefinedundefined] box-border">
+              {/* <button  
                  className=" border-[#ffffffff] text-[#fff] text-base leading-4  font-urbanist  font-[600]
                  flex flex-row justify-center items-center gap-2.5 w-[100%] px-[39px] py-3.5 rounded-lg box-border  bg-[#298EA6]">
 
@@ -75,35 +72,21 @@ Make Appointement
 
         </button> */}
 
-        <a href="https://mail.google.com" target="_blank" rel="noopener noreferrer">
-            <button className=" border-[#298ea6ff] text-[#298EA6] text-base leading-4  font-urbanist  font-[600] flex flex-row justify-center items-center gap-2.5 w-[100%] px-[39px] py-3.5 rounded-lg box-border  bg-[#E3F1F4]">
-
-              Chat with Therapist
-
-            </button>
-        </a>
-
-      </div>
-    </div>
-  </div>
-
-
-
-        
-
-
-
-      
+              <a
+                href="https://mail.google.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <button className=" border-[#298ea6ff] text-[#298EA6] text-base leading-4  font-urbanist  font-[600] flex flex-row justify-center items-center gap-2.5 w-[100%] px-[39px] py-3.5 rounded-lg box-border  bg-[#E3F1F4]">
+                  Chat with Therapist
+                </button>
+              </a>
+            </div>
+          </div>
         </div>
+      </div>
 
-
-
-
-
-
-
-
-        <div className="w-[72%] shadow-custom h-[83vh] rounded-[12px]  px-[13px] py-[19px] gap-[30px] flex justify-between">
+      <div className="w-[72%] shadow-custom h-[83vh] rounded-[12px]  px-[13px] py-[19px] gap-[30px] flex justify-between">
         <div className=" flex flex-col justify-start items-start   w-[403px] h-[100%]  box-border">
           <div className=" flex flex-col justify-start items-start gap-3 w-[100%] box-border">
             <div className=" flex flex-col justify-start items-start gap-3 w-[100%] box-border">
@@ -236,7 +219,6 @@ Make Appointement
             w-[undefinedundefined] box-border
             "
                   >
-                   
                     Relationshipd
                   </button>
 
@@ -322,31 +304,29 @@ Make Appointement
               Qualifications
             </p>
             <div className=" flex flex-col justify-start items-start   w-[100%] box-border">
-              
-                <button className=" w-[80%] px-4 py-2 rounded-lg box-border mb-[22px] bg-[rgba(67,205,185,1)]  border-[#ffffffff] text-sm  text-[white] flex gap-[8px] justify-center items-center leading-[14px]  font-urbanist  font-[600]">
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 20 20"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M9.99984 18.3333C14.6023 18.3333 18.3332 14.6025 18.3332 9.99996C18.3332 5.39746 14.6023 1.66663 9.99984 1.66663C5.39734 1.66663 1.6665 5.39746 1.6665 9.99996C1.6665 14.6025 5.39734 18.3333 9.99984 18.3333Z"
-                      stroke="white"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M7.5 10L9.16667 11.6667L12.5 8.33337"
-                      stroke="white"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                  Verified therapecual training
-                </button>
-            
+              <button className=" w-[80%] px-4 py-2 rounded-lg box-border mb-[22px] bg-[rgba(67,205,185,1)]  border-[#ffffffff] text-sm  text-[white] flex gap-[8px] justify-center items-center leading-[14px]  font-urbanist  font-[600]">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M9.99984 18.3333C14.6023 18.3333 18.3332 14.6025 18.3332 9.99996C18.3332 5.39746 14.6023 1.66663 9.99984 1.66663C5.39734 1.66663 1.6665 5.39746 1.6665 9.99996C1.6665 14.6025 5.39734 18.3333 9.99984 18.3333Z"
+                    stroke="white"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M7.5 10L9.16667 11.6667L12.5 8.33337"
+                    stroke="white"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+                Verified therapecual training
+              </button>
 
               <div className=" text-[#4C606E] flex flex-col justify-start items-start  gap-[9px] w-[100%] box-border">
                 <p className="  text-[#4C606E]  text-sm  leading-[14px]  font-urbanist  font-[500]">
@@ -393,11 +373,8 @@ Make Appointement
           </div>
         </div>
       </div>
-      
-
-
     </div>
-  )
-}
+  );
+};
 
-export default AdminTearlist
+export default AdminTearlist;

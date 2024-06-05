@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import "./index.css";
 const AdminTherapist = () => {
   const Sidebarlist = [
@@ -111,15 +111,11 @@ const AdminTherapist = () => {
               Therapist List
             </p>
 
-            <Link to='/admin-dashboard/my-therapists'>
-              <button
-                className=" flex flex-row justify-center items-center gap-2.5 w-[186px] h-[100%] px-[31px] py-3.5 rounded-lg box-border  bg-[rgba(41,142,166,1)] border-[#ffffffff]  text-[15px]  leading-[15px]  font-urbanist text-secwhite font-[600] text-center"
-              >
+            <Link to="/admin-dashboard/my-therapists">
+              <button className=" flex flex-row justify-center items-center gap-2.5 w-[186px] h-[100%] px-[31px] py-3.5 rounded-lg box-border  bg-[rgba(41,142,166,1)] border-[#ffffffff]  text-[15px]  leading-[15px]  font-urbanist text-secwhite font-[600] text-center">
                 View Therapists
               </button>
             </Link>
-
-
           </div>
         </div>
 

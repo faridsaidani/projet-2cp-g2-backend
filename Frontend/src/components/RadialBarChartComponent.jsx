@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const RadialBarChartComponent = () => {
-  return (
-    <div>RadialBarChartComponent</div>
-  )
-}
+  return <div>RadialBarChartComponent</div>;
+};
 
-export default RadialBarChartComponent
+export default RadialBarChartComponent;
